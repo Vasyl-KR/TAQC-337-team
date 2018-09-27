@@ -8,5 +8,6 @@ namespace OpenCartTests.Tests.Nazar
 {
     class Class1
     {
+
     }
 }
