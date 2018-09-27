@@ -62,6 +62,7 @@
     <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
+    <Compile Include="Tests\Vasyl\temp.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,10 +72,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Tests\Dimon\" />
-    <Folder Include="Tests\Nazar\" />
-    <Folder Include="Tests\Ostap\" />
     <Folder Include="Tests\Pavlo\" />
-    <Folder Include="Tests\Vasyl\" />
     <Folder Include="Tests\Volodymyr\" />
   </ItemGroup>
   <ItemGroup>
