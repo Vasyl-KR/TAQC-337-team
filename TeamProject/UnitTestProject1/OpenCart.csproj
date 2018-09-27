@@ -63,7 +63,6 @@
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
     <Compile Include="Tests\Vasyl\temp.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
