@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\LogoutPages.cs" />
     <Compile Include="Pages\TrukhymTry.cs" />
     <Compile Include="Pages\VTPAge.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
