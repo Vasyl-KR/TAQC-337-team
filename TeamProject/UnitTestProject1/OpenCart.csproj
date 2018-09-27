@@ -68,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Tests\" />
+    <Folder Include="Tests\Pavlo\" />
+    <Folder Include="Tests\Vasyl\" />
+    <Folder Include="Tests\Volodymyr\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Responbility.txt" />
