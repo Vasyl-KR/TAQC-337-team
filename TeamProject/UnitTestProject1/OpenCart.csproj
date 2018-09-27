@@ -62,6 +62,7 @@
     <Compile Include="Pages\TrukhymTry.cs" />
     <Compile Include="Pages\VTPAge.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
+    <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,7 +72,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Tests\Dimon\" />
-    <Folder Include="Tests\Nazar\" />
     <Folder Include="Tests\Ostap\" />
     <Folder Include="Tests\Pavlo\" />
     <Folder Include="Tests\Vasyl\" />
