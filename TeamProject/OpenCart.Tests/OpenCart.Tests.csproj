@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Data.json" />
     <None Include="Data\Users.json" />
     <None Include="packages.config" />
   </ItemGroup>
