@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />
+    <Compile Include="Pages\RegisterPage.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
