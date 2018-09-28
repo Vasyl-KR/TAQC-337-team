@@ -12,26 +12,26 @@ namespace OpenCartTests.Pages
     public class RegisterPage
     {
         #region Locators
-        public const string IdFirstName = "input-firstname";
-        public const string IdLastName = "input-lastname";
-        public const string IdEmail = "input-email";
-        public const string IdTelephone = "input-telephone";
-        public const string IdFax = "input-fax";
+        private const string IdFirstName = "input-firstname";
+        private const string IdLastName = "input-lastname";
+        private const string IdEmail = "input-email";
+        private const string IdTelephone = "input-telephone";
+        private const string IdFax = "input-fax";
 
-        public const string IdCompany = "input-company";
-        public const string IdAddress1 = "input-address-1";
-        public const string IdAddress2 = "input-address-2";
-        public const string IdCity = "input-city";
-        public const string IdPostCode = "input-postcode";
-        public const string IdCountry = "input-country";
-        public const string IdRegion = "input-zone";
+        private const string IdCompany = "input-company";
+        private const string IdAddress1 = "input-address-1";
+        private const string IdAddress2 = "input-address-2";
+        private const string IdCity = "input-city";
+        private const string IdPostCode = "input-postcode";
+        private const string IdCountry = "input-country";
+        private const string IdRegion = "input-zone";
 
-        public const string IdPassword = "input-password";
-        public const string IdConfirmPassword = "input-confirm";
-        public const string NameCheckBox = "newsletter";
-        public const string NameAgreePrivacyPolicy = "agree";
+        private const string IdPassword = "input-password";
+        private const string IdConfirmPassword = "input-confirm";
+        private const string NameCheckBox = "newsletter";
+        private const string NameAgreePrivacyPolicy = "agree";
 
-        public const string CssSelectorBtnContinue = "input.btn.btn-primary";
+        private const string CssSelectorBtnContinue = "input.btn.btn-primary";
 
         #endregion
 
@@ -140,7 +140,27 @@ namespace OpenCartTests.Pages
         #endregion
 
         #region Methods
+        public void ClickInputField(IWebElement webElement)
+        {
+            webElement.Click();
+        }
 
+        public void ClearInputField(IWebElement webElement)
+        {
+            webElement.Clear();
+        }
+
+        public void SetInputField(IWebElement webElement, string text)
+        {
+            webElement.SendKeys(text);
+        }
+
+        public void SetClearFirstNameInput(string text)
+        {
+            //ClickFirstNameInput();
+            //ClearFirstNameInput();
+            //SetFirstNameInput(text);
+        }
 
 
         #endregion
