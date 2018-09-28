@@ -57,6 +57,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddressPage.cs" />
+    <Compile Include="Pages\EditAddressPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />
     <Compile Include="Pages\RegisterPage.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Data.json" />
     <None Include="Data\Users.json" />
     <None Include="packages.config" />
   </ItemGroup>
