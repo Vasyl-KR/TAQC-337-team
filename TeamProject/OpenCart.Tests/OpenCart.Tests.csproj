@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Data\ReaderUserData.cs" />
     <Compile Include="Pages\AddressPage.cs" />
     <Compile Include="Pages\EditAddressPage.cs" />
