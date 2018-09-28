@@ -60,6 +60,7 @@
     <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Data\ReaderUserData.cs" />
     <Compile Include="Pages\AddressPage.cs" />
+    <Compile Include="Pages\ATopComponent.cs" />
     <Compile Include="Pages\EditAddressPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />

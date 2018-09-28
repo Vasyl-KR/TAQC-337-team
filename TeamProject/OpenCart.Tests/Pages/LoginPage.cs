@@ -1,14 +1,18 @@
-﻿using System;
+﻿using OpenCartTests.Pages;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTestProject1.Pages
+namespace OpenCartTests.Pages
 {
-    class LoginPage
+    class LoginPage: ATopComponent
     {
-        ///////
-        //////dddawdwdH|I
+        public LoginPage(IWebDriver driver) : base(driver)
+        {
+
+        }
     }
 }
