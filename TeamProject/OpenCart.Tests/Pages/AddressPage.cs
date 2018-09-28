@@ -9,5 +9,6 @@ namespace OpenCartTests.Pages
     class AddressPage
     {
         //NAZAR
+
     }
 }
