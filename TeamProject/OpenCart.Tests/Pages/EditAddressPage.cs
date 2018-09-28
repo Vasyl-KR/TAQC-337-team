@@ -97,7 +97,7 @@ namespace OpenCartTests.Pages
         {
             ClickFirstNameInput();
             ClearFirstNameInput();
-            SetFirstNameInput(text);
+            SetFirstNameInput(text); 
         }
     }
 }
