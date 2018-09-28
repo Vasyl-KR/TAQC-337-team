@@ -14,6 +14,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void TestMethod1()
         {
             Assert.True(true);
+            //
         }
     }
 }
