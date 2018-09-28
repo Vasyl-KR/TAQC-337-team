@@ -21,6 +21,7 @@ namespace OpenCartTests.Data
     }
     class ReaderUserData
     {
+        // method read users data from file 'User.json' and return list of users
         public static ListUsers GetUsersData()
         {
             string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("\\bin\\Debug", "");

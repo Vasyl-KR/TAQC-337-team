@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OpenCartTests.Data;
 using OpenQA.Selenium;
 
 namespace OpenCartTests.Pages
@@ -37,7 +38,8 @@ namespace OpenCartTests.Pages
         #region Fields
 
         private readonly IWebDriver driver;
-
+        private ListUsers users;
+        private User user;
         #endregion
 
         #region Constructors
@@ -142,11 +144,6 @@ namespace OpenCartTests.Pages
 
 
         #endregion
-
-
-        //    private IWebDriver driver;
-        //    private ListUsers users;
-        //    private User user;
 
         //    [OneTimeSetUp]
         //    public void CreateNecessaryObjects()
