@@ -7,7 +7,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
@@ -79,6 +78,26 @@ namespace OpenCartTests.Pages
             element = PostCodeLabel;
         }
 
+        public void ClickFirstNameInput()
+        {
+            FirstNameInput.Click();
+        }
 
+        public void ClearFirstNameInput()
+        {
+            FirstNameInput.Click();
+        }
+
+        public void SetFirstNameInput(string text)
+        {
+            FirstNameInput.SendKeys(text);
+        }
+
+        public void SetClearFirstNameInput(string text)
+        {
+            ClickFirstNameInput();
+            ClearFirstNameInput();
+            SetFirstNameInput(text);
+        }
     }
 }
