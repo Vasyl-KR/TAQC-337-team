@@ -33,22 +33,32 @@ namespace OpenCartTests.Pages
         private const string City_LABEL_XPATH = "//label[contains(@for,'input-city')]";
         private const string PostCode_INPUT_ID = "input-postcode";
         private const string PostCode_LABEL_XPATH = "//label[contains(@for,'input-postcode')]";
+        private const string Country_SELECT_ID = "input-country";
+        private const string Region_SELECT_ID = "input-zone";
+        private const string Back_BTN_CSSSELECTOR = "input.btn.btn-default";
+        private const string Country_BTN_CSSSELECTOR = "input.btn.btn-primary";
+
+        public IWebElement Country { get { return driver.FindElement(By.Id(Country_SELECT_ID)); } }
+        public IWebElement Region { get { return driver.FindElement(By.Id(Region_SELECT_ID)); } }
+
+        public IWebElement BackBtn { get { return driver.FindElement(By.CssSelector(Back_BTN_CSSSELECTOR)); } }
+        public IWebElement CountineBtn { get { return driver.FindElement(By.CssSelector(Country_BTN_CSSSELECTOR)); } }
 
 
-        public IWebElement FirstNameLabel{get { return driver.FindElement(By.XPath(EditAddressPage.FirstName_LABEL_XPATH)); }}
-        public IWebElement FirstNameInput{get { return driver.FindElement(By.Id(EditAddressPage.FirstName_INPUT_ID)); }}
-        public IWebElement LastNameLabel { get { return driver.FindElement(By.XPath(EditAddressPage.LastName_LABEL_XPATH)); } }
-        public IWebElement LastNameInput { get { return driver.FindElement(By.Id(EditAddressPage.LastName_INPUT_ID)); } }
-        public IWebElement CompanyLabel { get { return driver.FindElement(By.XPath(EditAddressPage.Company_LABEL_XPATH)); } }
-        public IWebElement CompanyInput { get { return driver.FindElement(By.Id(EditAddressPage.Company_INPUT_ID)); } }  
-        public IWebElement Address1Label { get { return driver.FindElement(By.XPath(EditAddressPage.Address1_LABEL_XPATH)); } }
-        public IWebElement Address1Input { get { return driver.FindElement(By.Id(EditAddressPage.Address1_INPUT_ID)); } }
-        public IWebElement Address2Label { get { return driver.FindElement(By.XPath(EditAddressPage.Address2_LABEL_XPATH)); } }
-        public IWebElement Address2Input { get { return driver.FindElement(By.Id(EditAddressPage.Address2_INPUT_ID)); } }
-        public IWebElement CityLabel { get { return driver.FindElement(By.XPath(EditAddressPage.City_LABEL_XPATH)); } }
-        public IWebElement CityInput { get { return driver.FindElement(By.Id(EditAddressPage.City_INPUT_ID)); } }
-        public IWebElement PostCodeLabel { get { return driver.FindElement(By.XPath(EditAddressPage.PostCode_LABEL_XPATH)); } }
-        public IWebElement PostCodeInput { get { return driver.FindElement(By.Id(EditAddressPage.PostCode_INPUT_ID)); } }
+        public IWebElement FirstNameLabel{get { return driver.FindElement(By.XPath(FirstName_LABEL_XPATH)); }}
+        public IWebElement FirstNameInput{get { return driver.FindElement(By.Id(FirstName_INPUT_ID)); }}
+        public IWebElement LastNameLabel { get { return driver.FindElement(By.XPath(LastName_LABEL_XPATH)); } }
+        public IWebElement LastNameInput { get { return driver.FindElement(By.Id(LastName_INPUT_ID)); } }
+        public IWebElement CompanyLabel { get { return driver.FindElement(By.XPath(Company_LABEL_XPATH)); } }
+        public IWebElement CompanyInput { get { return driver.FindElement(By.Id(Company_INPUT_ID)); } }  
+        public IWebElement Address1Label { get { return driver.FindElement(By.XPath(Address1_LABEL_XPATH)); } }
+        public IWebElement Address1Input { get { return driver.FindElement(By.Id(Address1_INPUT_ID)); } }
+        public IWebElement Address2Label { get { return driver.FindElement(By.XPath(Address2_LABEL_XPATH)); } }
+        public IWebElement Address2Input { get { return driver.FindElement(By.Id(Address2_INPUT_ID)); } }
+        public IWebElement CityLabel { get { return driver.FindElement(By.XPath(City_LABEL_XPATH)); } }
+        public IWebElement CityInput { get { return driver.FindElement(By.Id(City_INPUT_ID)); } }
+        public IWebElement PostCodeLabel { get { return driver.FindElement(By.XPath(PostCode_LABEL_XPATH)); } }
+        public IWebElement PostCodeInput { get { return driver.FindElement(By.Id(PostCode_INPUT_ID)); } }
 
         public EditAddressPage()
         {
@@ -78,26 +88,34 @@ namespace OpenCartTests.Pages
             element = PostCodeLabel;
         }
 
-        public void ClickFirstNameInput()
+        public void ClickInputField(IWebElement webElement)
         {
-            FirstNameInput.Click();
+            webElement.Click();
         }
 
-        public void ClearFirstNameInput()
+        public void ClearInputField(IWebElement webElement)
         {
-            FirstNameInput.Click();
+            webElement.Clear();
         }
 
-        public void SetFirstNameInput(string text)
+        public void SetInputField(string text, IWebElement webElement)
         {
-            FirstNameInput.SendKeys(text);
+            webElement.SendKeys(text);
         }
 
-        public void SetClearFirstNameInput(string text)
+        public EditAddressPage SetClearInputField(string text, IWebElement webElement)
         {
-            ClickFirstNameInput();
-            ClearFirstNameInput();
-            SetFirstNameInput(text); 
+            ClickInputField(webElement);
+            ClearInputField(webElement);
+            SetInputField(text, webElement);
+            return this;
+        }
+
+        public EditAddressPage Select (string text, IWebElement webElement)
+        {
+            Country.Click();
+            Country.FindElement(By.Name(text)).Click(); 
+            return this;
         }
     }
 }
