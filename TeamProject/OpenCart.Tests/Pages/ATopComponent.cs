@@ -58,6 +58,7 @@ namespace OpenCartTests.Pages
         }
     }
 
+
     public abstract class ATopComponent
     {
         protected IWebDriver driver;
@@ -72,6 +73,16 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.XPath("//a[@title='My Account']")); }
         }
 
+        // Dimon MainSearch
+        public IWebElement MainSearchInput
+        {
+            get { return driver.FindElement(By.CssSelector(".form-control.input-lg")); } 
+        }
+
+        public IWebElement MainSearchButton
+        {
+             get { return driver.FindElement(By.CssSelector(".btn.btn-default.btn-lg")); } 
+        }
 
         private CurrencyDropDownMenu currencyDropDownMenu;
         private MyAccountDropDownMenu myAccountDropDownMenu;
@@ -191,9 +202,21 @@ namespace OpenCartTests.Pages
             OpenMyAccountDropDownMenu();
             return myAccountDropDownMenu.Logout;
         }
+
         public void ClickLogout()
         {
             GetLogout().Click();
+        }
+
+        // Dimon MainSearch
+        public void SetMainSearch(string searchtext)
+        {
+            MainSearchInput.SendKeys(searchtext);
+        }
+
+        public void ClickMainSearch()
+        {
+            MainSearchButton.Click();
         }
     }
 }
