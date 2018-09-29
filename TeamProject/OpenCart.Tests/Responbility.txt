@@ -1,4 +1,4 @@
-﻿ Account_Information_Page  - 
+﻿ Account_Information_Page  - Ostap
  Main_Search_And_Wishlist  - Dmytro
  Controll_Tree			   -
  Main_Gif_Image		       -
