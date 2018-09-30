@@ -38,7 +38,7 @@ namespace OpenCartTests.Tests.Vasyl
             driver.Quit();
         }
 
-        [Test]
+        [Test, Order(1)]
         public void AddToComparisionTest()
         {
             HomePage homePage = new HomePage(driver);
@@ -63,7 +63,7 @@ namespace OpenCartTests.Tests.Vasyl
             Assert.AreEqual(selectedProduct, actualProduct, "Comparison failed");
 
         }
-        [Test]
+        [Test, Order(2)]
         public void RemoveFromCompareTableTest()
         {
             HomePage homePage = new HomePage(driver);
@@ -74,6 +74,26 @@ namespace OpenCartTests.Tests.Vasyl
                 productComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
 
         }
+        [TestCase (4), Order(3)]
+        public void Add_4_ProductsToCompareTest(int x)
+        {
+            HomePage homePage = new HomePage(driver);
+            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
+            for (int i = 0; i < x; i++)
+            {
+                laptopsPage.CompareProductButtons[i].Click();
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
+                {
+                    bool actual = laptopsPage.GetProductComparisonLinkText().Contains((i+1).ToString());
+                    return actual;
 
+                });
+                wait.Until(waitForElement);
+            }
+            
+            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
+            Assert.AreEqual(x, productComparisonPage.AllProducts.Count);
+        }
     }
 }
