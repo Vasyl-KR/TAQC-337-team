@@ -165,9 +165,9 @@ namespace OpenCartTests.Pages
         // Constructor
         public SearchPage(IWebDriver driver) : base(driver) 
         {
-            VerifyWebElements_Labels();
-            VerifyWebElements_Func();
-            VerifyWebElements_DropDownItems();
+            //VerifyWebElements_Labels();
+            //VerifyWebElements_Func();
+            //VerifyWebElements_DropDownItems();
         }
         
         // Verify labels
