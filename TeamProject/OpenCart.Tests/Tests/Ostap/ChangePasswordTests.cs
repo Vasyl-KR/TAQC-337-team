@@ -22,7 +22,7 @@ namespace OpenCartTests.Tests.Ostap
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
         }
-
+        
         [OneTimeTearDown]
         public void AfterAllMethods()
         {
