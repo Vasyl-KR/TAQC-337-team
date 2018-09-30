@@ -26,7 +26,13 @@ namespace OpenCartTests.Tests.Dimon
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
+           // driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
         }
 
         [OneTimeTearDown]
@@ -60,7 +66,99 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-           // Assert.AreEqual(actualCount, expectedCount);
+            Assert.AreEqual(actualCount, expectedCount);
+        }
+
+        [Test]
+        public void Search_Description()
+        {
+            // Arrange
+            int expectedCount = 10;
+            string[] expectedText = products.Products.SearchDescription.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[11];
+            string searchText = "Apple";
+            int i = 0;
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchInDescriptionCheckBox();
+            searchPage.ClickSearchButton();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(actualCount, expectedCount);
+        }
+
+        [Test]
+        public void Search_Category()
+        {
+            // Arrange
+            int expectedCount = 4;
+            string[] expectedText = products.Products.SearchCategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[5];
+            string searchText = "Apple";
+            int i = 0;
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchInDescriptionCheckBox();
+            searchPage.ClickCategoriesDropDownMenu();
+            searchPage.ClickCategoryTablets();
+            searchPage.ClickSearchButton();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+        }
+
+        [Test]
+        public void Search_Subcategory()
+        {
+            // Arrange
+            int expectedCount = 4;
+            string[] expectedText = products.Products.SearchSubcategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[5];
+            string searchText = "Apple";
+            int i = 0;
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchInDescriptionCheckBox();
+            searchPage.ClickCategoriesDropDownMenu();
+            searchPage.ClickCategoryTablets();
+            searchPage.ClickSearchInSubcategoriesCheckBox();
+            searchPage.ClickSearchButton();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
         }
     }
 }

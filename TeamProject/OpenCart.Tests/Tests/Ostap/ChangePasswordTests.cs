@@ -32,8 +32,7 @@ namespace OpenCartTests.Tests.Ostap
         [Test]
         public void Test()
         {
-
-            new LoginPage(driver)
+            new HomePage(driver)
                 .GoToLoginPage()
                 .SuccessRegistratorLogin("ostap@gmail.com", "qwerty123")
                 .GoToChangePassword()
@@ -44,7 +43,6 @@ namespace OpenCartTests.Tests.Ostap
                 .GoToChangePassword()
                 .SuccessChangePassword("qwerty123")
                 .GoToLogoutPage();
-
         }
     }
 }
