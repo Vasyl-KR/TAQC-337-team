@@ -58,11 +58,12 @@ namespace OpenCartTests.Pages
 
         // Functional
 
-        public void SetLoginInputClear(string text)
+        public LoginPage SetLoginInputClear(string text)
         {
             ClickLoginInput();
             ClearLoginInput();
             SetLoginInput(text);
+            return this;
         }
 
         public string GetPasswordInputText()
@@ -87,11 +88,12 @@ namespace OpenCartTests.Pages
 
         // Functional
 
-        public void SetPasswordInputClear(string text)
+        public LoginPage SetPasswordInputClear(string text)
         {
             ClickPasswordInput();
             ClearPasswordInput();
             SetPasswordInput(text);
+            return this;
         }
 
         public void ClickSigninButton()
