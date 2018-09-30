@@ -86,6 +86,13 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.CssSelector(".btn.btn-default.btn-lg")); }
         }
 
+        // Vasyl - Navigation Bar
+        public IWebElement LaptopsDropdownMenu
+        { get { return driver.FindElement(By.XPath("//a[text() = 'Laptops & Notebooks']")); } }
+        public IWebElement ShowAllLaptops
+        { get { return driver.FindElement(By.XPath("//a[text() = 'Show All Laptops & Notebooks']")); } }
+
+
         private CurrencyDropDownMenu currencyDropDownMenu;
         private MyAccountDropDownMenu myAccountDropDownMenu;
 
@@ -141,6 +148,13 @@ namespace OpenCartTests.Pages
         public void ClickLogin()
         {
             GetLogin().Click();
+        }
+
+        public LoginPage GoToLoginPage()
+        {
+            GetLogin();
+            ClickLogin();
+            return new LoginPage(driver);
         }
 
         public IWebElement GetRegiser()
@@ -209,6 +223,13 @@ namespace OpenCartTests.Pages
             GetLogout().Click();
         }
 
+        public LogoutPage GoToLogoutPage()
+        {
+            GetLogout();
+            ClickLogout();
+            return new LogoutPage(driver);
+        }
+
         // Dimon MainSearch
         public void SetMainSearch(string searchtext)
         {
@@ -218,6 +239,22 @@ namespace OpenCartTests.Pages
         public void ClickMainSearch()
         {
             MainSearchButton.Click();
+        }
+
+        // Vasyl - Navigation Bar
+        public void ClickLaptopsDropdownMenu()
+        {
+            LaptopsDropdownMenu.Click();
+        }
+        public void ClickShowAllLaptops()
+        {
+            ShowAllLaptops.Click();
+        }
+        public LaptopsAndNotebooksPage GoToLaptopPage()
+        {
+            ClickLaptopsDropdownMenu();
+            ClickShowAllLaptops();
+            return new LaptopsAndNotebooksPage(driver);
         }
     }
 }
