@@ -13,8 +13,8 @@ namespace OpenCartTests.Data
     {
         public static ProductsList GetProductData()
         {
-            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("\\bin\\Debug", "");
-            string path = Path.Combine(folderPath, "SeachProducts.json");
+            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("\\bin\\Debug", "\\Data");
+            string path = Path.Combine(folderPath, "SearchProducts.json");
             string productsData;
 
             using (StreamReader reader = new StreamReader(path))

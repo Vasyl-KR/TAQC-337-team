@@ -27,7 +27,7 @@ namespace OpenCartTests.Pages
         private const string SEARCH_IN_SUBCAT_CHECKBOX = "sub_category"; // Name
         private const string SEARCH_IN_DESCRIP_CHECKBOX = "#description"; // cssSelector
         private const string SEARCH_BUTTON = "#button-search"; // cssSelector
-        private const string PRODUCTS_BLOCK = ".product - thumb"; // cssSelector
+        private const string PRODUCTS_BLOCK = ".product-thumb"; // cssSelector
         private const string PRODUCTS_NAME_LIST = "//div[contains(@class, 'caption')]//a"; // XPath
         private const string PRODUCTS_COST_LIST = ".price-tax"; // cssSelector
         private const string PRODUCTS_SHOWING = "//div[contains(@class, 'col') and contains(text(), 'Showing')]"; // XPath
@@ -165,9 +165,9 @@ namespace OpenCartTests.Pages
         // Constructor
         public SearchPage(IWebDriver driver) : base(driver) 
         {
-            VerifyWebElements_Labels();
-            VerifyWebElements_Func();
-            VerifyWebElements_DropDownItems();
+            //VerifyWebElements_Labels();
+            //VerifyWebElements_Func();
+            //VerifyWebElements_DropDownItems();
         }
         
         // Verify labels
