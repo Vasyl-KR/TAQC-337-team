@@ -6,7 +6,7 @@
  Main_Sponsors_Gif		   - ?Ostap
  Search_Page               - Dmytro
  Information_List		   -
- Registration_Page		   - Volodya
+ Registration_Page		   - Volodya(done)
  Registration_Page_Confirm - Volodya
  Login_Page				   - Ostap
  Login_Page_Forgot_Pass	   - Ostap
@@ -14,7 +14,7 @@
  Shoping_Cart	           - 
  Checkout				   -
  Compare_Products		   - Vasyl
- MyAcc_Edit				   - 
+ MyAcc_Edit				   - Volodya
  MyAcc_Change_Pass		   - Ostap
  MyAcc_Modify_address_book - Nazar
  Edit_Address			   - Nazar
