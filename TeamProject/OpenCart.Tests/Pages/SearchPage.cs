@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.ObjectModel;
 
 namespace OpenCartTests.Pages
 {
@@ -70,7 +71,7 @@ namespace OpenCartTests.Pages
         // Labels properties
         public IWebElement SearchLabel
         { get { return driver.FindElement(By.CssSelector(SEARCH_LABEL)); } }
-        public IWebElement SearchCriteriaLabel        
+        public IWebElement SearchCriteriaLabel
         { get { return driver.FindElement(By.CssSelector(SEARCH_CRITERIA_LABEL)); }}
         public IWebElement ProductsMeetingLabel
         { get { return driver.FindElement(By.CssSelector(PRODUCTS_MEETING_LABEL)); } }
@@ -88,12 +89,12 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.CssSelector(SEARCH_IN_DESCRIP_CHECKBOX)); } }
         public IWebElement SearchButton
         { get { return driver.FindElement(By.CssSelector(SEARCH_BUTTON)); } }
-        public IWebElement ProductBlock
-        { get { return driver.FindElement(By.CssSelector(PRODUCTS_BLOCK)); } }
-        public IWebElement ProductNameList
-        { get { return driver.FindElement(By.XPath(PRODUCTS_NAME_LIST)); } }
-        public IWebElement ProductCostList
-        { get { return driver.FindElement(By.CssSelector(PRODUCTS_COST_LIST)); } }
+        public ReadOnlyCollection<IWebElement> ProductBlocks
+        { get { return driver.FindElements(By.CssSelector(PRODUCTS_BLOCK)); } }
+        public IList<IWebElement> ProductNameList
+        { get { return driver.FindElements(By.XPath(PRODUCTS_NAME_LIST)); } }
+        public IList<IWebElement> ProductCostList
+        { get { return driver.FindElements(By.CssSelector(PRODUCTS_COST_LIST)); } }
         public IWebElement ProductsShowing
         { get { return driver.FindElement(By.XPath(PRODUCTS_SHOWING)); } }
         public IWebElement SortDDMenu
@@ -102,7 +103,7 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.Id(SHOW_DD_MENU)); } }
         public IWebElement ProductCompareBTN
         { get { return driver.FindElement(By.Id(PRODUCT_COMPARE_BTN)); } }
-        public IWebElement GridBTN
+        public IWebElement GridBtn
         { get { return driver.FindElement(By.XPath(GRID_BTN)); } }
         public IWebElement ListBtn
         { get { return driver.FindElement(By.XPath(LIST_BTN)); } }
@@ -160,6 +161,7 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(SHOW_100)); } }
         #endregion
 
+        #region Constructor and Verify
         // Constructor
         public SearchPage(IWebDriver driver) : base(driver) 
         {
@@ -199,5 +201,358 @@ namespace OpenCartTests.Pages
             element = CategoryCameras;
             element = CategoryMp3players;
         }
+        #endregion
+
+        #region Methods
+        // Page methods
+        public string GetSearchLabelText()
+        {
+            return SearchLabel.Text;
+        }
+
+        public string GetSearchCriteriaLabelText()
+        {
+            return SearchCriteriaLabel.Text;
+        }
+
+        public string GetProductsMeetingLabelText()
+        {
+            return ProductsMeetingLabel.Text;
+        }
+
+        public string GetNoProductsLabelText()
+        {
+            return NoProductsLabel.Text;
+        }
+
+        public void SetSearchCriteriaInput(string searchText)
+        {
+            SearchCriteriaInput.SendKeys(searchText);
+        }
+        
+        public void ClearSearchCriteriaInput()
+        {
+            SearchCriteriaInput.Clear();
+        }
+
+        public string GetCategoriesDropDownMenuText()
+        {
+            return CategoriesDropDownMenu.Text;
+        }
+
+        public void ClickCategoriesDropDownMenu()
+        {
+            CategoriesDropDownMenu.Click();
+        }
+
+        public void ClickSearchInSubcategoriesCheckBox()
+        {
+            SearchInSubcategoriesCheckBox.Click();
+        }
+
+        public void ClickSearchInDescriptionCheckBox()
+        {
+            SearchInDescriptionCheckBox.Click();
+        }
+
+        public void ClickSearchButton()
+        {
+            SearchButton.Click();
+        }
+
+        public int CountProductBlocks()
+        {
+            return ProductBlocks.Count();
+        }
+        
+        public IList<IWebElement> GetProductNameList()
+        {
+            IList<IWebElement> listofproducts = ProductNameList;
+            return listofproducts;
+        }
+        // todo or nottodo? Assert expected product names and actual match
+
+        public IList<IWebElement> GetProductCostList()
+        {
+            IList<IWebElement> listofproducts = ProductNameList;
+            return listofproducts;
+        }
+        // same
+
+        public string GetProductsShowingText()
+        {
+            return ProductsShowing.Text;
+        }
+
+        public string GetSortDDMenuText()
+        {
+           return SortDDMenu.Text;
+        }
+
+        public void ClickSortDDMenu()
+        {
+            SortDDMenu.Click();
+        }
+
+        public string GetShowDDMenuText()
+        {
+            return ShowDDMenu.Text;
+        }
+
+        public void ClickShowDDMenu()
+        {
+            ShowDDMenu.Click();
+        }
+
+        public string GetProductCompareBTNText()
+        {
+            return ProductCompareBTN.Text;
+        }
+
+        public void ClickProductCompareBTN()
+        {
+            ProductCompareBTN.Click();
+        }
+
+        public void ClickGridBtn()
+        {
+            GridBtn.Click();
+        }
+
+        public void ClickListBtn()
+        {
+            ListBtn.Click();
+        }
+
+        public string GetCategoryAllCategoriesText()
+        {
+            return CategoryAllCategories.Text;
+        }
+
+        public void ClickCategoryAllCategories()
+        {
+            CategoryAllCategories.Click();
+        }
+
+        public string GetCategoryDesktopsText()
+        {
+            return CategoryDesktops.Text;
+        }
+
+        public void ClickCategoryDesktops()
+        {
+            CategoryDesktops.Click();
+        }
+
+        public string GetCategoryLaptopsAndNotebooksText()
+        {
+            return CategoryLaptopsAndNotebooks.Text;
+        }
+
+        public void ClickCategoryLaptopsAndNotebooks()
+        {
+            CategoryLaptopsAndNotebooks.Click();
+        }
+
+        public string GetCategoryComponentsText()
+        {
+            return CategoryComponents.Text;
+        }
+
+        public void ClickCategoryComponents()
+        {
+            CategoryComponents.Click();
+        }
+
+        public string GetCategoryTabletsText()
+        {
+            return CategoryTablets.Text;
+        }
+
+        public void ClickCategoryTablets()
+        {
+            CategoryTablets.Click();
+        }
+
+        public string GetCategorySoftwareText()
+        {
+            return CategorySoftware.Text;
+        }
+
+        public void ClickCategorySoftware()
+        {
+            CategorySoftware.Click();
+        }
+
+        public string GetCategoryPhonesAndPDAsText()
+        {
+            return CategoryPhonesAndPDAs.Text;
+        }
+
+        public void ClickCategoryPhonesAndPDAs()
+        {
+            CategoryPhonesAndPDAs.Click();
+        }
+
+        public string GetCategoryCamerasText()
+        {
+            return CategoryCameras.Text;
+        }
+
+        public void ClickCategoryCameras()
+        {
+            CategoryCameras.Click();
+        }
+
+        public string GetCategoryMp3playersText()
+        {
+            return CategoryMp3players.Text;
+        }
+
+        public void ClickCategoryMp3players()
+        {
+            CategoryMp3players.Click();
+        }
+
+        public string GetSortDefaultText()
+        {
+            return SortDefault.Text;
+        }
+
+        public void ClickSortDefault()
+        {
+            SortDefault.Click();
+        }
+
+        public string GetSortNameAZText()
+        {
+            return SortNameAZ.Text;
+        }
+
+        public void ClickSortNameAZ()
+        {
+            SortNameAZ.Click();
+        }
+
+        public string GetSortNameZAText()
+        {
+            return SortNameZA.Text;
+        }
+
+        public void ClickSortNameZA()
+        {
+            SortNameZA.Click();
+        }
+
+        public string GetSortPriceLowHighText()
+        {
+            return SortPriceLowHigh.Text;
+        }
+
+        public void ClickSortPriceLowHigh()
+        {
+            SortPriceLowHigh.Click();
+        }
+
+        public string GetSortPriceHighLowText()
+        {
+            return SortPriceHighLow.Text;
+        }
+
+        public void ClickSortPriceHighLow()
+        {
+            SortPriceHighLow.Click();
+        }
+
+        public string GetSortRatingHighestText()
+        {
+            return SortRatingHighest.Text;
+        }
+
+        public void ClickSortRatingHighest()
+        {
+            SortRatingHighest.Click();
+        }
+
+        public string GetSortRatingLowestText()
+        {
+            return SortRatingLowest.Text;
+        }
+
+        public void ClickSortRatingLowest()
+        {
+            SortRatingLowest.Click();
+        }
+
+        public string GetSortModelAZText()
+        {
+            return SortModelAZ.Text;
+        }
+
+        public void ClickSortModelAZ()
+        {
+            SortModelAZ.Click();
+        }
+
+        public string GetSortModelZAText()
+        {
+            return SortModelZA.Text;
+        }
+
+        public void ClickSortModelZA()
+        {
+            SortModelZA.Click();
+        }
+
+        public string GetShow_15Text()
+        {
+            return Show_15.Text;
+        }
+
+        public void ClickShow_15()
+        {
+            Show_15.Click();
+        }
+
+        public string GetShow_25Text()
+        {
+            return Show_25.Text;
+        }
+
+        public void ClickShow_25()
+        {
+            Show_25.Click();
+        }
+
+        public string GetShow_50Text()
+        {
+            return Show_50.Text;
+        }
+
+        public void ClickShow_50()
+        {
+            Show_50.Click();
+        }
+
+        public string GetShow_75Text()
+        {
+            return Show_75.Text;
+        }
+
+        public void ClickShow_75()
+        {
+            Show_75.Click();
+        }
+
+        public string GetShow_100Text()
+        {
+            return Show_100.Text;
+        }
+
+        public void ClickShow_100()
+        {
+            Show_100.Click();
+        }
+        #endregion
     }
 }
