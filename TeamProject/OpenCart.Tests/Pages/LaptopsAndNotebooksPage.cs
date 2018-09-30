@@ -18,8 +18,8 @@ namespace OpenCartTests.Pages
         private const string SUCCESS_ALERT_MESSAGE = "//div[@class = 'alert alert-success']"; // XPath
 
         // Link locators
-        private const string COMPARABLE_PRODUCT_LINK = "//div[@class = 'alert alert-success']/child::a[1]"; //XPath
-        private const string PRODUCT_COMPARISON_LINK = "//div[@class = 'alert alert-success']/child::a[contains (@href, 'compare')]"; //XPath
+        private const string COMPARABLE_PRODUCT_LINK = "//div[@class = 'alert alert-success']/child::a"; //XPath
+        private const string PRODUCT_COMPARISON_LINK = "//a[contains (@href, 'compare')]"; //XPath
         private const string FIRST_PRODUCT_LINK = ".caption h4:first-of-type"; //cssSelector
 
         // Buttons locators
@@ -90,6 +90,14 @@ namespace OpenCartTests.Pages
         public ProductComparisonPage AddToCompare()
         {
             ClickCompareThisProductButton();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
+            {
+                bool actual = SuccessAlertMessage.Enabled;
+                return actual;
+            });
+            //Thread.Sleep(2000);
+            wait.Until(waitForElement);
             ClickProductComparisonLink();
             return new ProductComparisonPage(driver);
         }
