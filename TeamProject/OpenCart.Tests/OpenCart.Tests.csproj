@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SearchProducts.json" />
+    <None Include="Data\Users1.json" />
     <None Include="Data\Users.json" />
     <None Include="packages.config" />
   </ItemGroup>
