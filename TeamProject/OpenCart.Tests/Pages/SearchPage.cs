@@ -199,5 +199,8 @@ namespace OpenCartTests.Pages
             element = CategoryCameras;
             element = CategoryMp3players;
         }
+
+        public void somemethod()
+        { }
     }
 }

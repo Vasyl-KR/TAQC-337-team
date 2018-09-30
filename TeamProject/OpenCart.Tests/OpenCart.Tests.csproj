@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Data\ReaderUserData.cs" />
+    <Compile Include="Pages\AccountPage.cs" />
     <Compile Include="Pages\AddressPage.cs" />
     <Compile Include="Pages\ATopComponent.cs" />
     <Compile Include="Pages\EditAddressPage.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Pages\LogoutPage.cs" />
     <Compile Include="Pages\ProductComparisonPage.cs" />
     <Compile Include="Pages\RegisterPage.cs" />
+    <Compile Include="Pages\RepeatLoginPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Tests\Dimon\FromMainSearch.cs" />
