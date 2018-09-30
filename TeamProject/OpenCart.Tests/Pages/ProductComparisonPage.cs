@@ -19,6 +19,7 @@ namespace OpenCartTests.Pages
         private const string COMPARISON_LABEL = "h1"; // cssSelector
         private const string PRODUCT_DETAILS_LABEL = "//thead/descendant::*[contains(text(), 'Product Details')]"; // XPath
         private const string PRODUCT_LABEL = "//td[text() = 'Product']"; // XPath
+        private const string NO_PRODUCTS_TO_COMPARE_LABEL = "//p[contains(text(), 'not chosen any products')]";
 
         // Link locators
         private const string FIRST_PRODUCT_LINK = "//td[text() = 'Product']/following-sibling::td[1]"; //XPath
@@ -37,6 +38,8 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(PRODUCT_DETAILS_LABEL)); } }
         public IWebElement ProductLabel
         { get { return driver.FindElement(By.XPath(PRODUCT_LABEL)); } }
+        public IWebElement NoProductsToCompareLabel
+        { get { return driver.FindElement(By.XPath(NO_PRODUCTS_TO_COMPARE_LABEL)); } }
         // Link properties
         public IWebElement FirstProduct
         { get { return driver.FindElement(By.XPath(FIRST_PRODUCT_LINK)); } }
@@ -84,6 +87,10 @@ namespace OpenCartTests.Pages
         public string GetProductLabelText()
         {
             return ProductLabel.Text;
+        }
+        public string GetNoProductsToCompareLabelText()
+        {
+            return NoProductsToCompareLabel.Text;
         }
 
         public string GetFirstProductText()

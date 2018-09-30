@@ -63,6 +63,17 @@ namespace OpenCartTests.Tests.Vasyl
             Assert.AreEqual(selectedProduct, actualProduct, "Comparison failed");
 
         }
+        [Test]
+        public void RemoveFromCompareTableTest()
+        {
+            HomePage homePage = new HomePage(driver);
+            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
+            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
+            productComparisonPage.ClickRemoveLastProductButton();
+            Assert.AreEqual("You have not chosen any products to compare.",
+                productComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
+
+        }
 
     }
 }
