@@ -236,6 +236,11 @@ namespace OpenCartTests.Pages
             MainSearchInput.SendKeys(searchtext);
         }
 
+        //public SearchPage ClickMainSearch()
+        //{
+        //    MainSearchButton.Click();
+        //    return new SearchPage(driver);
+        //}
         public void ClickMainSearch()
         {
             MainSearchButton.Click();
