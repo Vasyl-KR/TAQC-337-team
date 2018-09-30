@@ -62,6 +62,7 @@
     <Compile Include="Pages\AccountPage.cs" />
     <Compile Include="Pages\AddressPage.cs" />
     <Compile Include="Pages\ATopComponent.cs" />
+    <Compile Include="Pages\ChangePasswordPage.cs" />
     <Compile Include="Pages\EditAddressPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LaptopsAndNotebooksPage.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
     <Compile Include="Tests\Vasyl\ComparisionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\Volodymyr\TestRegistrationPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SearchProducts.json" />
@@ -88,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\Pavlo\" />
-    <Folder Include="Tests\Volodymyr\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Responbility.txt" />
