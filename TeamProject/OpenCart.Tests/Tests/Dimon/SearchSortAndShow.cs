@@ -141,7 +141,144 @@ namespace OpenCartTests.Tests.Dimon
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
-        //[Test]
+        [Test]
+        public void Search_ZA_ModelSort()
+        {
+            // Arrange
+            int expectedCount = 15;
+            string[] expectedText = products.Products.SearchZAModelSort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[16];
+            string searchText = "a";
+            int i = 0;
+            string expectedShowing = "Showing 1 to 15 of 55 (4 Pages)";
 
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchInDescriptionCheckBox();
+            searchPage.ClickSearchButton();
+            searchPage.ClickSortDDMenu();
+            searchPage.ClickSortModelZA();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            string actualShowing = searchPage.GetProductsShowingText();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
+        }
+
+        [Test]
+        public void Search_ZA_ModelSort_Show50()
+        {
+            // Arrange
+            int expectedCount = 50;
+            string[] expectedText = products.Products.SearchZAModelSortShow50.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[51];
+            string searchText = "a";
+            int i = 0;
+            string expectedShowing = "Showing 1 to 50 of 55 (2 Pages)";
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchInDescriptionCheckBox();
+            searchPage.ClickSearchButton();
+            searchPage.ClickSortDDMenu();
+            searchPage.ClickSortModelZA();
+            searchPage.ClickShowDDMenu();
+            searchPage.ClickShow_50();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            string actualShowing = searchPage.GetProductsShowingText();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
+        }
+
+        [Test]
+        public void Search_Type_List()
+        {
+            // Arrange
+            int expectedCount = 15;
+            string[] expectedText = products.Products.SearchTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[16];
+            string searchText = "a";
+            int i = 0;
+            string expectedShowing = "Showing 1 to 15 of 35 (3 Pages)";
+            bool isList = false;
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchButton();
+            searchPage.ClickListBtn();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            string actualShowing = searchPage.GetProductsShowingText();
+            bool listOrNot = searchPage.GetListOrNot();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(expectedCount, actualCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
+            Assert.AreEqual(true, listOrNot); // Assert expected display type and actual
+        }
+
+        [Test]
+        public void Search_Type_Grid()
+        {
+            // Arrange
+            int expectedCount = 15;
+            string[] expectedText = products.Products.SearchTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualText = new string[16];
+            string searchText = "a";
+            int i = 0;
+            string expectedShowing = "Showing 1 to 15 of 35 (3 Pages)";
+            bool isGrid = false;
+
+            // Act
+            SearchPage searchPage = new SearchPage(driver);
+            searchPage.ClickMainSearch();
+            searchPage.SetSearchCriteriaInput(searchText);
+            searchPage.ClickSearchButton();
+            searchPage.ClickGridBtn();
+            int actualCount = searchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            string actualShowing = searchPage.GetProductsShowingText();
+            bool gridOrNot = searchPage.GetGridOrNot();
+
+            // Assert
+            foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
+            {
+                actualText[i] = product.Text;
+                Assert.AreEqual(expectedText[i], actualText[i]);
+                i++;
+            }
+            Assert.AreEqual(expectedCount, actualCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
+            Assert.AreEqual(true, gridOrNot); // Assert expected display type and actual
+        }
     }
 }
