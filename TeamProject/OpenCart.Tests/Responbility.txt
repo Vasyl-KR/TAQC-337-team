@@ -26,5 +26,7 @@
  Orders_Transactions       -
  Orders_Recurring_Payments -
  Newsletter_Sub_Unsub      -
- Logout					   -
+ Logout					   - Ostap
  Home_Page				   - Ostap
+ Laptops&Notebooks_Page	   - Vasyl
+ Navigation_Bar			   -

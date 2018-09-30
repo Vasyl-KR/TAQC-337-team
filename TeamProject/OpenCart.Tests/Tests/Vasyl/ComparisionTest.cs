@@ -29,8 +29,8 @@ namespace OpenCartTests.Tests.Vasyl
         [SetUp]
         public void SetUp()
         {
-            //driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=product/category&path=18");
+            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
+           
         }
         [OneTimeTearDown]
         public void AfterAllMethods()
@@ -41,7 +41,8 @@ namespace OpenCartTests.Tests.Vasyl
         [Test]
         public void AddToComparisionTest()
         {
-            LaptopsAndNotebooksPage lapAndNotePage = new LaptopsAndNotebooksPage(driver);
+            HomePage homePage = new HomePage(driver);
+            LaptopsAndNotebooksPage lapAndNotePage = homePage.GoToLaptopPage();
 
             string selectedProduct = lapAndNotePage.GetFirstProductLinkText();
 
