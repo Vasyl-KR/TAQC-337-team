@@ -1,42 +1,39 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenCartTests.Data
 {
-    public enum MyAccount
-    {
-        Login,
-        Register,
-        MyAccount,
-        OrderHistory,
-        Transactions,
-        Downloads,
-        Logout
-    }
-    class ReaderUserData
+    public class ReaderUserData
     {
         // method read users data from file 'User.json' and return list of users
         public static ListUsers GetUsersData()
         {
-            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("\\bin\\Debug", "\\Data");
-            string path = Path.Combine(folderPath, "Users1.json");
+            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                        .Replace("\\bin\\Debug", "\\Data");
+            string path = Path.Combine(folderPath, "Users.json");
             string userData;
+            ListUsers users = new ListUsers();
 
             using (StreamReader reader = new StreamReader(path))
             {
                 userData = reader.ReadToEnd();
             }
 
-            ListUsers users = JsonConvert.DeserializeObject<ListUsers>(userData);
+            try
+            {
+                users = JsonConvert.DeserializeObject<ListUsers>(userData);
+            }
+            catch (JsonException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
             return users;
         }
     }
+
     public struct User
     {
         public string firstName;
@@ -61,3 +58,4 @@ namespace OpenCartTests.Data
         public User[] Users { get; set; }
     }
 }
+
