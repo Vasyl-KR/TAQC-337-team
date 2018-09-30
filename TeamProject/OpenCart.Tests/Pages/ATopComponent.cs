@@ -61,6 +61,8 @@ namespace OpenCartTests.Pages
 
     public abstract class ATopComponent
     {
+        public const string VALUE_ATTRIBUTE = "value";
+
         protected IWebDriver driver;
 
         public IWebElement Currency
@@ -76,12 +78,12 @@ namespace OpenCartTests.Pages
         // Dimon MainSearch
         public IWebElement MainSearchInput
         {
-            get { return driver.FindElement(By.CssSelector(".form-control.input-lg")); } 
+            get { return driver.FindElement(By.CssSelector(".form-control.input-lg")); }
         }
 
         public IWebElement MainSearchButton
         {
-             get { return driver.FindElement(By.CssSelector(".btn.btn-default.btn-lg")); } 
+            get { return driver.FindElement(By.CssSelector(".btn.btn-default.btn-lg")); }
         }
 
         private CurrencyDropDownMenu currencyDropDownMenu;
@@ -108,7 +110,7 @@ namespace OpenCartTests.Pages
             {
                 Currency.Click();
             }
-            currencyDropDownMenu = new CurrencyDropDownMenu(driver);           
+            currencyDropDownMenu = new CurrencyDropDownMenu(driver);
         }
 
         public string GetMyAccountText()
@@ -123,7 +125,6 @@ namespace OpenCartTests.Pages
 
         public void OpenMyAccountDropDownMenu()
         {
-           // Console.WriteLine(MyAccount.GetAttribute("aria-expanded"));
             if (MyAccount.GetAttribute("aria-expanded") != "true")
             {
                 MyAccount.Click();
@@ -139,7 +140,7 @@ namespace OpenCartTests.Pages
 
         public void ClickLogin()
         {
-            GetLogin().Click(); 
+            GetLogin().Click();
         }
 
         public IWebElement GetRegiser()
