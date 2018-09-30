@@ -73,9 +73,11 @@
     <Compile Include="Pages\SearchPage.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Tests\Dimon\FromMainSearch.cs" />
+    <Compile Include="Tests\Dimon\SearchFunctionality.cs" />
+    <Compile Include="Tests\Dimon\SearchSortAndShow.cs" />
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
-    <Compile Include="Tests\Vasyl\temp.cs" />
+    <Compile Include="Tests\Vasyl\ComparisionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

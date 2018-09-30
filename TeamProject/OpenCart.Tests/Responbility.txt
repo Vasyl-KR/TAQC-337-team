@@ -1,9 +1,9 @@
 ﻿ Account_Information_Page  - Ostap
  Main_Search_And_Wishlist  - Dmytro
  Controll_Tree			   -
- Main_Gif_Image		       -
- Main_Featured_Products	   -
- Main_Sponsors_Gif		   -
+ Main_Gif_Image		       - ?Ostap
+ Main_Featured_Products	   - 
+ Main_Sponsors_Gif		   - ?Ostap
  Search_Page               - Dmytro
  Information_List		   -
  Registration_Page		   - Volodya
@@ -26,4 +26,7 @@
  Orders_Transactions       -
  Orders_Recurring_Payments -
  Newsletter_Sub_Unsub      -
- Logout					   -
+ Logout					   - Ostap
+ Home_Page				   - Ostap
+ Laptops&Notebooks_Page	   - Vasyl
+ Navigation_Bar			   -
