@@ -98,7 +98,7 @@ namespace OpenCartTests.Pages
         public IWebElement ProductsShowing
         { get { return driver.FindElement(By.XPath(PRODUCTS_SHOWING)); } }
         public IWebElement SortDDMenu
-        { get { return driver.FindElement(By.XPath(PRODUCTS_NAME_LIST)); } }
+        { get { return driver.FindElement(By.XPath(SORT_DD_MENU)); } }
         public IWebElement ShowDDMenu
         { get { return driver.FindElement(By.Id(SHOW_DD_MENU)); } }
         public IWebElement ProductCompareBTN
