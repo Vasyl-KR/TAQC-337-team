@@ -63,6 +63,7 @@
     <Compile Include="Pages\AddressPage.cs" />
     <Compile Include="Pages\ATopComponent.cs" />
     <Compile Include="Pages\EditAddressPage.cs" />
+    <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LaptopsAndNotebooksPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />
