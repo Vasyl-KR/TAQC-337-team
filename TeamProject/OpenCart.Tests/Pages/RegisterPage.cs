@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using OpenCartTests.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
