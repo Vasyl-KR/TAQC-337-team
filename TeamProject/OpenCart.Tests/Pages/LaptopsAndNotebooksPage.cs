@@ -38,6 +38,8 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.CssSelector(FIRST_PRODUCT_LINK)); } }
         public IWebElement CompareThisProductButton
         { get { return driver.FindElement(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)); } }
+        public List<IWebElement> CompareProductButtons
+        { get { return driver.FindElements(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)).ToList(); } }
 
         // Constructor
         public LaptopsAndNotebooksPage(IWebDriver driver) : base(driver)

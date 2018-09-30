@@ -277,11 +277,50 @@ namespace OpenCartTests.Pages
             AgreePrivacyPolicy.Click();
         }
 
-        public void ClickButtonContinue()
+        public ConfirmationRegisterPage ClickButtonContinue()
         {
             BtnContinue.Click();
+            return new ConfirmationRegisterPage(driver);
         }
 
         #endregion
+    }
+
+    public class ConfirmationRegisterPage: ATopComponent
+    {
+        private readonly IWebDriver driver;
+
+        private const string XPathBtnContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
+
+        private const string XPathParagraphText = "//div[@id ='content']/p";
+
+        private const string XPathH1Text = "//div[@id ='content']/h1";
+
+        public ConfirmationRegisterPage(IWebDriver driver) : base(driver)
+        {
+            this.driver = driver;
+        }
+
+        public IWebElement H1Element
+        {
+            get { return driver.FindElement(By.XPath(XPathH1Text)); }
+        }
+
+        public ReadOnlyCollection<IWebElement> PElements
+        {
+            get { return driver.FindElements(By.XPath(XPathParagraphText)); }
+        }
+
+        public IWebElement BtnConfirmationContinue
+        {
+            get { return driver.FindElement(By.XPath(XPathBtnContinue)); }
+        }
+
+        public void ClickConfirmationButtonContinue()
+        {
+            BtnConfirmationContinue.Click();
+        }
+
+
     }
 }
