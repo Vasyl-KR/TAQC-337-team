@@ -28,3 +28,5 @@
  Newsletter_Sub_Unsub      -
  Logout					   - Ostap
  Home_Page				   - Ostap
+ Laptops&Notebooks_Page	   - Vasyl
+ Navigation_Bar			   -
