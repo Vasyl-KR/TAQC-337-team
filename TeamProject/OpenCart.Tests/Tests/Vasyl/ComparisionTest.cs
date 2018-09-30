@@ -42,15 +42,27 @@ namespace OpenCartTests.Tests.Vasyl
         public void AddToComparisionTest()
         {
             HomePage homePage = new HomePage(driver);
-            LaptopsAndNotebooksPage lapAndNotePage = homePage.GoToLaptopPage();
+            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
 
-            string selectedProduct = lapAndNotePage.GetFirstProductLinkText();
+            string selectedProduct = laptopsPage.GetFirstProductLinkText();
 
-            ProductComparisonPage productComparisonPage = lapAndNotePage.AddToCompare();
+            laptopsPage.ClickCompareThisProductButton();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
+            {
+                bool actual =  laptopsPage.GetProductComparisonLinkText().Contains("1");
+                return actual;
+
+            });
+            wait.Until(waitForElement);
+            //    //Thread.Sleep(2000);
+
+            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
 
             string actualProduct = productComparisonPage.GetLastProductText();
-            Assert.AreEqual(selectedProduct, actualProduct);
-            //
+            Assert.AreEqual(selectedProduct, actualProduct, "Comparison failed");
+
         }
+
     }
 }
