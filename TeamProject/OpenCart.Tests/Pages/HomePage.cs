@@ -11,10 +11,5 @@ namespace OpenCartTests.Pages
     {
         public HomePage(IWebDriver driver) : base(driver) { }
 
-        public LoginPage GoToLoginPage()
-        {
-            ClickLogin();
-            return new LoginPage(driver);
-        }
     }
 }
