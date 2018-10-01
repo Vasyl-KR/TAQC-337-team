@@ -7,7 +7,7 @@ using NUnit.Framework;
 using OpenCartTests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-
+using OpenQA.Selenium.Firefox;
 
 namespace OpenCartTests.Tests.Ostap
 {
@@ -37,7 +37,7 @@ namespace OpenCartTests.Tests.Ostap
             AccountPage accountPage =loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
 
             ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
-            accountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
+            accountPage = changePasswordPage.SuccessChangePassword("qwerty1234");// add SuccessAccountPage
 
             LogoutPage logoutPage = accountPage.GoToLogoutPage();
             loginPage = logoutPage.GoToLoginPage();
@@ -47,5 +47,11 @@ namespace OpenCartTests.Tests.Ostap
             accountPage = changePasswordPage.SuccessChangePassword("qwerty123");
             accountPage.GoToLogoutPage();
         }
+
+        /*
+         * перейменувати методи і константи, кнопки 
+         * змінити назви локаторів
+         * 
+         */
     }
 }
