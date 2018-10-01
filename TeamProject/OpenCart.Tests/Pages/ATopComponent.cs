@@ -92,7 +92,7 @@ namespace OpenCartTests.Pages
         public IWebElement ShowAllLaptops
         { get { return driver.FindElement(By.XPath("//a[text() = 'Show All Laptops & Notebooks']")); } }
 
-
+ 
         private CurrencyDropDownMenu currencyDropDownMenu;
         private MyAccountDropDownMenu myAccountDropDownMenu;
 

@@ -77,6 +77,7 @@
     <Compile Include="Tests\Dimon\SearchSortAndShow.cs" />
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
+    <Compile Include="Tests\Pavlo\WishListTest.cs" />
     <Compile Include="Tests\Vasyl\ComparisionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,7 +88,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\Pavlo\" />
     <Folder Include="Tests\Volodymyr\" />
   </ItemGroup>
   <ItemGroup>
