@@ -28,7 +28,8 @@ namespace OpenCartTests.Tests.Nazar
             
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            NUnit.Framework.Assert.AreEqual(LogIn(email, password), true);
+            LogIn(email, password);
+           // NUnit.Framework.CollectionAssert.AreEqual(LogIn(email, password), new AccountPage);
         }
 
         [Test]
@@ -41,8 +42,6 @@ namespace OpenCartTests.Tests.Nazar
                 .SuccessfullEditionAddress(users.Users[1])
                 .ListAddresses.Count();
 
-            //string actual1 = driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
-            //string expected = "Your address has been successfully inserted";
             NUnit.Framework.Assert.AreEqual(BeforeAdding + 1, AfterAdding, "Compare the text of the comunicat about creating");
 
         }
@@ -55,12 +54,10 @@ namespace OpenCartTests.Tests.Nazar
                 .EditRaw(2)
                 .SuccessfullEditionAddress(users.Users[0])
                 .GetMessageAddressEdited();
-
-
-            string actual1 = driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
+ 
             string expected = "Your address has been successfully updated";
 
-            NUnit.Framework.Assert.AreEqual(actual, expected);
+            NUnit.Framework.Assert.AreEqual(actual, expected, "Compare the text of the comunicat about edit");
         }
 
         [Test]
@@ -72,27 +69,19 @@ namespace OpenCartTests.Tests.Nazar
             NUnit.Framework.Assert.AreEqual(expected, actual, "Compare the text of the comunicat about delite");
         }
 
-        private bool LogIn(string email, string password)
+        private AccountPage LogIn(string email, string password)
         {
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/login");
 
-            driver.FindElement(By.Id("input-email")).Click();
-            driver.FindElement(By.Id("input-email")).Clear();
-            driver.FindElement(By.Id("input-email")).SendKeys(email);
-
-            driver.FindElement(By.Id("input-password")).Click();
-            driver.FindElement(By.Id("input-password")).Clear();
-            driver.FindElement(By.Id("input-password")).SendKeys(password);
-
-            driver.FindElement(By.CssSelector("input.btn.btn-primary")).Click();
-            return true;
+            return new HomePage(driver)
+                .GoToLoginPage()
+                .SuccessRegistratorLogin(email, password);
         }
 
         private void LogOut()
         {
-            driver.FindElement(By.XPath("//a[@title ='My Account']")).Click();
-            driver.FindElement(By.XPath("//ul[@class='dropdown-menu dropdown-menu-right']/li[last()]")).Click();
-            Thread.Sleep(1000);
+            new HomePage(driver)
+                .GoToLogoutPage();
         }
 
         [OneTimeTearDown]

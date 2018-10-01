@@ -61,36 +61,49 @@ namespace OpenCartTests.Pages
 
     public abstract class ATopComponent
     {
+        #region Constants
+        private const string Currency_BTN_CSSSELECTOR = ".btn-link.dropdown-toggle";
+        private const string MyAccount_BTN_XPATH = "//a[@title='My Account']";
+        private const string MainSearch_INPUT_CSSSELECTOR = ".form-control.input-lg";
+        private const string MainSearch_BTN_CSSSELECTOR = ".btn.btn-default.btn-lg";
+        private const string Laptops_BTN_XPATH = "//a[text() = 'Laptops & Notebooks']";
+        private const string ShowAllLaptops_BTN_XPATH = "//a[text() = 'Show All Laptops & Notebooks']";
+
+        public const string ARIA_EXPANDED_ATTRIBUTE = "aria-expanded";
         public const string VALUE_ATTRIBUTE = "value";
+        #endregion
+
+
+
 
         protected IWebDriver driver;
 
         public IWebElement Currency
         {
-            get { return driver.FindElement(By.CssSelector(".btn-link.dropdown-toggle")); }
+            get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
         }
 
         public IWebElement MyAccount
         {
-            get { return driver.FindElement(By.XPath("//a[@title='My Account']")); }
+            get { return driver.FindElement(By.XPath(MyAccount_BTN_XPATH)); }
         }
 
         // Dimon MainSearch
         public IWebElement MainSearchInput
         {
-            get { return driver.FindElement(By.CssSelector(".form-control.input-lg")); }
+            get { return driver.FindElement(By.CssSelector(MainSearch_INPUT_CSSSELECTOR)); }
         }
 
         public IWebElement MainSearchButton
         {
-            get { return driver.FindElement(By.CssSelector(".btn.btn-default.btn-lg")); }
+            get { return driver.FindElement(By.CssSelector(MainSearch_BTN_CSSSELECTOR)); }
         }
 
         // Vasyl - Navigation Bar
         public IWebElement LaptopsDropdownMenu
-        { get { return driver.FindElement(By.XPath("//a[text() = 'Laptops & Notebooks']")); } }
+        { get { return driver.FindElement(By.XPath(Laptops_BTN_XPATH)); } }
         public IWebElement ShowAllLaptops
-        { get { return driver.FindElement(By.XPath("//a[text() = 'Show All Laptops & Notebooks']")); } }
+        { get { return driver.FindElement(By.XPath(ShowAllLaptops_BTN_XPATH)); } }
 
  
         private CurrencyDropDownMenu currencyDropDownMenu;
@@ -113,7 +126,7 @@ namespace OpenCartTests.Pages
 
         public void OpenCurrencyDropDownMenu()
         {
-            if (Currency.GetAttribute("aria-expanded").Equals("false"))
+            if (Currency.GetAttribute(ARIA_EXPANDED_ATTRIBUTE).Equals("false"))
             {
                 Currency.Click();
             }
@@ -132,7 +145,7 @@ namespace OpenCartTests.Pages
 
         public void OpenMyAccountDropDownMenu()
         {
-            if (MyAccount.GetAttribute("aria-expanded") != "true")
+            if (MyAccount.GetAttribute(ARIA_EXPANDED_ATTRIBUTE) != "true")
             {
                 MyAccount.Click();
             }

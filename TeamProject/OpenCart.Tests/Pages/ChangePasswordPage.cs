@@ -8,6 +8,12 @@ namespace OpenCartTests.Pages
 {
     public class ChangePasswordPage : ATopComponent
     {
+        #region Constants
+        private const string Password_INPUT_ID = "input-password";
+        private const string PasswordConfirm_INPUT_ID = "input-confirm";
+        private const string Confirm_BTN_CSSSELECTOR = "input.btn.btn-primary";
+        #endregion
+
         public IWebElement PasswordInput
         { get { return driver.FindElement(By.Id("input-password")); } }
 
