@@ -32,17 +32,20 @@ namespace OpenCartTests.Tests.Ostap
         [Test]
         public void Test()
         {
-            new HomePage(driver)
-                .GoToLoginPage()
-                .SuccessRegistratorLogin("ostap@gmail.com", "qwerty123")
-                .GoToChangePassword()
-                .SuccessChangePassword("qwerty1234")
-                .GoToLogoutPage()
-                .GoToLoginPage()
-                .SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234")
-                .GoToChangePassword()
-                .SuccessChangePassword("qwerty123")
-                .GoToLogoutPage();
+            LoginPage loginPage = new HomePage(driver).GoToLoginPage();
+
+            AccountPage accountPage =loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
+
+            ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
+            accountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
+
+            LogoutPage logoutPage = accountPage.GoToLogoutPage();
+            loginPage = logoutPage.GoToLoginPage();
+            loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
+
+            changePasswordPage = accountPage.GoToChangePassword();
+            accountPage = changePasswordPage.SuccessChangePassword("qwerty123");
+            accountPage.GoToLogoutPage();
         }
     }
 }
