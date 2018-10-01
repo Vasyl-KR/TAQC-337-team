@@ -21,8 +21,6 @@ namespace OpenCartTests.Pages
         private const string Transactions_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/transaction')]";
         private const string RecurringPayments_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/recurring')]";
         private const string SubUnsubToNewsletter_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/newsletter')]";
-
-
         #endregion
 
         public IWebElement EditAccountInformation

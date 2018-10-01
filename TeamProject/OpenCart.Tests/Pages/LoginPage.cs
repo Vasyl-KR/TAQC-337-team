@@ -10,20 +10,28 @@ namespace OpenCartTests.Pages
 {
     public class LoginPage : ATopComponent
     {
+        #region Constants
+        private const string Login_INPUT_ID = "input-email";
+        private const string Password_INPUT_ID = "input-password";
+        private const string Signin_BTN_CSSSELECTOR = "input.btn.btn-primary";
+        private const string Register_BTN_CSSSELECTOR = "a.btn.btn-primary";
+        private const string ForgottenPass_BTN_XPATH = "//div[@class='well']//a[contains(@href,'account/forgotten')]";
+        #endregion
+
         public IWebElement LoginInput
-        { get { return driver.FindElement(By.Id("input-email")); } }
+        { get { return driver.FindElement(By.Id(Login_INPUT_ID)); } }
 
         public IWebElement PasswordInput
-        { get { return driver.FindElement(By.Id("input-password")); } }
+        { get { return driver.FindElement(By.Id(Password_INPUT_ID)); } }
 
         public IWebElement SigninButton
-        { get { return driver.FindElement(By.CssSelector("input.btn.btn-primary")); } }
+        { get { return driver.FindElement(By.CssSelector(Signin_BTN_CSSSELECTOR)); } }
 
         public IWebElement RegisterButton
-        { get { return driver.FindElement(By.CssSelector("a.btn.btn-primary")); } }
+        { get { return driver.FindElement(By.CssSelector(Register_BTN_CSSSELECTOR)); } }
 
         public IWebElement ForgottenPassButton
-        { get { return driver.FindElement(By.XPath("//div[@class='well']//a[contains(@href,'account/forgotten')]")); } }
+        { get { return driver.FindElement(By.XPath(ForgottenPass_BTN_XPATH)); } }
 
         public LoginPage(IWebDriver driver) : base(driver) { }
 
