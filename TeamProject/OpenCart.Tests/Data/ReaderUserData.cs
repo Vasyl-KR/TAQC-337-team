@@ -12,7 +12,7 @@ namespace OpenCartTests.Data
         {
             string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                         .Replace("\\bin\\Debug", "\\Data");
-            string path = Path.Combine(folderPath, "Users.json");
+            string path = Path.Combine(folderPath, "Users1.json");
             string userData;
             ListUsers users = new ListUsers();
 
