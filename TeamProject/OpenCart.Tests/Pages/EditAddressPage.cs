@@ -134,8 +134,10 @@ namespace OpenCartTests.Pages
 
         public EditAddressPage SetSelectField (string text, IWebElement webElement)
         {
-            webElement.Click();
-            webElement.FindElement(By.XPath("//option[text() = '" + text + "']")).Click(); 
+            SelectElement selectElement = new SelectElement(webElement);
+            selectElement.SelectByText(text);
+            //webElement.Click();
+            //webElement.FindElement(By.XPath("//option[text() = '" + text + "']")).Click(); 
             return this;
         }
 
