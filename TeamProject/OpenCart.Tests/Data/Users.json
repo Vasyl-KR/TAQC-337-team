@@ -1,5 +1,7 @@
 ﻿{
-  "Users": [{
+  "Users": [
+    {
+      //acount alredy exist in database
       "firstName": "Petro",
       "lastName": "Smiluk",
       "email": "psmelnuk@gmail.com",
@@ -13,10 +15,11 @@
       "country": "Ukraine",
       "region": "L'vivs'ka Oblast'",
       "password": "qwert123!@#"
-            }, {
+    },
+    {
       "firstName": "Oksana",
       "lastName": "Vesela",
-      "email": "oksi.ves@gmail.com",
+      "email": "oksi.somert@gmail.com",
       "telephone": "+380971569898",
       "fax": "+380986777777",
       "company": "SoftServe",
@@ -27,7 +30,8 @@
       "country": "Ukraine",
       "region": "L'vivs'ka Oblast'",
       "password": "12345qwert"
-               },{
+    },
+    {
       "firstName": "Viktor",
       "lastName": "Dymanskiu",
       "email": "homews@gmail.com",

@@ -150,6 +150,13 @@ namespace OpenCartTests.Pages
             GetLogin().Click();
         }
 
+        public LoginPage GoToLoginPage()
+        {
+            GetLogin();
+            ClickLogin();
+            return new LoginPage(driver);
+        }
+
         public IWebElement GetRegiser()
         {
             OpenMyAccountDropDownMenu();
@@ -216,12 +223,24 @@ namespace OpenCartTests.Pages
             GetLogout().Click();
         }
 
+        public LogoutPage GoToLogoutPage()
+        {
+            GetLogout();
+            ClickLogout();
+            return new LogoutPage(driver);
+        }
+
         // Dimon MainSearch
         public void SetMainSearch(string searchtext)
         {
             MainSearchInput.SendKeys(searchtext);
         }
 
+        //public SearchPage ClickMainSearch()
+        //{
+        //    MainSearchButton.Click();
+        //    return new SearchPage(driver);
+        //}
         public void ClickMainSearch()
         {
             MainSearchButton.Click();

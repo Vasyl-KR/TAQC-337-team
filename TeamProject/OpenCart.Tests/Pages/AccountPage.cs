@@ -65,6 +65,13 @@ namespace OpenCartTests.Pages
             GetChangePassword().Click();
         }
 
+        public ChangePasswordPage GoToChangePassword()
+        {
+            GetChangePassword();
+            ClickChangePassword();
+            return new ChangePasswordPage(driver);
+        }
+
         public IWebElement GetModifyAddressBookEntries()
         {
             return ModifyAddressBookEntries;

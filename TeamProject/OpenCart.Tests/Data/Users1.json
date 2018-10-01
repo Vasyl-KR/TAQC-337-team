@@ -1,6 +1,7 @@
 ﻿{
   "Users": [
     {
+      //acount alredy exist in database
       "firstName": "Petro",
       "lastName": "Smiluk",
       "email": "psmelnuk@gmail.com",

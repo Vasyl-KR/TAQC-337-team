@@ -27,15 +27,17 @@ namespace OpenCartTests.Pages
         private const string SEARCH_IN_SUBCAT_CHECKBOX = "sub_category"; // Name
         private const string SEARCH_IN_DESCRIP_CHECKBOX = "#description"; // cssSelector
         private const string SEARCH_BUTTON = "#button-search"; // cssSelector
-        private const string PRODUCTS_BLOCK = ".product - thumb"; // cssSelector
+        private const string PRODUCTS_BLOCK = ".product-thumb"; // cssSelector
         private const string PRODUCTS_NAME_LIST = "//div[contains(@class, 'caption')]//a"; // XPath
         private const string PRODUCTS_COST_LIST = ".price-tax"; // cssSelector
         private const string PRODUCTS_SHOWING = "//div[contains(@class, 'col') and contains(text(), 'Showing')]"; // XPath
         private const string SORT_DD_MENU = "//div//select[contains(@id, 'sort')]"; // XPath
         private const string SHOW_DD_MENU = "input-limit"; // ID
         private const string PRODUCT_COMPARE_BTN = "compare-total"; // ID
-        private const string GRID_BTN = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'grid') and contains(@class, 'active')]"; // XPath
-        private const string LIST_BTN = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'list') and contains(@class, 'active')]"; // XPath
+        private const string LIST_BTN = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'list')]"; // XPath
+        private const string GRID_BTN = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'grid')]"; // XPath
+        private const string GRID_BTN_OrNOT = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'grid') and contains(@class, 'active')]"; // XPath
+        private const string LIST_BTN_OrNot = "//div[contains(@class, 'btn-group-sm')]//button[contains(@id, 'list') and contains(@class, 'active')]"; // XPath
 
         // Constans Categories dropdown menu options (only main)
         private const string CATEGORY_ALL_CATEGORIES = "//div//option[text() = 'All Categories']"; // XPath
@@ -98,7 +100,7 @@ namespace OpenCartTests.Pages
         public IWebElement ProductsShowing
         { get { return driver.FindElement(By.XPath(PRODUCTS_SHOWING)); } }
         public IWebElement SortDDMenu
-        { get { return driver.FindElement(By.XPath(PRODUCTS_NAME_LIST)); } }
+        { get { return driver.FindElement(By.XPath(SORT_DD_MENU)); } }
         public IWebElement ShowDDMenu
         { get { return driver.FindElement(By.Id(SHOW_DD_MENU)); } }
         public IWebElement ProductCompareBTN
@@ -107,7 +109,10 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(GRID_BTN)); } }
         public IWebElement ListBtn
         { get { return driver.FindElement(By.XPath(LIST_BTN)); } }
-
+        public IWebElement GridBtnOrNot
+        { get { return driver.FindElement(By.XPath(GRID_BTN_OrNOT)); } }
+        public IWebElement ListBtnOrNot
+        { get { return driver.FindElement(By.XPath(LIST_BTN_OrNot)); } }
         // Categories dropdown menu options (only main) properties
         public IWebElement CategoryAllCategories
         { get { return driver.FindElement(By.XPath(CATEGORY_ALL_CATEGORIES)); } }
@@ -165,9 +170,9 @@ namespace OpenCartTests.Pages
         // Constructor
         public SearchPage(IWebDriver driver) : base(driver) 
         {
-            VerifyWebElements_Labels();
-            VerifyWebElements_Func();
-            VerifyWebElements_DropDownItems();
+            //VerifyWebElements_Labels();
+            //VerifyWebElements_Func();
+            //VerifyWebElements_DropDownItems();
         }
         
         // Verify labels
@@ -274,7 +279,7 @@ namespace OpenCartTests.Pages
 
         public IList<IWebElement> GetProductCostList()
         {
-            IList<IWebElement> listofproducts = ProductNameList;
+            IList<IWebElement> listofproducts = ProductCostList;
             return listofproducts;
         }
         // same
@@ -552,6 +557,34 @@ namespace OpenCartTests.Pages
         public void ClickShow_100()
         {
             Show_100.Click();
+        }
+        
+        public bool GetListOrNot()
+        {
+            bool isList;
+            IWebElement listOrNot = ListBtnOrNot;
+            if (listOrNot == null)
+            {
+                return isList = false;
+            }
+            else
+            {
+                return isList = true;
+            }
+        }
+        
+        public bool GetGridOrNot()
+        {
+            bool isGrid;
+            IWebElement GridOrNot = GridBtnOrNot;
+            if (GridOrNot == null)
+            {
+                return isGrid = false;
+            }
+            else
+            {
+                return isGrid = true;
+            }
         }
         #endregion
     }

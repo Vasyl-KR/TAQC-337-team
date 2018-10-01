@@ -47,6 +47,8 @@ namespace OpenCartTests.Pages
 
         public IWebElement CompareThisProductButton
         { get { return driver.FindElement(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)); } }
+        public List<IWebElement> CompareProductButtons
+        { get { return driver.FindElements(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)).ToList(); } }
 
         public IWebElement AddToWishlistButton
         { get { return driver.FindElement(By.XPath(ADD_TO_WISHLIST_BUTTON)); } }
@@ -110,24 +112,8 @@ namespace OpenCartTests.Pages
             CompareThisProductButton.Click();
         }
 
-        public void ClickAddToWishListButton()
+        public ProductComparisonPage GoToComparison()
         {
-            AddToWishlistButton.Click();
-        }
-
-        public ProductComparisonPage AddToCompare()
-        {
-            ClickCompareThisProductButton();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
-            {
-                bool actual = GetProductComparisonLinkText().Contains("1");
-                return actual;
-
-            });
-            wait.Until(waitForElement);
-            //Thread.Sleep(2000);
-
             ClickProductComparisonLink();
             return new ProductComparisonPage(driver);
         }

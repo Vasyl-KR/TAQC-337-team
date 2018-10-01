@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using OpenCartTests.Data;
+﻿using System.Collections.ObjectModel;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace OpenCartTests.Pages
 {
-   
 
-    public class RegisterPage
+    public class RegisterPage: ATopComponent
     {
         #region Locators
         private const string IdFirstName = "input-firstname";
@@ -38,13 +34,12 @@ namespace OpenCartTests.Pages
         #region Fields
 
         private readonly IWebDriver driver;
-        private ListUsers users;
-        private User user;
+
         #endregion
 
         #region Constructors
 
-        public RegisterPage(IWebDriver driver)
+        public RegisterPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
@@ -139,177 +134,193 @@ namespace OpenCartTests.Pages
 
         #endregion
 
-        #region Methods
-        public void ClickInputField(IWebElement webElement)
+        #region Private Methods
+
+        private void ClickInputField(IWebElement webElement)
         {
             webElement.Click();
         }
 
-        public void ClearInputField(IWebElement webElement)
+        private void ClearInputField(IWebElement webElement)
         {
             webElement.Clear();
         }
 
-        public void SetInputField(IWebElement webElement, string text)
+        private void SetInputField(IWebElement webElement, string text)
         {
             webElement.SendKeys(text);
         }
 
-        public void SetClearFirstNameInput(string text)
+        private void SelectFromDropDownList(IWebElement webElement, string text)
         {
-            //ClickFirstNameInput();
-            //ClearFirstNameInput();
-            //SetFirstNameInput(text);
+            SelectElement selectElement = new SelectElement(webElement);
+            selectElement.SelectByText(text);
+        }
+       
+        #endregion 
+
+        #region Methods
+
+        public RegisterPage GoToRegisterPage()
+        {
+            ClickRegiser();
+            return new RegisterPage(driver);
+        }
+
+        public void SetFirstName(string firstName)
+        {
+            ClickInputField(FirstName);
+            ClearInputField(FirstName);
+            SetInputField(FirstName, firstName);
+        }
+
+        public void SetLastName(string lastName)
+        {
+            ClickInputField(LastName);
+            ClearInputField(LastName);
+            SetInputField(LastName, lastName);
+        }
+
+        public void SetEmail(string email)
+        {
+            ClickInputField(Email);
+            ClearInputField(Email);
+            SetInputField(Email, email);
+        }
+
+        public void SetTelephone(string telephone)
+        {
+            ClickInputField(Telephone);
+            ClearInputField(Telephone);
+            SetInputField(Telephone, telephone);
+        }
+
+        public void SetFax(string fax)
+        {
+            ClickInputField(Fax);
+            ClearInputField(Fax);
+            SetInputField(Fax, fax);
+        }
+
+        public void SetCompany(string company)
+        {
+            ClickInputField(Company);
+            ClearInputField(Company);
+            SetInputField(Company, company);
+        }
+
+        public void SetAddress1(string address1)
+        {
+            ClickInputField(Address1);
+            ClearInputField(Address1);
+            SetInputField(Address1, address1);
+        }
+
+        public void SetAddress2(string address2)
+        {
+            ClickInputField(Address2);
+            ClearInputField(Address2);
+            SetInputField(Address2, address2);
+        }
+
+        public void SetCity(string city)
+        {
+            ClickInputField(City);
+            ClearInputField(City);
+            SetInputField(City, city);
+        }
+
+        public void SetPostCode(string postCode)
+        {
+            ClickInputField(PostCode);
+            ClearInputField(PostCode);
+            SetInputField(PostCode, postCode);
+        }
+
+        public void SetCountry(string country)
+        {
+            ClickInputField(Country);
+            SelectFromDropDownList(Country, country);
+        }
+
+        public void SetRegion(string region)
+        {
+            ClickInputField(Region);
+            SelectFromDropDownList(Region, region);
+        }
+
+        public void SetPassword(string password)
+        {
+            ClickInputField(Password);
+            ClearInputField(Password);
+            SetInputField(Password, password);
+        }
+
+        public void SetConfirmPassword(string confirmPassword)
+        {
+            ClickInputField(ConfirmPassword);
+            ClearInputField(ConfirmPassword);
+            SetInputField(ConfirmPassword, confirmPassword);
+        }
+
+        public void SetNewsLetter(bool yesOrNo = true)
+        {
+            if (yesOrNo)
+            {
+                CheckBox[0].Click();
+            }
+            else { CheckBox[1].Click();}
+        }
+
+        public void CheckAgreePrivacyPolicy()
+        {
+            AgreePrivacyPolicy.Click();
+        }
+
+        public ConfirmationRegisterPage ClickButtonContinue()
+        {
+            BtnContinue.Click();
+            return new ConfirmationRegisterPage(driver);
+        }
+
+        #endregion
+    }
+
+    public class ConfirmationRegisterPage: ATopComponent
+    {
+        private readonly IWebDriver driver;
+
+        private const string XPathBtnContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
+
+        private const string XPathParagraphText = "//div[@id ='content']/p";
+
+        private const string XPathH1Text = "//div[@id ='content']/h1";
+
+        public ConfirmationRegisterPage(IWebDriver driver) : base(driver)
+        {
+            this.driver = driver;
+        }
+
+        public IWebElement H1Element
+        {
+            get { return driver.FindElement(By.XPath(XPathH1Text)); }
+        }
+
+        public ReadOnlyCollection<IWebElement> PElements
+        {
+            get { return driver.FindElements(By.XPath(XPathParagraphText)); }
+        }
+
+        public IWebElement BtnConfirmationContinue
+        {
+            get { return driver.FindElement(By.XPath(XPathBtnContinue)); }
+        }
+
+        public void ClickConfirmationButtonContinue()
+        {
+            BtnConfirmationContinue.Click();
         }
 
 
-        #endregion
-
-        //    [OneTimeSetUp]
-        //    public void CreateNecessaryObjects()
-        //    {
-        //        users = UserData.GetUsersData();
-        //        driver = new ChromeDriver();
-        //        user = users.Users[0];
-
-        //    }
-
-        //    [OneTimeTearDown]
-        //    public void ClearResources()
-        //    {
-        //        driver.Quit();
-        //        driver.Dispose();
-        //    }
-
-        //    private void GetMyAccountOption(MyAccount account)
-        //    {
-        //        IWebElement myAcount = driver.FindElement(By.CssSelector("i.fa.fa-user"));
-        //        myAcount.Click();
-
-        //        switch (account)
-        //        {
-        //            case MyAccount.Register:
-        //                driver.FindElement(By.XPath("//a[contains(@href, '/register')]")).Click();
-        //                break;
-
-        //            case MyAccount.Login:
-        //                driver.FindElement(By.XPath("//a[contains(@href, '/login')]")).Click();
-        //                break;
-
-        //            case MyAccount.MyAccount:
-        //                driver.FindElement(By.LinkText("My Account")).Click();
-        //                break;
-
-        //            case MyAccount.OrderHistory:
-        //                driver.FindElement(By.LinkText("Order History")).Click();
-        //                break;
-
-        //            case MyAccount.Transactions:
-        //                driver.FindElement(By.LinkText("Transactions")).Click();
-        //                break;
-
-        //            case MyAccount.Downloads:
-        //                driver.FindElement(By.LinkText("Downloads")).Click();
-        //                break;
-
-        //            case MyAccount.Logout:
-        //                driver.FindElement(By.LinkText("Logout")).Click();
-        //                break;
-        //        }
-        //    }
-
-        //    [Test, Order(1)]
-        //    public void Test_Register_User()
-        //    {
-        //        string expectedResult = "Your Account Has Been Created!";
-        //        string actualResult = String.Empty;
-
-        //        driver.Navigate().GoToUrl("https://fierysky.000webhostapp.com/index.php?route=common/home");
-        //        GetMyAccountOption(MyAccount.Register);
-
-        //        //fill fields
-        //        driver.FindElement(By.Id("input-firstname")).SendKeys(user.firstName);
-        //        driver.FindElement(By.Id("input-lastname")).SendKeys(user.lastName);
-        //        driver.FindElement(By.Id("input-email")).SendKeys(user.email);
-        //        driver.FindElement(By.Id("input-telephone")).SendKeys(user.telephone);
-        //       // driver.FindElement(By.Id("input-fax")).SendKeys(user.fax);
-        //      //  driver.FindElement(By.Id("input-company")).SendKeys(user.company);
-        //      //  driver.FindElement(By.Id("input-address-1")).SendKeys(user.address_1);
-        //       // driver.FindElement(By.Id("input-address-2")).SendKeys(user.address_2);
-        //       // driver.FindElement(By.Id("input-city")).SendKeys(user.city);
-        //       // driver.FindElement(By.Id("input-postcode")).SendKeys(user.postCode);
-        //      //  driver.FindElement(By.Id("input-country")).SendKeys(user.country);
-
-        //        // wait for entered region
-        //        //WebDriverWait driverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        //        //driverWait.Until(ExpectedConditions.TextToBePresentInElement(driver.FindElement(By.Id("input-country")),
-        //        //            user.country));
-
-        //      //  driver.FindElement(By.Id("input-zone")).SendKeys(user.region);
-        //        driver.FindElement(By.Id("input-password")).SendKeys(user.password);
-        //        driver.FindElement(By.Id("input-confirm")).SendKeys(user.password);
-
-        //        //check Yes radio button
-        //        IList<IWebElement> radioButton = driver.FindElements(By.Name("newsletter"));
-        //        radioButton.ElementAt(0).Click();
-
-        //        //check agree terms check box
-        //        driver.FindElement(By.Name("agree")).Click();
-
-        //        // click button Continue
-        //        driver.FindElement(By.CssSelector("input.btn.btn-primary")).Click();
-
-        //        actualResult = driver.FindElement(By.XPath("//div[contains(@class,'col-sm-9')]/h1")).Text;
-
-        //        Assert.AreEqual(expectedResult, actualResult);
-
-        //        GetMyAccountOption(MyAccount.Logout);
-        //    }
-
-        //    //[Test ]
-        //    //public void Test_Edit_User()
-        //    //{
-        //    //    string expectedResult = "Success: Your account has been successfully updated.";
-        //    //    string actualResult = String.Empty;
-
-        //    //    //fill fields
-        //    //    driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=common/home");
-        //    //    GetMyAccountOption(MyAccount.Login);
-
-        //    //    // fill login fields
-        //    //    driver.FindElement(By.Id("input-email")).SendKeys(user.email);
-        //    //    driver.FindElement(By.Id("input-password")).SendKeys(user.password);
-
-        //    //    // click button Login
-        //    //    driver.FindElement(By.CssSelector("input.btn.btn-primary")).Click();
-
-        //    //    //click edit account
-        //    //    driver.FindElement(By.LinkText("Edit your account information")).Click();
-
-        //    //    driver.FindElement(By.Id("input-firstname")).Clear();
-        //    //    driver.FindElement(By.Id("input-firstname")).SendKeys("NewVVV");
-        //    //    driver.FindElement(By.Id("input-lastname")).Clear();
-        //    //    driver.FindElement(By.Id("input-lastname")).SendKeys("NewLLL");
-        //    //    driver.FindElement(By.Id("input-email")).Clear();
-        //    //    driver.FindElement(By.Id("input-email")).SendKeys("some@gmail.com");
-        //    //    driver.FindElement(By.Id("input-telephone")).Clear();
-        //    //    driver.FindElement(By.Id("input-telephone")).SendKeys("+38000000");
-        //    //    driver.FindElement(By.Id("input-fax")).Clear();
-        //    //    driver.FindElement(By.Id("input-fax")).SendKeys("+380000000");
-
-        //    //    // click button Continue
-        //    //    driver.FindElement(By.CssSelector("input.btn.btn-primary")).Click();
-
-        //    //    actualResult = driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
-
-        //    //    Assert.AreEqual(expectedResult, actualResult);
-
-        //    //    GetMyAccountOption(MyAccount.Logout);
-
-        //    //}
-        //}
-
-
     }
-
 }

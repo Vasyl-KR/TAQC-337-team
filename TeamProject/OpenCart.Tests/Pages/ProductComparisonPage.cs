@@ -19,9 +19,10 @@ namespace OpenCartTests.Pages
         private const string COMPARISON_LABEL = "h1"; // cssSelector
         private const string PRODUCT_DETAILS_LABEL = "//thead/descendant::*[contains(text(), 'Product Details')]"; // XPath
         private const string PRODUCT_LABEL = "//td[text() = 'Product']"; // XPath
+        private const string NO_PRODUCTS_TO_COMPARE_LABEL = "//p[contains(text(), 'not chosen any products')]";
 
         // Link locators
-        private const string FIRST_PRODUCT_LINK = "//td[text() = 'Product']/following-sibling::td[1]"; //XPath
+        private const string FIRST_PRODUCT_LINK = "//td[text() = 'Product']/following-sibling::td"; //XPath
         private const string LAST_PRODUCT_LINK = "//td[text() = 'Product']/following-sibling::td[last()]"; //XPath
 
         // Buttons locators
@@ -37,6 +38,8 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(PRODUCT_DETAILS_LABEL)); } }
         public IWebElement ProductLabel
         { get { return driver.FindElement(By.XPath(PRODUCT_LABEL)); } }
+        public IWebElement NoProductsToCompareLabel
+        { get { return driver.FindElement(By.XPath(NO_PRODUCTS_TO_COMPARE_LABEL)); } }
         // Link properties
         public IWebElement FirstProduct
         { get { return driver.FindElement(By.XPath(FIRST_PRODUCT_LINK)); } }
@@ -51,7 +54,9 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(REMOVE_FIRST_BUTTON)); } }
         public IWebElement RemoveLastProductButton
         { get { return driver.FindElement(By.XPath(REMOVE_LAST_BUTTON)); } }
-
+        public List<IWebElement> AllProducts
+        { get { return driver.FindElements(By.XPath(FIRST_PRODUCT_LINK)).ToList(); } }
+        
         // Constructor
         public ProductComparisonPage(IWebDriver driver) : base(driver)
         {
@@ -84,6 +89,10 @@ namespace OpenCartTests.Pages
         public string GetProductLabelText()
         {
             return ProductLabel.Text;
+        }
+        public string GetNoProductsToCompareLabelText()
+        {
+            return NoProductsToCompareLabel.Text;
         }
 
         public string GetFirstProductText()
