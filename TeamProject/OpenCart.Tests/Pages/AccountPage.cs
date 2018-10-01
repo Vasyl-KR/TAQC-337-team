@@ -9,38 +9,54 @@ namespace OpenCartTests.Pages
 {
     public class AccountPage : ATopComponent
     {
+        #region Constants
+        private const string AccountInformation_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/edit')]";
+        private const string ChangePassword_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/password')]";
+        private const string AddressBookEntries_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/address')]";
+        private const string WishList_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/wishlist')]";
+        private const string OrderHistory_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/order')]";
+        private const string Downloads_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/download')]";
+        private const string RewardPoints_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/reward')]";
+        private const string ReturnRequests_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/return')]";
+        private const string Transactions_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/transaction')]";
+        private const string RecurringPayments_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/recurring')]";
+        private const string SubUnsubToNewsletter_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/newsletter')]";
+
+
+        #endregion
+
         public IWebElement EditAccountInformation
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/edit')]")); } }
+        { get { return driver.FindElement(By.XPath(AccountInformation_BTN_XPATH)); } }
 
         public IWebElement ChangePassword
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/password')]")); } }
+        { get { return driver.FindElement(By.XPath(ChangePassword_BTN_XPATH)); } }
 
         public IWebElement ModifyAddressBookEntries
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/address')]")); } }
+        { get { return driver.FindElement(By.XPath(AddressBookEntries_BTN_XPATH)); } }
 
         public IWebElement ModifyWishList
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/wishlist')]")); } }
+        { get { return driver.FindElement(By.XPath(WishList_BTN_XPATH)); } }
 
         public IWebElement ViewOrderHistory
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/order')]")); } }
+        { get { return driver.FindElement(By.XPath(OrderHistory_BTN_XPATH)); } }
 
         public IWebElement ViewDownloads
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/download')]")); } }
+        { get { return driver.FindElement(By.XPath(Downloads_BTN_XPATH)); } }
 
         public IWebElement RewardPoints
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/reward')]")); } }
+        { get { return driver.FindElement(By.XPath(RewardPoints_BTN_XPATH)); } }
 
         public IWebElement ReturnRequests
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/return')]")); } }
+        { get { return driver.FindElement(By.XPath(ReturnRequests_BTN_XPATH)); } }
 
         public IWebElement ViewTransactions
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/transaction')]")); } }
+        { get { return driver.FindElement(By.XPath(Transactions_BTN_XPATH)); } }
 
         public IWebElement RecurringPayments
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/recurring')]")); } }
+        { get { return driver.FindElement(By.XPath(RecurringPayments_BTN_XPATH)); } }
 
         public IWebElement SubUnsubToNewsletter
-        { get { return driver.FindElement(By.XPath("//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/newsletter')]")); } }
+        { get { return driver.FindElement(By.XPath(SubUnsubToNewsletter_BTN_XPATH)); } }
 
 
         public AccountPage(IWebDriver driver) : base(driver) { }
