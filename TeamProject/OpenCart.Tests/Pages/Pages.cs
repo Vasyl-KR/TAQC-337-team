@@ -109,12 +109,12 @@ namespace OpenCartTests.Pages
         public Pages (IWebDriver driver)
         {
             this.driver = driver;
-            PageInitializator(driver);
+            // PageInitializator();
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
         #endregion
 
-        private void PageInitializator(IWebDriver driver)
+        private void PageInitializator()
         {
             accountPage = new AccountPage(driver);
             addressPage = new AddressPage(driver);
@@ -131,7 +131,5 @@ namespace OpenCartTests.Pages
             searchPage = new SearchPage(driver);
             wishlistPage = new WishlistPage(driver);
         }
-   
-
     }
 }
