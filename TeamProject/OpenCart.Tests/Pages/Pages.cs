@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace OpenCartTests.Pages
    public class Pages
     {
         private readonly IWebDriver driver;
+        public WebDriverWait wait;
 
         public Pages (IWebDriver driver)
         {
             this.driver = driver;
             PageInitializator(driver);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
         private void PageInitializator(IWebDriver driver)
