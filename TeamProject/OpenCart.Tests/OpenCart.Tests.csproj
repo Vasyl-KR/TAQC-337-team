@@ -69,6 +69,7 @@
     <Compile Include="Pages\LaptopsAndNotebooksPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />
+    <Compile Include="Pages\Pages.cs" />
     <Compile Include="Pages\ProductComparisonPage.cs" />
     <Compile Include="Pages\RegisterPage.cs" />
     <Compile Include="Pages\RepeatLoginPage.cs" />
@@ -91,10 +92,7 @@
     <None Include="Data\Users.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tests\Pavlo\" />
-    <Folder Include="Tests\Volodymyr\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Responbility.txt" />
   </ItemGroup>
