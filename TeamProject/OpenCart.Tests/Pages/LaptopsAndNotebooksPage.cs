@@ -117,18 +117,8 @@ namespace OpenCartTests.Pages
             AddToWishlistButton.Click();
         }
 
-        public ProductComparisonPage AddToCompare()
+        public ProductComparisonPage GoToComparison()
         {
-            ClickCompareThisProductButton();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
-            {
-                bool actual = GetProductComparisonLinkText().Contains("1");
-                return actual;
-
-            });
-            wait.Until(waitForElement);
-            //Thread.Sleep(2000);
 
             ClickProductComparisonLink();
             return new ProductComparisonPage(driver);
