@@ -119,7 +119,6 @@ namespace OpenCartTests.Pages
 
         public ProductComparisonPage GoToComparison()
         {
-
             ClickProductComparisonLink();
             return new ProductComparisonPage(driver);
         }
