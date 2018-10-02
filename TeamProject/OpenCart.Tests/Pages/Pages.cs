@@ -27,6 +27,7 @@ namespace OpenCartTests.Pages
         private RepeatLoginPage repeatLoginPage;
         private SearchPage searchPage;
         private WishlistPage wishlistPage;
+        private WebDriverWait wait;
 
         #endregion
 
