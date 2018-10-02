@@ -12,22 +12,10 @@ using OpenQA.Selenium.Firefox;
 namespace OpenCartTests.Tests.Ostap
 {
     [TestFixture]
-    class ChangePasswordTests
+    class ChangePasswordTests:BaseTest
     {
         private IWebDriver driver;
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
-        }
-        
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
+
 
         [Test]
         public void Test()

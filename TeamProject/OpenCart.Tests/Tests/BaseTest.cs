@@ -13,7 +13,7 @@ namespace OpenCartTests.Tests
     [TestFixture]
     public abstract class BaseTest
     {
-        protected IWebDriver driver;
+        private IWebDriver driver;
         protected IWebDriver Driver
         {
             get
@@ -31,9 +31,16 @@ namespace OpenCartTests.Tests
         }
 
         [TearDown]
-        public void TearDown() { }
+        public void TearDown()
+        {
+            Driver.Quit();
+        }
 
         [SetUp]
-        public void SetUp() { }
+        public void SetUp()
+        {
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
+        }
     }
 }
