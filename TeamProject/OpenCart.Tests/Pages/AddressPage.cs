@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenCartTests.Pages
 {
-    class AddressPage : ATopComponent
+   public class AddressPage : ATopComponent
     {
         private const string Back_BTN_CSSSELECTOR = ".btn.btn-default";
         private const string NewAddress_BTN_CSSSELECTOR = ".btn.btn-primary";

@@ -163,6 +163,9 @@ namespace OpenCartTests.Pages
 
         public RegisterPage GoToRegisterPage()
         {
+            Pages pages = new Pages(driver);
+            pages.LoginPage.
+
             ClickRegiser();
             return new RegisterPage(driver);
         }

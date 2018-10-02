@@ -14,7 +14,7 @@ using OpenCartTests.Data;
 
 namespace OpenCartTests.Pages
 {
-    class EditAddressPage : ATopComponent
+   public class EditAddressPage : ATopComponent
     {
         #region Constants
         private const string FirstName_INPUT_ID = "input-firstname";
