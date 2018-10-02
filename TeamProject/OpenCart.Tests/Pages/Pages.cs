@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,6 +109,7 @@ namespace OpenCartTests.Pages
         {
             this.driver = driver;
             PageInitializator(driver);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
         #endregion
 
