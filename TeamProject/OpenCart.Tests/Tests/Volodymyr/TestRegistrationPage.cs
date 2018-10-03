@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace OpenCartTests.Tests.Volodymyr
 {
@@ -40,6 +41,9 @@ namespace OpenCartTests.Tests.Volodymyr
 
             Pages.Pages pages = new Pages.Pages(driver);
 
+            // go to RegisterPage
+            pages.RegisterPage.GoToRegisterPage();
+            
             //fill fields
             pages.RegisterPage.SetFirstName(user.firstName);
             pages.RegisterPage.SetLastName(user.lastName);
@@ -52,7 +56,9 @@ namespace OpenCartTests.Tests.Volodymyr
             pages.RegisterPage.SetCity(user.city);
             pages.RegisterPage.SetPostCode(user.postCode);
             pages.RegisterPage.SetCountry(user.country);
+           // pages.WaitForElementTextContains(pages.RegisterPage.InputCountryField, user.country);
             pages.RegisterPage.SetRegion(user.region);
+           //  pages.WaitForElementTextContains(pages.RegisterPage.InputRegionField, user.region);
             pages.RegisterPage.SetPassword(user.password);
             pages.RegisterPage.SetConfirmPassword(user.password);
             pages.RegisterPage.SetNewsLetter(false);
