@@ -92,6 +92,7 @@
     <None Include="Data\SearchProducts.json" />
     <None Include="Data\Users1.json" />
     <None Include="Data\Users.json" />
+    <None Include="Lv-337AtqcOffering.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
