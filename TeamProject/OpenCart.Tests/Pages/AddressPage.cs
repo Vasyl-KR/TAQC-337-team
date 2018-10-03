@@ -27,6 +27,7 @@ namespace OpenCartTests.Pages
 
         public AddressPage(IWebDriver driver) : base(driver)
         {
+            PageFactory.InitElements(driver,this);
             VerifyWebElements();
         }
 

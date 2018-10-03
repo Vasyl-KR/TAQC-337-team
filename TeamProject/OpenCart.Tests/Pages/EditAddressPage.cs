@@ -52,6 +52,7 @@ namespace OpenCartTests.Pages
 
         public EditAddressPage(IWebDriver driver) : base(driver)
         {
+            PageFactory.InitElements(driver, this);
             VerifyWebElements_INPUTS();
             VerifyWebElements_BTN_SELECT();
         }
