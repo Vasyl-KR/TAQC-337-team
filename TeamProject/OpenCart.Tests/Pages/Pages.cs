@@ -155,6 +155,12 @@ namespace OpenCartTests.Pages
             return wait.Until(driver => webElement.Displayed);
             
         }
-        
+
+        public bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
+        {
+            return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
+        }
+
+
     }
 }
