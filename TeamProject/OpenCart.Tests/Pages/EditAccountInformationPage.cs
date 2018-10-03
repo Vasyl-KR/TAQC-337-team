@@ -41,27 +41,27 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
-        public IWebElement FirstName
+        public IWebElement InputFirstNameField
         {
             get { return driver.FindElement(By.Id(IdFirstName)); }
         }
 
-        public IWebElement LastName
+        public IWebElement InputLastNameField
         {
             get { return driver.FindElement(By.Id(IdLastName)); }
         }
 
-        public IWebElement Email
+        public IWebElement InputEmailField
         {
             get { return driver.FindElement(By.Id(IdEmail)); }
         }
 
-        public IWebElement Telephone
+        public IWebElement InputTelephoneField
         {
             get { return driver.FindElement(By.Id(IdTelephone)); }
         }
 
-        public IWebElement Fax
+        public IWebElement InputFaxField
         {
             get { return driver.FindElement(By.Id(IdFax)); }
         }
@@ -101,37 +101,37 @@ namespace OpenCartTests.Pages
         
         public void SetFirstName(string firstName)
         {
-            ClickInputField(FirstName);
-            ClearInputField(FirstName);
-            SetInputField(FirstName, firstName);
+            ClickInputField(InputFirstNameField);
+            ClearInputField(InputFirstNameField);
+            SetInputField(InputFirstNameField, firstName);
         }
 
         public void SetLastName(string lastName)
         {
-            ClickInputField(LastName);
-            ClearInputField(LastName);
-            SetInputField(LastName, lastName);
+            ClickInputField(InputLastNameField);
+            ClearInputField(InputLastNameField);
+            SetInputField(InputLastNameField, lastName);
         }
 
         public void SetEmail(string email)
         {
-            ClickInputField(Email);
-            ClearInputField(Email);
-            SetInputField(Email, email);
+            ClickInputField(InputEmailField);
+            ClearInputField(InputEmailField);
+            SetInputField(InputEmailField, email);
         }
 
         public void SetTelephone(string telephone)
         {
-            ClickInputField(Telephone);
-            ClearInputField(Telephone);
-            SetInputField(Telephone, telephone);
+            ClickInputField(InputTelephoneField);
+            ClearInputField(InputTelephoneField);
+            SetInputField(InputTelephoneField, telephone);
         }
 
         public void SetFax(string fax)
         {
-            ClickInputField(Fax);
-            ClearInputField(Fax);
-            SetInputField(Fax, fax);
+            ClickInputField(InputFaxField);
+            ClearInputField(InputFaxField);
+            SetInputField(InputFaxField, fax);
         }
 
         public void ClickButtonBack()

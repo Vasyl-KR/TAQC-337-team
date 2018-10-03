@@ -48,6 +48,11 @@ namespace OpenCartTests.Pages
             get { return changePasswordPage ?? new ChangePasswordPage(driver); }
         }
 
+        public ConfirmationRegisterPage ConfirmationRegisterPage
+        {
+            get { return new ConfirmationRegisterPage(driver); }
+        }
+
         public EditAccountInformationPage EditAccountInformationPage
         {
             get { return editAccountInformationPage ?? new EditAccountInformationPage(driver); }

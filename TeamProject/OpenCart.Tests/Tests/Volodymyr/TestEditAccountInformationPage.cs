@@ -36,24 +36,22 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             string expectedResult = "Success: Your account has been successfully updated.";
             string actualResult = String.Empty;
+            Pages.Pages pages = new Pages.Pages(driver);
+            pages.LoginPage.GoToLoginPage();
 
-            LoginPage loginPage = new LoginPage(driver).GoToLoginPage();
-            loginPage.SetLoginInputClear(user.email)
+            pages.LoginPage.SetLoginInputClear(user.email)
               .SetPasswordInputClear(user.password)
                 .ClickSigninButton();
 
-            AccountPage accountPage = new AccountPage(driver);
-            accountPage.ClickEditAccountInformation();
+            pages.AccountPage.ClickEditAccountInformation();
 
-            EditAccountInformationPage editAccountInformationPage = new EditAccountInformationPage(driver);
-            
             //fill fields
-            editAccountInformationPage.SetFirstName(user.firstName);
-            editAccountInformationPage.SetLastName(user.lastName);
-            editAccountInformationPage.SetEmail(user.email);
-            editAccountInformationPage.SetTelephone(user.telephone);
-            editAccountInformationPage.SetFax("+380099900");
-            editAccountInformationPage.ClickButtonContinue();
+            pages.EditAccountInformationPage.SetFirstName(user.firstName);
+            pages.EditAccountInformationPage.SetLastName(user.lastName);
+            pages.EditAccountInformationPage.SetEmail(user.email);
+            pages.EditAccountInformationPage.SetTelephone(user.telephone);
+            pages.EditAccountInformationPage.SetFax("+380099900");
+            pages.EditAccountInformationPage.ClickButtonContinue();
 
             actualResult = driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
 
