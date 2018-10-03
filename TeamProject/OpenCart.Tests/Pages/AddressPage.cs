@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenCartTests.Pages
 {
-    class AddressPage : ATopComponent
+   public class AddressPage : ATopComponent
     {
         private const string Back_BTN_CSSSELECTOR = ".btn.btn-default";
         private const string NewAddress_BTN_CSSSELECTOR = ".btn.btn-primary";
@@ -15,10 +16,14 @@ namespace OpenCartTests.Pages
         private const string Edit_BTN_XPATH = "//tr[{0}]/td/a[text() = 'Edit']";
         private const string Delete_BTN_XPATH = "//tr[{0}]/td/a[text() = 'Delete']";
 
+        [FindsBy(How = How.CssSelector, Using = Back_BTN_CSSSELECTOR)]
+        public IWebElement BtnBack { get; set; }
 
-        public IWebElement BtnBack { get { return driver.FindElement(By.CssSelector(Back_BTN_CSSSELECTOR)); } }
-        public IWebElement BtnNewAddress{ get { return driver.FindElement(By.CssSelector(NewAddress_BTN_CSSSELECTOR)); } }
-        public List<IWebElement> ListAddresses { get { return new List<IWebElement>( driver.FindElements(By.TagName(Addresses_TABLE_TAGNAME))); } }
+        [FindsBy(How = How.CssSelector, Using = NewAddress_BTN_CSSSELECTOR)]
+        public IWebElement BtnNewAddress { get; set; }
+
+        [FindsBy(How = How.TagName, Using = Addresses_TABLE_TAGNAME)]
+        public IList<IWebElement> ListAddresses { get; set; }
 
         public AddressPage(IWebDriver driver) : base(driver)
         {
@@ -50,14 +55,10 @@ namespace OpenCartTests.Pages
             return this;
         }
 
-        public string GetMessageAddressDeleted()
+        public string GetMessageBox()
         {
             return driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
         }
 
-        public string GetMessageAddressEdited()
-        {
-            return driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
-        }
     }
 }

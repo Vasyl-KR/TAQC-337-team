@@ -48,22 +48,22 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
-        public IWebElement FirstName
+        public IWebElement InputFirstNameField
         {
             get { return driver.FindElement(By.Id(IdFirstName)); }
         }
 
-        public IWebElement LastName
+        public IWebElement InputLastNameField
         {
             get { return driver.FindElement(By.Id(IdLastName)); }
         }
 
-        public IWebElement Email
+        public IWebElement InputEmailField
         {
             get { return driver.FindElement(By.Id(IdEmail)); }
         }
 
-        public IWebElement Telephone
+        public IWebElement InputTelephoneField
         {
             get { return driver.FindElement(By.Id(IdTelephone)); }
         }
@@ -73,56 +73,56 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.Id(IdFax)); }
         }
 
-        public IWebElement Company
+        public IWebElement InputCompanyField
         {
             get { return driver.FindElement(By.Id(IdCompany)); }
         }
 
-        public IWebElement Address1
+        public IWebElement InputAddress1Field
         {
             get { return driver.FindElement(By.Id(IdAddress1)); }
         }
 
-        public IWebElement Address2
+        public IWebElement InputAddress2Field
         {
             get { return driver.FindElement(By.Id(IdAddress2)); }
         }
 
-        public IWebElement City
+        public IWebElement InputCityField
         {
             get { return driver.FindElement(By.Id(IdCity)); }
         }
 
-        public IWebElement PostCode
+        public IWebElement InputPostCodeField
         {
             get { return driver.FindElement(By.Id(IdPostCode)); }
         }
 
-        public IWebElement Country
+        public IWebElement InputCountryField
         {
             get { return driver.FindElement(By.Id(IdCountry)); }
         }
 
-        public IWebElement Region
+        public IWebElement InputRegionField
         {
             get { return driver.FindElement(By.Id(IdRegion)); }
         }
 
-        public IWebElement Password
+        public IWebElement InputPasswordField
         {
             get { return driver.FindElement(By.Id(IdPassword)); }
         }
 
-        public IWebElement ConfirmPassword
+        public IWebElement InputConfirmPasswordField
         {
             get { return driver.FindElement(By.Id(IdConfirmPassword)); }
         }
 
-        public ReadOnlyCollection<IWebElement> CheckBox
+        public ReadOnlyCollection<IWebElement> CheckBoxYesNoItems
         {
             get { return driver.FindElements(By.Name(NameCheckBox)); }
         }
-        public IWebElement AgreePrivacyPolicy
+        public IWebElement CheckAgreeTerms
         {
             get { return driver.FindElement(By.Name(NameAgreePrivacyPolicy)); }
         }
@@ -163,36 +163,39 @@ namespace OpenCartTests.Pages
 
         public RegisterPage GoToRegisterPage()
         {
+            Pages pages = new Pages(driver);
+            pages.LoginPage.
+
             ClickRegiser();
             return new RegisterPage(driver);
         }
 
         public void SetFirstName(string firstName)
         {
-            ClickInputField(FirstName);
-            ClearInputField(FirstName);
-            SetInputField(FirstName, firstName);
+            ClickInputField(InputFirstNameField);
+            ClearInputField(InputFirstNameField);
+            SetInputField(InputFirstNameField, firstName);
         }
 
         public void SetLastName(string lastName)
         {
-            ClickInputField(LastName);
-            ClearInputField(LastName);
-            SetInputField(LastName, lastName);
+            ClickInputField(InputLastNameField);
+            ClearInputField(InputLastNameField);
+            SetInputField(InputLastNameField, lastName);
         }
 
         public void SetEmail(string email)
         {
-            ClickInputField(Email);
-            ClearInputField(Email);
-            SetInputField(Email, email);
+            ClickInputField(InputEmailField);
+            ClearInputField(InputEmailField);
+            SetInputField(InputEmailField, email);
         }
 
         public void SetTelephone(string telephone)
         {
-            ClickInputField(Telephone);
-            ClearInputField(Telephone);
-            SetInputField(Telephone, telephone);
+            ClickInputField(InputTelephoneField);
+            ClearInputField(InputTelephoneField);
+            SetInputField(InputTelephoneField, telephone);
         }
 
         public void SetFax(string fax)
@@ -204,77 +207,77 @@ namespace OpenCartTests.Pages
 
         public void SetCompany(string company)
         {
-            ClickInputField(Company);
-            ClearInputField(Company);
-            SetInputField(Company, company);
+            ClickInputField(InputCompanyField);
+            ClearInputField(InputCompanyField);
+            SetInputField(InputCompanyField, company);
         }
 
         public void SetAddress1(string address1)
         {
-            ClickInputField(Address1);
-            ClearInputField(Address1);
-            SetInputField(Address1, address1);
+            ClickInputField(InputAddress1Field);
+            ClearInputField(InputAddress1Field);
+            SetInputField(InputAddress1Field, address1);
         }
 
         public void SetAddress2(string address2)
         {
-            ClickInputField(Address2);
-            ClearInputField(Address2);
-            SetInputField(Address2, address2);
+            ClickInputField(InputAddress2Field);
+            ClearInputField(InputAddress2Field);
+            SetInputField(InputAddress2Field, address2);
         }
 
         public void SetCity(string city)
         {
-            ClickInputField(City);
-            ClearInputField(City);
-            SetInputField(City, city);
+            ClickInputField(InputCityField);
+            ClearInputField(InputCityField);
+            SetInputField(InputCityField, city);
         }
 
         public void SetPostCode(string postCode)
         {
-            ClickInputField(PostCode);
-            ClearInputField(PostCode);
-            SetInputField(PostCode, postCode);
+            ClickInputField(InputPostCodeField);
+            ClearInputField(InputPostCodeField);
+            SetInputField(InputPostCodeField, postCode);
         }
 
         public void SetCountry(string country)
         {
-            ClickInputField(Country);
-            SelectFromDropDownList(Country, country);
+            ClickInputField(InputCountryField);
+            SelectFromDropDownList(InputCountryField, country);
         }
 
         public void SetRegion(string region)
         {
-            ClickInputField(Region);
-            SelectFromDropDownList(Region, region);
+            ClickInputField(InputRegionField);
+            SelectFromDropDownList(InputRegionField, region);
         }
 
         public void SetPassword(string password)
         {
-            ClickInputField(Password);
-            ClearInputField(Password);
-            SetInputField(Password, password);
+            ClickInputField(InputPasswordField);
+            ClearInputField(InputPasswordField);
+            SetInputField(InputPasswordField, password);
         }
 
         public void SetConfirmPassword(string confirmPassword)
         {
-            ClickInputField(ConfirmPassword);
-            ClearInputField(ConfirmPassword);
-            SetInputField(ConfirmPassword, confirmPassword);
+            ClickInputField(InputConfirmPasswordField);
+            ClearInputField(InputConfirmPasswordField);
+            SetInputField(InputConfirmPasswordField, confirmPassword);
         }
 
         public void SetNewsLetter(bool yesOrNo = true)
         {
             if (yesOrNo)
             {
-                CheckBox[0].Click();
+                CheckBoxYesNoItems[0].Click();
             }
-            else { CheckBox[1].Click();}
+            else { CheckBoxYesNoItems[1].Click();}
         }
 
-        public void CheckAgreePrivacyPolicy()
+        public void SetCheckAgreeTerms()
         {
-            AgreePrivacyPolicy.Click();
+            CheckAgreeTerms.Click();
         }
 
         public ConfirmationRegisterPage ClickButtonContinue()
@@ -290,30 +293,30 @@ namespace OpenCartTests.Pages
     {
         private readonly IWebDriver driver;
 
-        private const string XPathBtnContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
+        private const string XPathBtnConfirmationContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
 
-        private const string XPathParagraphText = "//div[@id ='content']/p";
+        private const string XPathSuccessParagraphText = "//div[@id ='content']/p";
 
-        private const string XPathH1Text = "//div[@id ='content']/h1";
+        private const string XPathSuccessH1Text = "//div[@id ='content']/h1";
 
         public ConfirmationRegisterPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
 
-        public IWebElement H1Element
+        public IWebElement SuccessH1Element
         {
-            get { return driver.FindElement(By.XPath(XPathH1Text)); }
+            get { return driver.FindElement(By.XPath(XPathSuccessH1Text)); }
         }
 
-        public ReadOnlyCollection<IWebElement> PElements
+        public ReadOnlyCollection<IWebElement> SuccessPElements
         {
-            get { return driver.FindElements(By.XPath(XPathParagraphText)); }
+            get { return driver.FindElements(By.XPath(XPathSuccessParagraphText)); }
         }
 
         public IWebElement BtnConfirmationContinue
         {
-            get { return driver.FindElement(By.XPath(XPathBtnContinue)); }
+            get { return driver.FindElement(By.XPath(XPathBtnConfirmationContinue)); }
         }
 
         public void ClickConfirmationButtonContinue()

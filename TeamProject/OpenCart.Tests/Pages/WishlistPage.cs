@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.ObjectModel;
 
 namespace OpenCartTests.Pages
@@ -16,35 +17,40 @@ namespace OpenCartTests.Pages
     {
 
         #region Locators
-        // Label locators
-        private const string ProductPrice_XPATH = "//td[contains(@class,'text-right')]//div[contains(@class,'price')]";
-        private const string CartTotal_ID = "cart-total";
-        private const string Cart_XPATH = "//button[contains(@class,'btn btn-inverse btn-block btn-lg dropdown-toggle')]";
-        private const string AddedToCartProducts_XPATH = "//table[contains(@class,'table table-striped')]";
-        // Buttons locators
-        private const string AddToCart_BTN_XPATH = "//td[contains(@class,'text-right')]//button[contains(@class,'btn btn-primary')]";
-        private const string RemoveFromCart_BTN_XPATH = "//button[contains(@class,'btn btn-danger btn-xs')]";
+        //// Label locators
+        //private const string ProductPrice_XPATH =;
+        //private const string CartTotal_ID = ;
+        //private const string Cart_XPATH = ;
+        //private const string AddedToCartProducts_XPATH =;
+        //// Buttons locators
+        //private const string AddToCart_BTN_XPATH = ;
+        //private const string RemoveFromCart_BTN_XPATH = ;
 
         #endregion
         #region Properties
-
+        [FindsBy(How = How.XPath, Using = "//table[contains(@class,'table table-striped')]")]
         public IWebElement AddedToCartProduct
-        { get { return driver.FindElement(By.XPath(AddedToCartProducts_XPATH)); } }
+        { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//td[contains(@class,'text-right')]//div[contains(@class,'price')]")]
         public IWebElement ProductPriceLabel
-        { get { return driver.FindElement(By.XPath(ProductPrice_XPATH)); } }
+        { get; set; }
 
+        [FindsBy(How = How.Id, Using = "cart-total")]
         public IWebElement CartTotalPrice
-        { get { return driver.FindElement(By.Id(CartTotal_ID)); } }
+        { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(@class,'btn btn-inverse btn-block btn-lg dropdown-toggle')]")]
         public IWebElement CartButton
-        { get { return driver.FindElement(By.XPath(Cart_XPATH)); } }
+        { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//td[contains(@class,'text-right')]//button[contains(@class,'btn btn-primary')]")]
         public IWebElement AddToCartButton
-        { get { return driver.FindElement(By.XPath(AddToCart_BTN_XPATH)); } }
+        { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(@class,'btn btn-danger btn-xs')]")]
         public IWebElement RemoveFromCartButton
-        { get { return driver.FindElement(By.XPath(RemoveFromCart_BTN_XPATH)); } }
+        { get; set; }
 
         #endregion
 
@@ -93,18 +99,28 @@ namespace OpenCartTests.Pages
 
         public string GetTotalCartPrice()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => CartTotalPrice.Text.Contains(GetProductPriceText()));
+            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //wait.Until(driver => CartTotalPrice.Text.Contains(GetProductPriceText()));
+            //Pages page = new Pages(driver);
+            Pages pages = new Pages(driver);
+            pages.WaitForElementTextContains(CartTotalPrice, GetProductPriceText());
+
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
         }
 
         public void ClearTotalCart()
         {
+            Pages pages = new Pages(driver);
             ClickCartButton();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            wait.Until(driver => RemoveFromCartButton).Click() ;
-            Console.WriteLine("Cart is clear");
+            if (pages.WaitForElementPresent(RemoveFromCartButton))
+            {
+                RemoveFromCartButton.Click();
+            }
+            else
+            {
+                Console.WriteLine("Cart is clear");
+            }
         }
         #endregion
     }

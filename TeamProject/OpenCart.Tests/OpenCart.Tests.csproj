@@ -84,7 +84,7 @@
     <Compile Include="Tests\Nazar\Class1.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests.cs" />
     <Compile Include="Tests\Pavlo\WishListTest.cs" />
-    <Compile Include="Tests\Vasyl\ComparisionTest.cs" />
+    <Compile Include="Tests\Vasyl\ComparisonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Volodymyr\TestEditAccountInformationPage.cs" />
     <Compile Include="Tests\Volodymyr\TestRegistrationPage.cs" />
@@ -93,6 +93,7 @@
     <None Include="Data\SearchProducts.json" />
     <None Include="Data\Users1.json" />
     <None Include="Data\Users.json" />
+    <None Include="Lv-337AtqcOffering.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
