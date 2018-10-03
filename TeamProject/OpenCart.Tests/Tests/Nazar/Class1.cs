@@ -3,6 +3,7 @@ using OpenCartTests.Data;
 using OpenCartTests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace OpenCartTests.Tests.Nazar
         private ListUsers users;
         private const string email = "nazar.l135@gmail.com";
         private const string password = "lol123";
+        private const string URL_LoginPage = "http://atqc-shop.epizy.com/index.php?route=account/login";
+
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
@@ -28,32 +31,45 @@ namespace OpenCartTests.Tests.Nazar
             
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            LogIn(email, password);
-           // NUnit.Framework.CollectionAssert.AreEqual(LogIn(email, password), new AccountPage);
+
+            driver.Navigate().GoToUrl(URL_LoginPage);
+
+            new HomePage(driver)
+                .GoToLoginPage()
+                .SuccessRegistratorLogin(email, password);
+
+            // NUnit.Framework.CollectionAssert.AreEqual(LogIn(email, password), new AccountPage);
         }
 
         [Test]
         public void Add_newAddress()
         {
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            int BeforeAdding = new AddressPage(driver).ListAddresses.Count();
-            int AfterAdding = new AddressPage(driver)
-                .ClickNewAddressButton()
-                .SuccessfullEditionAddress(users.Users[1])
-                .ListAddresses.Count();
+            AddressPage addressPage = new AddressPage(driver);
+            PageFactory.InitElements(driver, addressPage);
+            int BeforeAdding = addressPage.ListAddresses.Count();
+            EditAddressPage editAddressPage = addressPage.ClickNewAddressButton();
+            PageFactory.InitElements(driver, editAddressPage);
+            addressPage = editAddressPage
+                .SuccessfullEditionAddress(users.Users[1]); 
+             int AfterAdding = addressPage.ListAddresses.Count();
 
-            NUnit.Framework.Assert.AreEqual(BeforeAdding + 1, AfterAdding, "Compare the text of the comunicat about creating");
+            NUnit.Framework.Assert.AreEqual(BeforeAdding + 1, AfterAdding, "Compare the text of the comunicat about creating" + BeforeAdding + " " + AfterAdding);
 
         }
 
         [Test]
         public void Edite_Address()
         {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            string actual = new AddressPage(driver)
-                .EditRaw(2)
+            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");           
+            AddressPage addressPage = new AddressPage(driver);
+            PageFactory.InitElements(driver,addressPage);
+            EditAddressPage editAddressPage = addressPage
+                .EditRaw(2);
+            PageFactory.InitElements(driver, editAddressPage);
+            string actual = editAddressPage
                 .SuccessfullEditionAddress(users.Users[0])
-                .GetMessageAddressEdited();
+                .GetMessageBox();
  
             string expected = "Your address has been successfully updated";
 
@@ -63,31 +79,22 @@ namespace OpenCartTests.Tests.Nazar
         [Test]
         public void Delete_Address()
         {
+            
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            string actual = new AddressPage(driver).DeleteRaw(2).GetMessageAddressDeleted();
-            string expected = "Your address has been successfully deleted";
+            AddressPage addressPage = new AddressPage(driver);
+            PageFactory.InitElements(driver,addressPage);
+            string actual = addressPage.DeleteRaw(2).GetMessageBox();
+
+            string expected = "Your address has been successfully deleted"; 
             NUnit.Framework.Assert.AreEqual(expected, actual, "Compare the text of the comunicat about delite");
-        }
-
-        private AccountPage LogIn(string email, string password)
-        {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/login");
-
-            return new HomePage(driver)
-                .GoToLoginPage()
-                .SuccessRegistratorLogin(email, password);
-        }
-
-        private void LogOut()
-        {
-            new HomePage(driver)
-                .GoToLogoutPage();
         }
 
         [OneTimeTearDown]
         public void AfterAllMethods()
         {
-            LogOut();
+            new HomePage(driver)
+                .GoToLogoutPage();
+
             driver.Quit();
             driver.Dispose();
         }
