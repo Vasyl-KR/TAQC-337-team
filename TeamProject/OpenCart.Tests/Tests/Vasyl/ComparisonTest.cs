@@ -15,14 +15,14 @@ using OpenCartTests.Pages;
 namespace OpenCartTests.Tests.Vasyl
 {
     [TestFixture]
-    public class ComparisionTest
+    public class ComparisonTest
     {
         private IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
         }
@@ -99,13 +99,13 @@ namespace OpenCartTests.Tests.Vasyl
             {
                 pages.LaptopsAndNotebooksPage.CompareProductButtons[i].Click();
                 pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
-                
+                //Thread.Sleep(500);
             }
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
 
             //Assert
-            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count);
+            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count, "Adding failed");
         }
     }
 }
