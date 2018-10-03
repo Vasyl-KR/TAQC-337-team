@@ -15,14 +15,14 @@ using OpenCartTests.Pages;
 namespace OpenCartTests.Tests.Vasyl
 {
     [TestFixture]
-    public class ComparisionTest
+    public class ComparisonTest
     {
         private IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
         }
@@ -54,7 +54,7 @@ namespace OpenCartTests.Tests.Vasyl
             selectedProduct = pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
             pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Wait for adding
-            pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
             actualProduct = pages.ProductComparisonPage.GetLastProductText();
@@ -74,7 +74,7 @@ namespace OpenCartTests.Tests.Vasyl
             //Add product to comparison
             pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Wait for adding
-            pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
             //Remove product from comparison
@@ -99,13 +99,13 @@ namespace OpenCartTests.Tests.Vasyl
             {
                 pages.LaptopsAndNotebooksPage.CompareProductButtons[i].Click();
                 pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
-                
+                //Thread.Sleep(500);
             }
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
 
             //Assert
-            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count);
+            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count, "Adding failed");
         }
     }
 }

@@ -210,355 +210,423 @@ namespace OpenCartTests.Pages
 
         #region Methods
         // Page methods
+        // Method gets main label with 'Search' text
         public string GetSearchLabelText()
         {
             return SearchLabel.Text;
         }
 
+        // Method gets label with 'Search criteria' text
         public string GetSearchCriteriaLabelText()
         {
             return SearchCriteriaLabel.Text;
         }
 
+        // Method gets label with 'Products meeting the search criteria'
         public string GetProductsMeetingLabelText()
         {
             return ProductsMeetingLabel.Text;
         }
 
+        // Method gets label with 'There is no product that matches the search criteria' text that appears when no products are found
         public string GetNoProductsLabelText()
         {
             return NoProductsLabel.Text;
         }
 
+        // Method sets search input field with: (text to search)
         public void SetSearchCriteriaInput(string searchText)
         {
             SearchCriteriaInput.SendKeys(searchText);
         }
         
+        // Method Clears search input field
         public void ClearSearchCriteriaInput()
         {
             SearchCriteriaInput.Clear();
         }
 
+        // Method gets categories dropdown menu text ( Default = 'All Categories')
         public string GetCategoriesDropDownMenuText()
         {
             return CategoriesDropDownMenu.Text;
         }
-
+        
+        // Method click on categories dropdown menu. User use this to pick in wich category search products 
         public void ClickCategoriesDropDownMenu()
         {
             CategoriesDropDownMenu.Click();
         }
 
+        // Method click on 'Search in subcategories' checkbox to search products in subcategories
         public void ClickSearchInSubcategoriesCheckBox()
         {
             SearchInSubcategoriesCheckBox.Click();
         }
 
+        // Method click on 'Search in description' checkbox to search products in description
         public void ClickSearchInDescriptionCheckBox()
         {
             SearchInDescriptionCheckBox.Click();
         }
 
+        // Method click on 'Search' button to start searching products
         public void ClickSearchButton()
         {
             SearchButton.Click();
         }
 
+        // Method counts how many product blocks appear after searching
         public int CountProductBlocks()
         {
             return ProductBlocks.Count();
         }
         
+        // Method gets a list of each name of the product that appeard after search
         public IList<IWebElement> GetProductNameList()
         {
             IList<IWebElement> listofproducts = ProductNameList;
             return listofproducts;
         }
-        // todo or nottodo? Assert expected product names and actual match
 
+        // Method gets a list of each cost of the product that appeard after search
         public IList<IWebElement> GetProductCostList()
         {
             IList<IWebElement> listofproducts = ProductCostList;
             return listofproducts;
         }
-        // same
 
+        // Method gets label text with information about how many products on how many pages was found
         public string GetProductsShowingText()
         {
             return ProductsShowing.Text;
         }
 
+        // Method gets Sort dropdown menu text ( Default = 'Default')
         public string GetSortDDMenuText()
         {
            return SortDDMenu.Text;
         }
 
+        // Method click on sort dropdown menu.User use this to pick how to sort searched products
         public void ClickSortDDMenu()
         {
             SortDDMenu.Click();
         }
 
+        // Method gets Show dropdown menu text ( Default = '15')
         public string GetShowDDMenuText()
         {
             return ShowDDMenu.Text;
         }
 
+        // Method click on show dropdown menu.User use this to pick how many products will be shown on page
         public void ClickShowDDMenu()
         {
             ShowDDMenu.Click();
         }
 
+        // Method gets text of 'Product Compare' button. Used to see how many products are compared.
         public string GetProductCompareBTNText()
         {
             return ProductCompareBTN.Text;
         }
 
+        // Method click on 'Product Compare' button to go to 'Product Compare' page.
         public void ClickProductCompareBTN()
         {
             ProductCompareBTN.Click();
         }
 
+        // Method click on 'Grid' to change type of view to Grid.
         public void ClickGridBtn()
         {
             GridBtn.Click();
         }
 
+        // Method click on 'List' to change type of view to List.
         public void ClickListBtn()
         {
             ListBtn.Click();
         }
 
+        // Method gets text of 'All category' type of searching
         public string GetCategoryAllCategoriesText()
         {
             return CategoryAllCategories.Text;
         }
 
+        // Method click on 'All Categories' category to search in
         public void ClickCategoryAllCategories()
         {
             CategoryAllCategories.Click();
         }
 
+        // Method gets text of 'Desktop' type of searching
         public string GetCategoryDesktopsText()
         {
             return CategoryDesktops.Text;
         }
 
+        // Method click on 'Desktop' category to search in
         public void ClickCategoryDesktops()
         {
             CategoryDesktops.Click();
         }
 
+        // Method gets text of 'Laptops And Notebooks' type of searching
         public string GetCategoryLaptopsAndNotebooksText()
         {
             return CategoryLaptopsAndNotebooks.Text;
         }
 
+        // Method click on 'Laptops and Notebooks' category to search in
         public void ClickCategoryLaptopsAndNotebooks()
         {
             CategoryLaptopsAndNotebooks.Click();
         }
 
+        // Method gets text of 'Components' type of searching
         public string GetCategoryComponentsText()
         {
             return CategoryComponents.Text;
         }
 
+        // Method click on 'Components' category to search in
         public void ClickCategoryComponents()
         {
             CategoryComponents.Click();
         }
 
+        // Method gets text of 'Tablets' type of searching
         public string GetCategoryTabletsText()
         {
             return CategoryTablets.Text;
         }
 
+        // Method click on 'Tablets' category to search in
         public void ClickCategoryTablets()
         {
             CategoryTablets.Click();
         }
 
+        // Method gets text of 'Software' type of searching
         public string GetCategorySoftwareText()
         {
             return CategorySoftware.Text;
         }
 
+        // Method click on 'Software' category to search in
         public void ClickCategorySoftware()
         {
             CategorySoftware.Click();
         }
 
+        // Method gets text of 'Phones and PDAs' type of searching
         public string GetCategoryPhonesAndPDAsText()
         {
             return CategoryPhonesAndPDAs.Text;
         }
 
+        // Method click on 'Phones and PDAs' category to search in
         public void ClickCategoryPhonesAndPDAs()
         {
             CategoryPhonesAndPDAs.Click();
         }
 
+        // Method gets text of 'Cameras' type of searching
         public string GetCategoryCamerasText()
         {
             return CategoryCameras.Text;
         }
 
+        // Method click on 'Cameras' category to search in
         public void ClickCategoryCameras()
         {
             CategoryCameras.Click();
         }
 
+        // Method gets text of 'Mp3 players' type of searching
         public string GetCategoryMp3playersText()
         {
             return CategoryMp3players.Text;
         }
 
+        // Method click on 'Mp3 players' category to search in
         public void ClickCategoryMp3players()
         {
             CategoryMp3players.Click();
         }
 
+        // Method gets text of 'Default' type of sorting for searching
         public string GetSortDefaultText()
         {
             return SortDefault.Text;
         }
 
+        // Method click on 'Default' type of sorting for searching
         public void ClickSortDefault()
         {
             SortDefault.Click();
         }
 
+        // Method gets text of 'Name (A - Z)' type of sorting for searching
         public string GetSortNameAZText()
         {
             return SortNameAZ.Text;
         }
 
+        // Method click on 'Name (A - Z)' type of sorting for searching
         public void ClickSortNameAZ()
         {
             SortNameAZ.Click();
         }
 
+        // Method gets text of 'Name (Z - A)' type of sorting for searching
         public string GetSortNameZAText()
         {
             return SortNameZA.Text;
         }
 
+        // Method click on 'Name (Z - A)' type of sorting for searching
         public void ClickSortNameZA()
         {
             SortNameZA.Click();
         }
 
+        // Method gets text of 'Price (Low - High)' type of sorting for searching
         public string GetSortPriceLowHighText()
         {
             return SortPriceLowHigh.Text;
         }
 
+        // Method click on 'Price (Low - High)' type of sorting for searching
         public void ClickSortPriceLowHigh()
         {
             SortPriceLowHigh.Click();
         }
 
+        // Method gets text of 'Price (High - Low)' type of sorting for searching
         public string GetSortPriceHighLowText()
         {
             return SortPriceHighLow.Text;
         }
 
+        // Method click on 'Price (High - Low)' type of sorting for searching
         public void ClickSortPriceHighLow()
         {
             SortPriceHighLow.Click();
         }
 
+        // Method gets text of 'Rating (Highest)' type of sorting for searching
         public string GetSortRatingHighestText()
         {
             return SortRatingHighest.Text;
         }
 
+        // Method click on 'Rating (Highest)' type of sorting for searching
         public void ClickSortRatingHighest()
         {
             SortRatingHighest.Click();
         }
 
+        // Method gets text of 'Rating (Lowest)' type of sorting for searching
         public string GetSortRatingLowestText()
         {
             return SortRatingLowest.Text;
         }
 
+        // Method click on 'Rating (Lowest)' type of sorting for searching
         public void ClickSortRatingLowest()
         {
             SortRatingLowest.Click();
         }
 
+        // Method gets text of 'Model (A - Z)' type of sorting for searching
         public string GetSortModelAZText()
         {
             return SortModelAZ.Text;
         }
 
+        // Method click on 'Model (A - Z)' type of sorting for searching
         public void ClickSortModelAZ()
         {
             SortModelAZ.Click();
         }
 
+        // Method gets text of 'Model (Z - A)' type of sorting for searching
         public string GetSortModelZAText()
         {
             return SortModelZA.Text;
         }
 
+        // Method click on 'Model (Z - A)' type of sorting for searching
         public void ClickSortModelZA()
         {
             SortModelZA.Click();
         }
 
+        // Method gets text of 'Show 15' type of showing for searching
         public string GetShow_15Text()
         {
             return Show_15.Text;
         }
 
+        // Method click on 'Show 15' type of showing for searching
         public void ClickShow_15()
         {
             Show_15.Click();
         }
 
+        // Method gets text of 'Show 25' type of showing for searching
         public string GetShow_25Text()
         {
             return Show_25.Text;
         }
 
+        // Method click on 'Show 25' type of showing for searching
         public void ClickShow_25()
         {
             Show_25.Click();
         }
 
+        // Method gets text of 'Show 50' type of showing for searching
         public string GetShow_50Text()
         {
             return Show_50.Text;
         }
 
+        // Method click on 'Show 50' type of showing for searching
         public void ClickShow_50()
         {
             Show_50.Click();
         }
 
+        // Method gets text of 'Show 75' type of showing for searching
         public string GetShow_75Text()
         {
             return Show_75.Text;
         }
 
+        // Method click on 'Show 75' type of showing for searching
         public void ClickShow_75()
         {
             Show_75.Click();
         }
 
+        // Method gets text of 'Show 100' type of showing for searching
         public string GetShow_100Text()
         {
             return Show_100.Text;
         }
 
+        // Method click on 'Show 100' type of showing for searching
         public void ClickShow_100()
         {
             Show_100.Click();
         }
         
+        // Method gets information if products view type is List or not
         public bool GetListOrNot()
         {
             bool isList;
@@ -572,7 +640,8 @@ namespace OpenCartTests.Pages
                 return isList = true;
             }
         }
-        
+
+        // Method gets information if products view type is Grid or not
         public bool GetGridOrNot()
         {
             bool isGrid;

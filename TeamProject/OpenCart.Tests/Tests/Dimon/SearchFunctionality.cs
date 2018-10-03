@@ -45,19 +45,20 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_Criteria()
         {
             // Arrange
-            int expectedCount = 7;
+            int expectedCountOfProducts = 7;
             string searchText = "Apple";
             string[] expectedText = products.Products.SearchCriteria.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[8];
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            //SearchPage searchPage = new SearchPage(driver);
+            Pages.Pages pages = new Pages.Pages(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -66,27 +67,28 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount);
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
         }
 
         [Test]
         public void Search_Description()
         {
             // Arrange
-            int expectedCount = 10;
+            int expectedCountOfProducts = 10;
             string[] expectedText = products.Products.SearchDescription.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[11];
             string searchText = "Apple";
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            Pages.Pages pages = new Pages.Pages(driver);
+            // SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -95,29 +97,30 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount);
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
         }
 
         [Test]
         public void Search_Category()
         {
             // Arrange
-            int expectedCount = 4;
+            int expectedCountOfProducts = 4;
             string[] expectedText = products.Products.SearchCategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[5];
             string searchText = "Apple";
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickCategoriesDropDownMenu();
-            searchPage.ClickCategoryTablets();
-            searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            Pages.Pages pages = new Pages.Pages(driver);
+            // SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickCategoriesDropDownMenu();
+            pages.SearchPage.ClickCategoryTablets();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -126,30 +129,31 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
         }
 
         [Test]
         public void Search_Subcategory()
         {
             // Arrange
-            int expectedCount = 4;
+            int expectedCountOfProducts = 4;
             string[] expectedText = products.Products.SearchSubcategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[5];
             string searchText = "Apple";
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickCategoriesDropDownMenu();
-            searchPage.ClickCategoryTablets();
-            searchPage.ClickSearchInSubcategoriesCheckBox();
-            searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            // SearchPage searchPage = new SearchPage(driver);
+            Pages.Pages pages = new Pages.Pages(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickCategoriesDropDownMenu();
+            pages.SearchPage.ClickCategoryTablets();
+            pages.SearchPage.ClickSearchInSubcategoriesCheckBox();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -158,7 +162,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
         }
     }
 }

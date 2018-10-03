@@ -45,42 +45,45 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_From_Main_Nothing()
         {
             // Arrange
-            string expected = "There is no product that matches the search criteria.";
+            string expectedTextAppear = "There is no product that matches the search criteria.";
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            string actual = searchPage.GetNoProductsLabelText();
+            Pages.Pages pages = new Pages.Pages(driver);
+            //SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.ClickMainSearch();
+            string actualTextAppear = pages.SearchPage.GetNoProductsLabelText();
 
             // Assert
-            Assert.AreEqual(expected, actual); // If error text match
+            Assert.AreEqual(expectedTextAppear, actualTextAppear); // If error text match
         }
 
         [Test]
         public void Search_From_Main_Acer()
         {
             // Arrange
-            int expectedCount = 2;
-            string[] expectedText = products.Products.SearchMainAcer.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries); //{ "Acer Chromebook 11-CB3-111", "Acer TravelMate P249-M" };
-            string[] actualText = new string[3];
+            int expectedCountOfProducts = 2;
+            string[] expectedTextAppear = products.Products.SearchMainAcer.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries); //{ "Acer Chromebook 11-CB3-111", "Acer TravelMate P249-M" };
+            string[] actualTextAppear = new string[3];
             string searchText = "Acer";
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.SetMainSearch(searchText);
-            searchPage.ClickMainSearch();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            Pages.Pages pages = new Pages.Pages(driver);
+            //SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.SetMainSearch(searchText);
+            pages.SearchPage.ClickMainSearch();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
             {
-                actualText[i] = product.Text;
-                Assert.AreEqual(expectedText[i], actualText[i]);
+                actualTextAppear[i] = product.Text;
+                Assert.AreEqual(expectedTextAppear[i], actualTextAppear[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
         }
 
         [Test]
@@ -91,10 +94,11 @@ namespace OpenCartTests.Tests.Dimon
             string searchText = "notExist";
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.SetMainSearch(searchText);
-            searchPage.ClickMainSearch();
-            string actual = searchPage.GetNoProductsLabelText();
+            Pages.Pages pages = new Pages.Pages(driver);
+            //SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.SetMainSearch(searchText);
+            pages.SearchPage.ClickMainSearch();
+            string actual = pages.SearchPage.GetNoProductsLabelText();
 
             // Assert
             Assert.AreEqual(expected, actual); // If error text match

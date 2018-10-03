@@ -45,7 +45,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_Default()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchDefault.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             int i = 0;
@@ -58,7 +58,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.SetSearchCriteriaInput(searchText);
             searchPage.ClickSearchInDescriptionCheckBox();
             searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
 
@@ -69,7 +69,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
@@ -77,7 +77,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_AZ_NameSort()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchAZNameSort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             string searchText = "a";
@@ -92,7 +92,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickSearchButton();
             searchPage.ClickSortDDMenu();
             searchPage.ClickSortNameAZ();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
 
@@ -103,7 +103,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
@@ -111,7 +111,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_LowHigh_PriceSort()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchLowHighPriceSort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             int i = 0;
@@ -126,7 +126,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickSearchButton();
             searchPage.ClickSortDDMenu();
             searchPage.ClickSortPriceLowHigh();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductCostList();
             string actualShowing = searchPage.GetProductsShowingText();
 
@@ -137,7 +137,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
@@ -145,7 +145,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_ZA_ModelSort()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchZAModelSort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             string searchText = "a";
@@ -160,7 +160,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickSearchButton();
             searchPage.ClickSortDDMenu();
             searchPage.ClickSortModelZA();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
 
@@ -171,7 +171,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
@@ -179,7 +179,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_ZA_ModelSort_Show50()
         {
             // Arrange
-            int expectedCount = 50;
+            int expectedCountOfProducts = 50;
             string[] expectedText = products.Products.SearchZAModelSortShow50.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[51];
             string searchText = "a";
@@ -196,7 +196,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickSortModelZA();
             searchPage.ClickShowDDMenu();
             searchPage.ClickShow_50();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
 
@@ -207,7 +207,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
         }
 
@@ -215,7 +215,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_Type_List()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             string searchText = "a";
@@ -229,7 +229,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.SetSearchCriteriaInput(searchText);
             searchPage.ClickSearchButton();
             searchPage.ClickListBtn();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
             bool listOrNot = searchPage.GetListOrNot();
@@ -241,7 +241,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(expectedCount, actualCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedCountOfProducts, actualCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
             Assert.AreEqual(true, listOrNot); // Assert expected display type and actual
         }
@@ -250,7 +250,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_Type_Grid()
         {
             // Arrange
-            int expectedCount = 15;
+            int expectedCountOfProducts = 15;
             string[] expectedText = products.Products.SearchTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[16];
             string searchText = "a";
@@ -264,7 +264,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.SetSearchCriteriaInput(searchText);
             searchPage.ClickSearchButton();
             searchPage.ClickGridBtn();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
             string actualShowing = searchPage.GetProductsShowingText();
             bool gridOrNot = searchPage.GetGridOrNot();
@@ -276,7 +276,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(expectedCount, actualCount); // Assert expected count and actual match
+            Assert.AreEqual(expectedCountOfProducts, actualCountOfProducts); // Assert expected count and actual match
             Assert.AreEqual(expectedShowing, actualShowing); // Assert expected text and actual match
             Assert.AreEqual(true, gridOrNot); // Assert expected display type and actual
         }

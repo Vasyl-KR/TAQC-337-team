@@ -38,21 +38,23 @@ namespace OpenCartTests.Tests.Nazar
                 .GoToLoginPage()
                 .SuccessRegistratorLogin(email, password);
 
-            // NUnit.Framework.CollectionAssert.AreEqual(LogIn(email, password), new AccountPage);
+             //NUnit.Framework.Assert.AreEqual(new HomePage(driver)
+             //   .GoToLoginPage()
+             //   .SuccessRegistratorLogin(email, password), new AccountPage(driver));
         }
 
         [Test]
         public void Add_newAddress()
         {
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            AddressPage addressPage = new AddressPage(driver);
-            PageFactory.InitElements(driver, addressPage);
-            int BeforeAdding = addressPage.ListAddresses.Count();
-            EditAddressPage editAddressPage = addressPage.ClickNewAddressButton();
-            PageFactory.InitElements(driver, editAddressPage);
-            addressPage = editAddressPage
-                .SuccessfullEditionAddress(users.Users[1]); 
-             int AfterAdding = addressPage.ListAddresses.Count();
+            Pages.Pages pages = new Pages.Pages(driver);
+            
+            int BeforeAdding = pages.AddressPage.ListAddresses.Count();
+            
+            int AfterAdding = pages.AddressPage
+                .ClickNewAddressButton()
+                .SuccessfullEditionAddress(users.Users[0]) 
+                .ListAddresses.Count();
 
             NUnit.Framework.Assert.AreEqual(BeforeAdding + 1, AfterAdding, "Compare the text of the comunicat about creating" + BeforeAdding + " " + AfterAdding);
 
@@ -61,13 +63,12 @@ namespace OpenCartTests.Tests.Nazar
         [Test]
         public void Edite_Address()
         {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");           
-            AddressPage addressPage = new AddressPage(driver);
-            PageFactory.InitElements(driver,addressPage);
-            EditAddressPage editAddressPage = addressPage
-                .EditRaw(2);
-            PageFactory.InitElements(driver, editAddressPage);
-            string actual = editAddressPage
+            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
+            Pages.Pages pages = new Pages.Pages(driver);
+
+
+            string actual = pages.AddressPage
+                .EditRaw(2)
                 .SuccessfullEditionAddress(users.Users[0])
                 .GetMessageBox();
  
@@ -81,9 +82,10 @@ namespace OpenCartTests.Tests.Nazar
         {
             
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            AddressPage addressPage = new AddressPage(driver);
-            PageFactory.InitElements(driver,addressPage);
-            string actual = addressPage.DeleteRaw(2).GetMessageBox();
+
+            Pages.Pages pages = new Pages.Pages(driver);
+           
+            string actual = pages.AddressPage.DeleteRaw(2).GetMessageBox();
 
             string expected = "Your address has been successfully deleted"; 
             NUnit.Framework.Assert.AreEqual(expected, actual, "Compare the text of the comunicat about delite");
