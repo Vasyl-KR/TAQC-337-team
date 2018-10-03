@@ -75,6 +75,7 @@
     <Compile Include="Pages\RegisterPage.cs" />
     <Compile Include="Pages\RepeatLoginPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
+    <Compile Include="Pages\RepeatAccountPage.cs" />
     <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\Dimon\FromMainSearch.cs" />
