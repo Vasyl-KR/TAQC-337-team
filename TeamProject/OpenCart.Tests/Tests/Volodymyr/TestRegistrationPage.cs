@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenCartTests.Data;
-using OpenCartTests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace OpenCartTests.Tests.Volodymyr
 {
@@ -39,29 +39,34 @@ namespace OpenCartTests.Tests.Volodymyr
             string expectedResult = "Your Account Has Been Created!";
             string actualResult = String.Empty;
 
-            RegisterPage registerPage = new RegisterPage(driver).GoToRegisterPage();
-           
-            //fill fields
-            registerPage.SetFirstName(user.firstName);
-            registerPage.SetLastName(user.lastName);
-            registerPage.SetEmail(user.email);
-            registerPage.SetTelephone(user.telephone);
-            registerPage.SetFax(user.fax);
-            registerPage.SetCompany(user.company);
-            registerPage.SetAddress1(user.address_1);
-            registerPage.SetAddress2(user.address_2);
-            registerPage.SetCity(user.city);
-            registerPage.SetPostCode(user.postCode);
-            registerPage.SetCountry(user.country);        
-            registerPage.SetRegion(user.region);
-            registerPage.SetPassword(user.password);
-            registerPage.SetConfirmPassword(user.password);
-            registerPage.SetNewsLetter(false);
-            registerPage.CheckAgreePrivacyPolicy();
-            ConfirmationRegisterPage confirmationRegisterPage = registerPage.ClickButtonContinue();
+            Pages.Pages pages = new Pages.Pages(driver);
 
-            actualResult = confirmationRegisterPage.H1Element.Text;
-            confirmationRegisterPage.ClickConfirmationButtonContinue();
+            // go to RegisterPage
+            pages.RegisterPage.GoToRegisterPage();
+            
+            //fill fields
+            pages.RegisterPage.SetFirstName(user.firstName);
+            pages.RegisterPage.SetLastName(user.lastName);
+            pages.RegisterPage.SetEmail(user.email);
+            pages.RegisterPage.SetTelephone(user.telephone);
+            pages.RegisterPage.SetFax(user.fax);
+            pages.RegisterPage.SetCompany(user.company);
+            pages.RegisterPage.SetAddress1(user.address_1);
+            pages.RegisterPage.SetAddress2(user.address_2);
+            pages.RegisterPage.SetCity(user.city);
+            pages.RegisterPage.SetPostCode(user.postCode);
+            pages.RegisterPage.SetCountry(user.country);
+           // pages.WaitForElementTextContains(pages.RegisterPage.InputCountryField, user.country);
+            pages.RegisterPage.SetRegion(user.region);
+           //  pages.WaitForElementTextContains(pages.RegisterPage.InputRegionField, user.region);
+            pages.RegisterPage.SetPassword(user.password);
+            pages.RegisterPage.SetConfirmPassword(user.password);
+            pages.RegisterPage.SetNewsLetter(false);
+            pages.RegisterPage.SetCheckAgreeTerms();
+            pages.RegisterPage.ClickButtonContinue();
+
+            actualResult = pages.ConfirmationRegisterPage.SuccessH1Element.Text;
+            pages.ConfirmationRegisterPage.ClickConfirmationButtonContinue();
 
             Assert.AreEqual(expectedResult, actualResult);
         }    

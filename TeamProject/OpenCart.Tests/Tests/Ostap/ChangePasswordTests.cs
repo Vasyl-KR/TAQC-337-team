@@ -14,32 +14,36 @@ namespace OpenCartTests.Tests.Ostap
     [TestFixture]
     class ChangePasswordTests:BaseTest
     {
-        private IWebDriver driver;
 
 
-        [Test]
+        [Test, Order(1)]
         public void Test()
         {
-            LoginPage loginPage = new HomePage(driver).GoToLoginPage();
+            string expected = "Success: Your password has been successfully updated.";
 
-            AccountPage accountPage =loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
+            LoginPage loginPage = new HomePage(Driver).GoToLoginPage();
+
+            AccountPage accountPage = loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
 
             ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
-            accountPage = changePasswordPage.SuccessChangePassword("qwerty1234");// add SuccessAccountPage
+            RepeatAccountPage repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
 
-            LogoutPage logoutPage = accountPage.GoToLogoutPage();
+            string actual = repeatAccountPage.GetSuccessChangePasswordLabelText();
+
+            Assert.AreEqual(expected, actual);
+
+            LogoutPage logoutPage = repeatAccountPage.GoToLogoutPage();
             loginPage = logoutPage.GoToLoginPage();
             loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
 
             changePasswordPage = accountPage.GoToChangePassword();
-            accountPage = changePasswordPage.SuccessChangePassword("qwerty123");
-            accountPage.GoToLogoutPage();
+            repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty123");
+            repeatAccountPage.GoToLogoutPage();
         }
-
         /*
          * перейменувати методи і константи, кнопки 
          * змінити назви локаторів
-         * 
+         * запитатись як відкривати і закривати браузер
          */
     }
 }
