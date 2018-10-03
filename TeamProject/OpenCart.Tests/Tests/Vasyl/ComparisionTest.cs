@@ -22,8 +22,9 @@ namespace OpenCartTests.Tests.Vasyl
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Window.Maximize();
         }
 
         [SetUp]
@@ -41,59 +42,70 @@ namespace OpenCartTests.Tests.Vasyl
         [Test, Order(1)]
         public void AddToComparisionTest()
         {
-            HomePage homePage = new HomePage(driver);
-            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
+            //Arrange
+            Pages.Pages pages = new Pages.Pages(driver);
+            string selectedProduct;
+            string actualProduct;
 
-            string selectedProduct = laptopsPage.GetFirstProductLinkText();
+            //Act
+            //Go to products page
+            pages.HomePage.GoToLaptopPage();
+            //Add product to comparison
+            selectedProduct = pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
+            pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
+            //Wait for adding
+            pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            //Go to products comparison
+            pages.LaptopsAndNotebooksPage.GoToComparison();
+            actualProduct = pages.ProductComparisonPage.GetLastProductText();
 
-            laptopsPage.ClickCompareThisProductButton();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
-            {
-                bool actual =  laptopsPage.GetProductComparisonLinkText().Contains("1");
-                return actual;
-
-            });
-            wait.Until(waitForElement);
-            //    //Thread.Sleep(2000);
-
-            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
-
-            string actualProduct = productComparisonPage.GetLastProductText();
+            //Assert
             Assert.AreEqual(selectedProduct, actualProduct, "Comparison failed");
-
         }
         [Test, Order(2)]
         public void RemoveFromCompareTableTest()
         {
-            HomePage homePage = new HomePage(driver);
-            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
-            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
-            productComparisonPage.ClickRemoveLastProductButton();
+            //Arrange
+            Pages.Pages pages = new Pages.Pages(driver);
+
+            //Act
+            //Go to products page
+            pages.HomePage.GoToLaptopPage();
+            //Add product to comparison
+            pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
+            //Wait for adding
+            pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            //Go to products comparison
+            pages.LaptopsAndNotebooksPage.GoToComparison();
+            //Remove product from comparison
+            pages.ProductComparisonPage.ClickRemoveLastProductButton();
+            
+            //Assert
             Assert.AreEqual("You have not chosen any products to compare.",
-                productComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
+                pages.ProductComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
 
         }
         [TestCase (4), Order(3)]
         public void Add_4_ProductsToCompareTest(int x)
         {
-            HomePage homePage = new HomePage(driver);
-            LaptopsAndNotebooksPage laptopsPage = homePage.GoToLaptopPage();
+            //Arrange
+            Pages.Pages pages = new Pages.Pages(driver);
+
+            //Act
+            //Go to products page
+            pages.HomePage.GoToLaptopPage();
+            //Add 4 products to comparision
             for (int i = 0; i < x; i++)
             {
-                laptopsPage.CompareProductButtons[i].Click();
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                Func<IWebDriver, bool> waitForElement = new Func<IWebDriver, bool>((IWebDriver drv) =>
-                {
-                    bool actual = laptopsPage.GetProductComparisonLinkText().Contains((i+1).ToString());
-                    return actual;
-
-                });
-                wait.Until(waitForElement);
+                pages.LaptopsAndNotebooksPage.CompareProductButtons[i].Click();
+                pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
+                
             }
-            
-            ProductComparisonPage productComparisonPage = laptopsPage.GoToComparison();
-            Assert.AreEqual(x, productComparisonPage.AllProducts.Count);
+            //Go to products comparison
+            pages.LaptopsAndNotebooksPage.GoToComparison();
+
+            //Assert
+            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count);
         }
     }
 }

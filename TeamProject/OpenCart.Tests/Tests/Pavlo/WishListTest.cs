@@ -20,13 +20,11 @@ namespace OpenCartTests.Tests.Pavlo
         readonly string password = "12345";
         readonly string login = "pristayko.pavlo@gmail.com";
         private IWebDriver driver;
-        private WishlistPage wishlistPage;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         [SetUp]
@@ -42,38 +40,33 @@ namespace OpenCartTests.Tests.Pavlo
             driver.Quit();
         }
 
-        [TearDown]
-        public void ClearCart()
-        {
-            wishlistPage.ClearTotalCart();
-        }
-
         [Test]
         public void AddToWishlistTest()
         {
-            Login(login, password);
+            //Arrange
+            Pages.Pages pages = new Pages.Pages(driver);
+            string totalPrice;
+            string actualPrice;
 
-            HomePage homePage = new HomePage(driver);
-            LaptopsAndNotebooksPage lapAndNotePage = homePage.GoToLaptopPage();
-
-            wishlistPage = lapAndNotePage.AddToWishlist();
-            wishlistPage.ClickAddToCartButton();
+            //Act
+            /*Logining*/
+            pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login,password);
+            /*Opening Laptop page*/
+            pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            pages.LaptopsAndNotebooksPage.AddToWishlist();
+            /*Cleaning Cart before adding*/
+            //pages.WishlistPage.ClearTotalCart();
+            /*Adding laptop to cart*/
+            pages.WishlistPage.ClickAddToCartButton();
             
-            string totalPrice = wishlistPage.GetTotalCartPrice();
-            string actualPrice = wishlistPage.GetProductPriceText();
+            totalPrice = pages.WishlistPage.GetTotalCartPrice();
+            actualPrice = pages.WishlistPage.GetProductPriceText();
 
+            //Assert
             Assert.AreEqual(totalPrice, actualPrice);
            
         }
-        private void Login(string log, string pass)
-        {
 
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/login");
-
-            driver.FindElement(By.Id("input-email")).SendKeys(log);
-            driver.FindElement(By.Id("input-password")).SendKeys(pass);
-            driver.FindElement(By.CssSelector("input.btn.btn-primary")).Click();
-
-        }
     }
 }

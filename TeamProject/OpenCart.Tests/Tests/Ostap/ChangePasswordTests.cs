@@ -7,42 +7,39 @@ using NUnit.Framework;
 using OpenCartTests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-
+using OpenQA.Selenium.Firefox;
 
 namespace OpenCartTests.Tests.Ostap
 {
     [TestFixture]
-    class ChangePasswordTests
+    class ChangePasswordTests:BaseTest
     {
         private IWebDriver driver;
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
-        }
-        
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
+
 
         [Test]
         public void Test()
         {
-            new HomePage(driver)
-                .GoToLoginPage()
-                .SuccessRegistratorLogin("ostap@gmail.com", "qwerty123")
-                .GoToChangePassword()
-                .SuccessChangePassword("qwerty1234")
-                .GoToLogoutPage()
-                .GoToLoginPage()
-                .SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234")
-                .GoToChangePassword()
-                .SuccessChangePassword("qwerty123")
-                .GoToLogoutPage();
+            LoginPage loginPage = new HomePage(driver).GoToLoginPage();
+
+            AccountPage accountPage =loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
+
+            ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
+            accountPage = changePasswordPage.SuccessChangePassword("qwerty1234");// add SuccessAccountPage
+
+            LogoutPage logoutPage = accountPage.GoToLogoutPage();
+            loginPage = logoutPage.GoToLoginPage();
+            loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
+
+            changePasswordPage = accountPage.GoToChangePassword();
+            accountPage = changePasswordPage.SuccessChangePassword("qwerty123");
+            accountPage.GoToLogoutPage();
         }
+
+        /*
+         * перейменувати методи і константи, кнопки 
+         * змінити назви локаторів
+         * 
+         */
     }
 }

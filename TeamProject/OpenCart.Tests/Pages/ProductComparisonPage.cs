@@ -66,14 +66,6 @@ namespace OpenCartTests.Pages
         private void VerifyWebElements()
         {
             IWebElement element = ProductComparisonLabel;
-            element = ProductDetailsLabel;
-            element = ProductLabel;
-            element = FirstProduct;
-            element = LastProduct;
-            element = AddToCartFirstButton;
-            element = AddToCartLastButton;
-            element = RemoveFirstProductButton;
-            element = RemoveLastProductButton;
         }
 
         public string GetProductComparisonLabelText()

@@ -51,22 +51,22 @@ namespace OpenCartTests.Pages
         private const string CATEGORY_MP3 = "//div//option[text() = 'MP3 Players']"; // XPath
 
         // Constans Sort dropdown menu options
-        private const string SORT_DEFAULT = "//div//option[text() = 'Default']";
-        private const string SORT_NAME_AZ = "//div//option[text() = 'Name (A - Z)']";
-        private const string SORT_NAME_ZA = "//div//option[text() = 'Name (Z - A)']";
-        private const string SORT_PRICE_LOWHIGH = "//div//option[text() = 'Price (Low > High)']";
-        private const string SORT_PRICE_HIGHLOW = "//div//option[text() = 'Price (High > Low)']";
-        private const string SORT_RATING_HIGHEST = "//div//option[text() = 'Rating (Highest)']";
-        private const string SORT_RATING_LOWEST = "//div//option[text() = 'Rating (Lowest)']";
-        private const string SORT_MODEL_AZ = "//div//option[text() = 'Model (A - Z)']";
-        private const string SORT_MODEL_ZA = "//div//option[text() = 'Model (Z - A)']";
+        private const string SORT_DEFAULT = "//div//option[text() = 'Default']"; // XPath
+        private const string SORT_NAME_AZ = "//div//option[text() = 'Name (A - Z)']"; // XPath
+        private const string SORT_NAME_ZA = "//div//option[text() = 'Name (Z - A)']"; // XPath
+        private const string SORT_PRICE_LOWHIGH = "//div//option[text() = 'Price (Low > High)']"; // XPath
+        private const string SORT_PRICE_HIGHLOW = "//div//option[text() = 'Price (High > Low)']"; // XPath
+        private const string SORT_RATING_HIGHEST = "//div//option[text() = 'Rating (Highest)']"; // XPath
+        private const string SORT_RATING_LOWEST = "//div//option[text() = 'Rating (Lowest)']"; // XPath
+        private const string SORT_MODEL_AZ = "//div//option[text() = 'Model (A - Z)']"; // XPath
+        private const string SORT_MODEL_ZA = "//div//option[text() = 'Model (Z - A)']"; // XPath
 
         // Constans Show dropdown menu options
-        private const string SHOW_15 = "//div//select//option[text() = '15']";
-        private const string SHOW_25 = "//div//select//option[text() = '25']";
-        private const string SHOW_50 = "//div//select//option[text() = '50']";
-        private const string SHOW_75 = "//div//select//option[text() = '75']";
-        private const string SHOW_100 = "//div//select//option[text() = '100']";
+        private const string SHOW_15 = "//div//select//option[text() = '15']"; // XPath
+        private const string SHOW_25 = "//div//select//option[text() = '25']"; // XPath
+        private const string SHOW_50 = "//div//select//option[text() = '50']"; // XPath
+        private const string SHOW_75 = "//div//select//option[text() = '75']"; // XPath
+        private const string SHOW_100 = "//div//select//option[text() = '100']"; // XPath
         #endregion
 
         #region Properties

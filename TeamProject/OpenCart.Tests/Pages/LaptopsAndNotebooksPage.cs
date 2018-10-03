@@ -112,6 +112,11 @@ namespace OpenCartTests.Pages
             CompareThisProductButton.Click();
         }
 
+        public void ClickAddToWishListButton()
+        {
+            AddToWishlistButton.Click();
+        }
+
         public ProductComparisonPage GoToComparison()
         {
             ClickProductComparisonLink();

@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace OpenCartTests.Pages
 {
-    class EditAccountInformationPage: ATopComponent
+   public class EditAccountInformationPage: ATopComponent
     {
         #region Locators
 

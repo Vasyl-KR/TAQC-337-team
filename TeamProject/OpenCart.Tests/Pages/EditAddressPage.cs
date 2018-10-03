@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace OpenCartTests.Pages
 {
-    class EditAddressPage : ATopComponent
+   public class EditAddressPage : ATopComponent
     {
         [FindsBy(How = How.Id, Using = "input-country")]
         public IWebElement SelectCountry { get; set; }
