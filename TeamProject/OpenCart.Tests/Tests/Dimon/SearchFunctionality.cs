@@ -52,12 +52,13 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            //SearchPage searchPage = new SearchPage(driver);
+            Pages.Pages pages = new Pages.Pages(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -80,13 +81,14 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickSearchButton();
-            int actualCountOfProducts = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            Pages.Pages pages = new Pages.Pages(driver);
+            // SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -109,15 +111,16 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickCategoriesDropDownMenu();
-            searchPage.ClickCategoryTablets();
-            searchPage.ClickSearchButton();
-            int actualCountOfProducts = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            Pages.Pages pages = new Pages.Pages(driver);
+            // SearchPage searchPage = new SearchPage(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickCategoriesDropDownMenu();
+            pages.SearchPage.ClickCategoryTablets();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
@@ -140,16 +143,17 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            SearchPage searchPage = new SearchPage(driver);
-            searchPage.ClickMainSearch();
-            searchPage.SetSearchCriteriaInput(searchText);
-            searchPage.ClickSearchInDescriptionCheckBox();
-            searchPage.ClickCategoriesDropDownMenu();
-            searchPage.ClickCategoryTablets();
-            searchPage.ClickSearchInSubcategoriesCheckBox();
-            searchPage.ClickSearchButton();
-            int actualCountOfProducts = searchPage.CountProductBlocks();
-            IList<IWebElement> listofProducts = searchPage.GetProductNameList();
+            // SearchPage searchPage = new SearchPage(driver);
+            Pages.Pages pages = new Pages.Pages(driver);
+            pages.SearchPage.ClickMainSearch();
+            pages.SearchPage.SetSearchCriteriaInput(searchText);
+            pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            pages.SearchPage.ClickCategoriesDropDownMenu();
+            pages.SearchPage.ClickCategoryTablets();
+            pages.SearchPage.ClickSearchInSubcategoriesCheckBox();
+            pages.SearchPage.ClickSearchButton();
+            int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
