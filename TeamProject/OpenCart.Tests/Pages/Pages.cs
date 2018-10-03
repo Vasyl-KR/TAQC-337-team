@@ -27,7 +27,7 @@ namespace OpenCartTests.Pages
         private RepeatLoginPage repeatLoginPage;
         private SearchPage searchPage;
         private WishlistPage wishlistPage;
-        private WebDriverWait wait;
+        private  WebDriverWait wait;
 
         #endregion
 
@@ -109,8 +109,8 @@ namespace OpenCartTests.Pages
         public Pages (IWebDriver driver)
         {
             this.driver = driver;
-            PageInitializator(driver);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            //PageInitializator(driver);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
         #endregion
 
@@ -131,7 +131,25 @@ namespace OpenCartTests.Pages
             searchPage = new SearchPage(driver);
             wishlistPage = new WishlistPage(driver);
         }
-   
 
+        public IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
+        {
+            bool rez=wait.Until(driver => webElement.Text.Contains(expectedStr));
+            if (rez)
+            {
+                return webElement;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool WaitForElementPresent(IWebElement webElement)
+        {
+            return wait.Until(driver => webElement.Displayed);
+            
+        }
+        
     }
 }
