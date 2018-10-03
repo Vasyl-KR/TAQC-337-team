@@ -45,7 +45,7 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_Criteria()
         {
             // Arrange
-            int expectedCount = 7;
+            int expectedCountOfProducts = 7;
             string searchText = "Apple";
             string[] expectedText = products.Products.SearchCriteria.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[8];
@@ -66,14 +66,14 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount);
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
         }
 
         [Test]
         public void Search_Description()
         {
             // Arrange
-            int expectedCount = 10;
+            int expectedCountOfProducts = 10;
             string[] expectedText = products.Products.SearchDescription.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[11];
             string searchText = "Apple";
@@ -85,7 +85,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.SetSearchCriteriaInput(searchText);
             searchPage.ClickSearchInDescriptionCheckBox();
             searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
 
             // Assert
@@ -95,14 +95,14 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount);
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
         }
 
         [Test]
         public void Search_Category()
         {
             // Arrange
-            int expectedCount = 4;
+            int expectedCountOfProducts = 4;
             string[] expectedText = products.Products.SearchCategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[5];
             string searchText = "Apple";
@@ -116,7 +116,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickCategoriesDropDownMenu();
             searchPage.ClickCategoryTablets();
             searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
 
             // Assert
@@ -126,14 +126,14 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
         }
 
         [Test]
         public void Search_Subcategory()
         {
             // Arrange
-            int expectedCount = 4;
+            int expectedCountOfProducts = 4;
             string[] expectedText = products.Products.SearchSubcategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] actualText = new string[5];
             string searchText = "Apple";
@@ -148,7 +148,7 @@ namespace OpenCartTests.Tests.Dimon
             searchPage.ClickCategoryTablets();
             searchPage.ClickSearchInSubcategoriesCheckBox();
             searchPage.ClickSearchButton();
-            int actualCount = searchPage.CountProductBlocks();
+            int actualCountOfProducts = searchPage.CountProductBlocks();
             IList<IWebElement> listofProducts = searchPage.GetProductNameList();
 
             // Assert
@@ -158,7 +158,7 @@ namespace OpenCartTests.Tests.Dimon
                 Assert.AreEqual(expectedText[i], actualText[i]);
                 i++;
             }
-            Assert.AreEqual(actualCount, expectedCount); // Assert expected count and actual match 
+            Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
         }
     }
 }
