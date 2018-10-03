@@ -10,7 +10,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.ObjectModel;
-
 namespace OpenCartTests.Pages
 {
     public class WishlistPage : ATopComponent
@@ -52,15 +51,17 @@ namespace OpenCartTests.Pages
         public IWebElement RemoveFromCartButton
         { get; set; }
 
+
         #endregion
 
         #region Constructor and Verify
 
         public WishlistPage(IWebDriver driver) : base(driver)
         {
+            PageFactory.InitElements(driver, this);
             VerifyWebElements();
         }
-
+        
         public void VerifyWebElements()
         {
             IWebElement element;
@@ -99,21 +100,15 @@ namespace OpenCartTests.Pages
 
         public string GetTotalCartPrice()
         {
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            //wait.Until(driver => CartTotalPrice.Text.Contains(GetProductPriceText()));
-            //Pages page = new Pages(driver);
-            Pages pages = new Pages(driver);
-            pages.WaitForElementTextContains(CartTotalPrice, GetProductPriceText());
-
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
         }
 
-        public void ClearTotalCart()
+        public void ClearTotalCart(bool rez)
         {
-            Pages pages = new Pages(driver);
+            
             ClickCartButton();
-            if (pages.WaitForElementPresent(RemoveFromCartButton))
+            if (rez)
             {
                 RemoveFromCartButton.Click();
             }

@@ -11,6 +11,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
 using OpenCartTests.Pages;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace OpenCartTests.Tests.Pavlo
 {
@@ -56,15 +57,17 @@ namespace OpenCartTests.Tests.Pavlo
             /*Adding laptop to wishlist*/
             pages.LaptopsAndNotebooksPage.AddToWishlist();
             /*Cleaning Cart before adding*/
-            //pages.WishlistPage.ClearTotalCart();
+            pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
             /*Adding laptop to cart*/
             pages.WishlistPage.ClickAddToCartButton();
-            
+            /*Waiting for change total price*/
+            pages.WaitForElementTextContains(pages.WishlistPage.CartTotalPrice,pages.WishlistPage.GetProductPriceText());
+
             totalPrice = pages.WishlistPage.GetTotalCartPrice();
             actualPrice = pages.WishlistPage.GetProductPriceText();
 
             //Assert
-            Assert.AreEqual(totalPrice, actualPrice);
+            Assert.AreEqual(totalPrice, actualPrice,"Adding failed");
            
         }
 
