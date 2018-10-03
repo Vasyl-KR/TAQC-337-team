@@ -27,6 +27,9 @@ namespace OpenCartTests.Pages
         private RepeatLoginPage repeatLoginPage;
         private SearchPage searchPage;
         private WishlistPage wishlistPage;
+        private RepeatAccountPage repeatAccountPage;
+
+
         private WebDriverWait wait;
 
         #endregion
@@ -96,6 +99,10 @@ namespace OpenCartTests.Pages
         {
             get { return repeatLoginPage ?? new RepeatLoginPage(driver); }
         }
+        public RepeatAccountPage RepeatAccountPage
+        {
+            get { return repeatAccountPage ?? new RepeatAccountPage(driver); }
+        }
 
         public SearchPage SearchPage
         {
@@ -118,7 +125,7 @@ namespace OpenCartTests.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
         #endregion
-
+        //add all new pages
         private void PageInitializator()
         {
             accountPage = new AccountPage(driver);
@@ -133,6 +140,7 @@ namespace OpenCartTests.Pages
             productComparisonPage = new ProductComparisonPage(driver);
             registerPage = new RegisterPage(driver);
             repeatLoginPage = new RepeatLoginPage(driver);
+            repeatAccountPage = new RepeatAccountPage(driver);
             searchPage = new SearchPage(driver);
             wishlistPage = new WishlistPage(driver);
         }
