@@ -111,7 +111,7 @@ namespace OpenCartTests.Pages
 
         public WishlistPage WishlistPage
         {
-            get { return wishlistPage ?? new WishlistPage(driver); }
+            get { return new WishlistPage(driver); }
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace OpenCartTests.Pages
             wishlistPage = new WishlistPage(driver);
         }
 
-        public IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
+        public  IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
         {
             bool rez=wait.Until(driver => webElement.Text.Contains(expectedStr));
             if (rez)

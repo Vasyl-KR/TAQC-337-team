@@ -100,6 +100,7 @@ namespace OpenCartTests.Pages
 
         public string GetTotalCartPrice()
         {
+
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
         }
