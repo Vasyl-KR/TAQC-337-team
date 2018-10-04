@@ -54,7 +54,7 @@ namespace OpenCartTests.Tests.Vasyl
             selectedProduct = pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
             pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Wait for adding
-         //   pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            //pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
             actualProduct = pages.ProductComparisonPage.GetLastProductText();
