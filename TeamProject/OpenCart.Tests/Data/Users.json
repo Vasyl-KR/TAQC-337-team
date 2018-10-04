@@ -45,6 +45,21 @@
       "country": "Ukraine",
       "region": "L'vivs'ka Oblast'",
       "password": "zxcvasdf"
+    },
+    { //For Ostap
+      "firstName": "Остап",
+      "lastName": "Вронський",
+      "email": "ostap@gmail.com",
+      "telephone": "+380931259164",
+      "fax": "",
+      "company": "Svitoch",
+      "address_1": "Lublinska street",
+      "address_2": "Vuhovskoho, 18",
+      "city": "Lviv",
+      "postCode": "79000",
+      "country": "Ukraine",
+      "region": "L'vivs'ka Oblast'",
+      "password": "qwerty123"
     }
   ]
 }
