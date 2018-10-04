@@ -15,35 +15,14 @@ using OpenCartTests.Pages;
 namespace OpenCartTests.Tests.Vasyl
 {
     [TestFixture]
-    public class ComparisonTest
+    public class ComparisonTest : BaseTest
     {
-        private IWebDriver driver;
-
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Window.Maximize();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
-           
-        }
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
 
         [Test, Order(1)]
         public void AddToComparisionTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
             string selectedProduct;
             string actualProduct;
 
@@ -66,7 +45,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void RemoveFromCompareTableTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
 
             //Act
             //Go to products page
@@ -89,7 +68,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void Add_4_ProductsToCompareTest(int x)
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
 
             //Act
             //Go to products page
