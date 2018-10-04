@@ -16,12 +16,16 @@ namespace OpenCartTests.Tests.Ostap
     {
 
 
-        [Test, Order(1)]
+        [Test]
         public void Test()
         {
-            Pages.HomePage.GoToLoginPage();
+            Pages
+                .HomePage.GoToLoginPage()
+                .SuccessRegistratorLogin("ostap@gmail.com", "qwerty123")
+                .GoToChangePassword()
+                .GoToLaptopPage();
 
-            //string expected = "Success: Your password has been successfully updated.";
+            string expected = "Success: Your password has been successfully updated.";
 
             //LoginPage loginPage = new HomePage(Driver).GoToLoginPage();
 
