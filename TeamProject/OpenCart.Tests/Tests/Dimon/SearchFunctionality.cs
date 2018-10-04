@@ -47,24 +47,28 @@ namespace OpenCartTests.Tests.Dimon
             // Arrange
             int expectedCountOfProducts = 7;
             string searchText = "Apple";
-            string[] expectedText = products.Products.SearchCriteria.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] actualText = new string[8];
+            string[] expectedTextAppears = products.Products.SearchCriteria.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualTextAppears = new string[8];
             int i = 0;
 
             // Act
-            //SearchPage searchPage = new SearchPage(driver);
             Pages.Pages pages = new Pages.Pages(driver);
-            pages.SearchPage.ClickMainSearch();
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            /* Set search text into field on Search page */
             pages.SearchPage.SetSearchCriteriaInput(searchText);
+            /* Click on Search button on Search page */
             pages.SearchPage.ClickSearchButton();
+            /* Count how many products appear */
             int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            /* Get names of each product */
             IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
             {
-                actualText[i] = product.Text;
-                Assert.AreEqual(expectedText[i], actualText[i]);
+                actualTextAppears[i] = product.Text;
+                Assert.AreEqual(expectedTextAppears[i], actualTextAppears[i]);
                 i++;
             }
             Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
@@ -75,26 +79,31 @@ namespace OpenCartTests.Tests.Dimon
         {
             // Arrange
             int expectedCountOfProducts = 10;
-            string[] expectedText = products.Products.SearchDescription.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] actualText = new string[11];
+            string[] expectedTextAppears = products.Products.SearchDescription.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualTextAppears = new string[11];
             string searchText = "Apple";
             int i = 0;
 
             // Act
             Pages.Pages pages = new Pages.Pages(driver);
-            // SearchPage searchPage = new SearchPage(driver);
-            pages.SearchPage.ClickMainSearch();
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            /* Set search text into field on Search page */
             pages.SearchPage.SetSearchCriteriaInput(searchText);
+            /* Check the checkbox to search in description */
             pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            /* Click on Search button on Search page */
             pages.SearchPage.ClickSearchButton();
+            /* Count how many products appear */
             int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            /* Get names of each product */
             IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
             {
-                actualText[i] = product.Text;
-                Assert.AreEqual(expectedText[i], actualText[i]);
+                actualTextAppears[i] = product.Text;
+                Assert.AreEqual(expectedTextAppears[i], actualTextAppears[i]);
                 i++;
             }
             Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts);
@@ -105,28 +114,35 @@ namespace OpenCartTests.Tests.Dimon
         {
             // Arrange
             int expectedCountOfProducts = 4;
-            string[] expectedText = products.Products.SearchCategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] actualText = new string[5];
+            string[] expectedTextAppears = products.Products.SearchCategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualTextAppears = new string[5];
             string searchText = "Apple";
             int i = 0;
 
             // Act
             Pages.Pages pages = new Pages.Pages(driver);
-            // SearchPage searchPage = new SearchPage(driver);
-            pages.SearchPage.ClickMainSearch();
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            /* Set search text into field on Search page */
             pages.SearchPage.SetSearchCriteriaInput(searchText);
+            /* Check the checkbox to search in description */
             pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            /* Click on Categories drop down menu to pick category on Search page */
             pages.SearchPage.ClickCategoriesDropDownMenu();
+            /* Click on Tablets to select Tablets category to search in */
             pages.SearchPage.ClickCategoryTablets();
+            /* Click on Search button on Search page */
             pages.SearchPage.ClickSearchButton();
+            /* Count how many products appear */
             int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            /* Get names of each product */
             IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
             {
-                actualText[i] = product.Text;
-                Assert.AreEqual(expectedText[i], actualText[i]);
+                actualTextAppears[i] = product.Text;
+                Assert.AreEqual(expectedTextAppears[i], actualTextAppears[i]);
                 i++;
             }
             Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 
@@ -137,29 +153,37 @@ namespace OpenCartTests.Tests.Dimon
         {
             // Arrange
             int expectedCountOfProducts = 4;
-            string[] expectedText = products.Products.SearchSubcategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] actualText = new string[5];
+            string[] expectedTextAppears = products.Products.SearchSubcategory.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] actualTextAppears = new string[5];
             string searchText = "Apple";
             int i = 0;
 
             // Act
-            // SearchPage searchPage = new SearchPage(driver);
             Pages.Pages pages = new Pages.Pages(driver);
-            pages.SearchPage.ClickMainSearch();
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            /* Set search text into field on Search page */
             pages.SearchPage.SetSearchCriteriaInput(searchText);
+            /* Check the checkbox to search in description */
             pages.SearchPage.ClickSearchInDescriptionCheckBox();
+            /* Click on Categories drop down menu to pick category on Search page */
             pages.SearchPage.ClickCategoriesDropDownMenu();
+            /* Click on Tablets to select Tablets category to search in */
             pages.SearchPage.ClickCategoryTablets();
+            /* Check the checkbox to search in subcategories */
             pages.SearchPage.ClickSearchInSubcategoriesCheckBox();
+            /* Click on Search button on Search page */
             pages.SearchPage.ClickSearchButton();
+            /* Count how many products appear */
             int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            /* Get names of each product */
             IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
             foreach (IWebElement product in listofProducts) // Assert expected product names and actual match
             {
-                actualText[i] = product.Text;
-                Assert.AreEqual(expectedText[i], actualText[i]);
+                actualTextAppears[i] = product.Text;
+                Assert.AreEqual(expectedTextAppears[i], actualTextAppears[i]);
                 i++;
             }
             Assert.AreEqual(actualCountOfProducts, expectedCountOfProducts); // Assert expected count and actual match 

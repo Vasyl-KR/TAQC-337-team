@@ -49,9 +49,8 @@ namespace OpenCartTests.Tests.Dimon
 
             // Act
             Pages.Pages pages = new Pages.Pages(driver);
-            //SearchPage searchPage = new SearchPage(driver);
-            pages.SearchPage.ClickMainSearch();
-            pages.SearchPage.ClickMainSearch();
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
             string actualTextAppear = pages.SearchPage.GetNoProductsLabelText();
 
             // Assert
@@ -70,10 +69,13 @@ namespace OpenCartTests.Tests.Dimon
 
             // Act
             Pages.Pages pages = new Pages.Pages(driver);
-            //SearchPage searchPage = new SearchPage(driver);
-            pages.SearchPage.SetMainSearch(searchText);
-            pages.SearchPage.ClickMainSearch();
+            /* Set search text into field on Home page */
+            pages.HomePage.SetMainSearch(searchText);
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            /* Count how many products appear */
             int actualCountOfProducts = pages.SearchPage.CountProductBlocks();
+            /* Get names of each product */
             IList<IWebElement> listofProducts = pages.SearchPage.GetProductNameList();
 
             // Assert
@@ -90,18 +92,19 @@ namespace OpenCartTests.Tests.Dimon
         public void Search_From_Main_notExist()
         {
             // Arrange
-            string expected = "There is no product that matches the search criteria.";
+            string expectedTextAppear = "There is no product that matches the search criteria.";
             string searchText = "notExist";
 
             // Act
             Pages.Pages pages = new Pages.Pages(driver);
-            //SearchPage searchPage = new SearchPage(driver);
-            pages.SearchPage.SetMainSearch(searchText);
-            pages.SearchPage.ClickMainSearch();
-            string actual = pages.SearchPage.GetNoProductsLabelText();
+            /* Set search text into field on Home page */
+            pages.HomePage.SetMainSearch(searchText);
+            /* Click on Search button on Home page */
+            pages.HomePage.ClickMainSearch();
+            string actualTextAppear = pages.SearchPage.GetNoProductsLabelText();
 
             // Assert
-            Assert.AreEqual(expected, actual); // If error text match
+            Assert.AreEqual(expectedTextAppear, actualTextAppear); // If error text match
         }
     }
 }
