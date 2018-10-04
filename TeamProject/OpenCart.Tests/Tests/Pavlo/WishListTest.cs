@@ -57,11 +57,11 @@ namespace OpenCartTests.Tests.Pavlo
             /*Adding laptop to wishlist*/
             pages.LaptopsAndNotebooksPage.AddToWishlist();
             /*Cleaning Cart before adding*/
-            pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
+        //    pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
             /*Adding laptop to cart*/
             pages.WishlistPage.ClickAddToCartButton();
             /*Waiting for change total price*/
-            pages.WaitForElementTextContains(pages.WishlistPage.CartTotalPrice,pages.WishlistPage.GetProductPriceText());
+        //    pages.WaitForElementTextContains(pages.WishlistPage.CartTotalPrice,pages.WishlistPage.GetProductPriceText());
 
             totalPrice = pages.WishlistPage.GetTotalCartPrice();
             actualPrice = pages.WishlistPage.GetProductPriceText();

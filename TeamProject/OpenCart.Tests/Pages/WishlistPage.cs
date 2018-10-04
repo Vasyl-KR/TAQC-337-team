@@ -118,6 +118,11 @@ namespace OpenCartTests.Pages
                 Console.WriteLine("Cart is clear");
             }
         }
+
+        public void ClearTotalCartWait()
+        {
+            WaitForElementPresent(RemoveFromCartButton);
+        }
         #endregion
     }
 }

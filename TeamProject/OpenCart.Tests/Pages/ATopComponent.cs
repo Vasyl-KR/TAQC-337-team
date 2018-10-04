@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,8 +74,32 @@ namespace OpenCartTests.Pages
         public const string VALUE_ATTRIBUTE = "value";
         #endregion
 
+        private WebDriverWait wait;
 
+        protected IWebElement WaitForElementTextContains(IWebElement webElement, string expectedStr)
+        {
+            bool rez = wait.Until(driver => webElement.Text.Contains(expectedStr));
+            if (rez)
+            {
+                return webElement;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
+        #region Waiter
+        protected bool WaitForElementPresent(IWebElement webElement)
+        {
+            return wait.Until(driver => webElement.Displayed);
+
+        }
+
+        protected bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
+        {
+            return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
+        }
 
         protected IWebDriver driver;
 
@@ -82,6 +107,7 @@ namespace OpenCartTests.Pages
         {
             get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
         }
+        #endregion
 
         public IWebElement MyAccount
         {
@@ -112,6 +138,7 @@ namespace OpenCartTests.Pages
         protected ATopComponent(IWebDriver driver)
         {
             this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
         public string GetCurrencyText()
@@ -264,10 +291,12 @@ namespace OpenCartTests.Pages
         {
             LaptopsDropdownMenu.Click();
         }
+
         public void ClickShowAllLaptops()
         {
             ShowAllLaptops.Click();
         }
+
         public LaptopsAndNotebooksPage GoToLaptopPage()
         {
             ClickLaptopsDropdownMenu();

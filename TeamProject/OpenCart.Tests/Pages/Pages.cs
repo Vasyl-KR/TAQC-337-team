@@ -8,7 +8,7 @@ namespace OpenCartTests.Pages
     {
         #region Fields
 
-        private WebDriverWait wait;
+      //  private WebDriverWait wait;
         private IWebDriver driver;
 
         #endregion
@@ -39,10 +39,6 @@ namespace OpenCartTests.Pages
 
         public RegisterPage RegisterPage => new RegisterPage(driver);
 
-        public RepeatLoginPage RepeatLoginPage => new RepeatLoginPage(driver);
-
-        public RepeatAccountPage RepeatAccountPage => new RepeatAccountPage(driver);
-
         public SearchPage SearchPage => new SearchPage(driver);
 
         public WishlistPage WishlistPage => new WishlistPage(driver);
@@ -53,34 +49,34 @@ namespace OpenCartTests.Pages
 
         public Pages (IWebDriver driver)
         {
-            this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+           // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            this.driver = driver;          
         }
         #endregion
 
-        public IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
-        {
-            bool rez=wait.Until(driver => webElement.Text.Contains(expectedStr));
-            if (rez)
-            {
-                return webElement;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //public IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
+        //{
+        //    bool rez=wait.Until(driver => webElement.Text.Contains(expectedStr));
+        //    if (rez)
+        //    {
+        //        return webElement;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public bool WaitForElementPresent(IWebElement webElement)
-        {
-            return wait.Until(driver => webElement.Displayed);
+        //public bool WaitForElementPresent(IWebElement webElement)
+        //{
+        //    return wait.Until(driver => webElement.Displayed);
             
-        }
+        //}
 
-        public bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
-        {
-            return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
-        }
+        //public bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
+        //{
+        //    return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
+        //}
 
 
     }

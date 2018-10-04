@@ -30,16 +30,15 @@ namespace OpenCartTests.Tests
             }
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             Driver.Quit();
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
         }
     }
