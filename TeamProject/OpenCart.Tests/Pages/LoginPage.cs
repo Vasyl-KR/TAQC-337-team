@@ -135,10 +135,10 @@ namespace OpenCartTests.Pages
             ClickSigninButton();
         }
 
-        public RepeatLoginPage UnsuccessfulLogin(string invalidLogin, string invalidPassword)
+        public LoginPage UnsuccessfulLogin(string invalidLogin, string invalidPassword)
         {
             SetLoginData(invalidLogin, invalidPassword);
-            return new RepeatLoginPage(driver);
+            return new LoginPage(driver);
         }
 
 

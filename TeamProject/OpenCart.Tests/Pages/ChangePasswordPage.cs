@@ -98,10 +98,10 @@ namespace OpenCartTests.Pages
             ClickConfirmButton();
         }
 
-        public RepeatAccountPage SuccessChangePassword(string newPassword)
+        public AccountPage SuccessChangePassword(string newPassword)
         {
             SetNewPasswordData(newPassword);
-            return new RepeatAccountPage(driver);
+            return new AccountPage(driver);
         }
 
         // TODO
