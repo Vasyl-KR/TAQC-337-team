@@ -60,6 +60,7 @@ namespace OpenCartTests.Pages
         }
     }
     #endregion
+
     #region abstract class AtopComponent
     public abstract class ATopComponent
     {
@@ -209,6 +210,13 @@ namespace OpenCartTests.Pages
         public void ClickRegiser()
         {
             GetRegiser().Click();
+        }
+
+        public RegisterPage GoToRegiserPage()
+        {
+            GetRegiser();
+            ClickRegiser();
+            return new RegisterPage(driver);
         }
 
         public IWebElement GetMyAccount()

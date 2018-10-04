@@ -178,16 +178,11 @@ namespace OpenCartTests.Pages
         #endregion 
 
         #region Methods
-
-        public RegisterPage GoToRegisterPage()
-        {
-            PagesList pages = new PagesList(driver);
-            pages.LoginPage.
-
-            ClickRegiser();
-            return new RegisterPage(driver);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+       
         public void SetFirstName(string firstName)
         {
             ClickInputField(InputFirstNameField);
