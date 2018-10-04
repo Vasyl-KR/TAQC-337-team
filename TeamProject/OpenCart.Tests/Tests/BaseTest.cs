@@ -39,7 +39,7 @@ namespace OpenCartTests.Tests
         [SetUp]
         public void SetUp()
         {
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
         }
     }
