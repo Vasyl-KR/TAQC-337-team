@@ -36,7 +36,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             string expectedResult = "Success: Your account has been successfully updated.";
             string actualResult = String.Empty;
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             pages.LoginPage.GoToLoginPage();
 
             pages.LoginPage.SetLoginInputClear(user.email)

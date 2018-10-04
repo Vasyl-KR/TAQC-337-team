@@ -70,7 +70,7 @@
     <Compile Include="Pages\LaptopsAndNotebooksPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\LogoutPage.cs" />
-    <Compile Include="Pages\Pages.cs" />
+    <Compile Include="Pages\PagesList.cs" />
     <Compile Include="Pages\ProductComparisonPage.cs" />
     <Compile Include="Pages\RegisterPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />

@@ -45,7 +45,7 @@ namespace OpenCartTests.Tests.Pavlo
         public void AddToWishlistTest()
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             string totalPrice;
             string actualPrice;
 

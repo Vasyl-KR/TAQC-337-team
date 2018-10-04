@@ -4,7 +4,7 @@ using System;
 
 namespace OpenCartTests.Pages
 {
-   public class Pages
+   public class PagesList
     {
         #region Fields
 
@@ -39,6 +39,7 @@ namespace OpenCartTests.Pages
 
         public RegisterPage RegisterPage => new RegisterPage(driver);
 
+
         public SearchPage SearchPage => new SearchPage(driver);
 
         public WishlistPage WishlistPage => new WishlistPage(driver);
@@ -47,7 +48,7 @@ namespace OpenCartTests.Pages
 
         #region Constructors
 
-        public Pages (IWebDriver driver)
+        public PagesList (IWebDriver driver)
         {
            // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             this.driver = driver;          

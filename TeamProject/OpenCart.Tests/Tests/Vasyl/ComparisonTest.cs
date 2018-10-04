@@ -43,7 +43,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void AddToComparisionTest()
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             string selectedProduct;
             string actualProduct;
 
@@ -66,7 +66,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void RemoveFromCompareTableTest()
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
 
             //Act
             //Go to products page
@@ -89,7 +89,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void Add_4_ProductsToCompareTest(int x)
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
 
             //Act
             //Go to products page

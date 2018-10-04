@@ -75,6 +75,7 @@ namespace OpenCartTests.Pages
         #endregion
 
         private WebDriverWait wait;
+        protected IWebDriver driver;
 
         protected IWebElement WaitForElementTextContains(IWebElement webElement, string expectedStr)
         {
@@ -101,7 +102,7 @@ namespace OpenCartTests.Pages
             return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
         }
 
-        protected IWebDriver driver;
+        
 
         public IWebElement Currency
         {
