@@ -102,7 +102,7 @@ namespace OpenCartTests.Pages
             return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
         }
 
-        
+      
 
         public IWebElement Currency
         {

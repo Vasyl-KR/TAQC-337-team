@@ -121,6 +121,7 @@ namespace OpenCartTests.Pages
 
         public void ClearTotalCartWait()
         {
+            //pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
             WaitForElementPresent(RemoveFromCartButton);
         }
         #endregion

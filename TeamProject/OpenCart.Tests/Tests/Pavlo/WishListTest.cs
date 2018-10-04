@@ -16,36 +16,16 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace OpenCartTests.Tests.Pavlo
 {
     [TestFixture]
-    class WishListTest
+    class WishListTest:BaseTest
     {
         readonly string password = "12345";
         readonly string login = "pristayko.pavlo@gmail.com";
-        private IWebDriver driver;
 
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
-
-        }
-
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
-
-        [Test]
+   [Test]
         public void AddToWishlistTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(driver);
+            PagesList pages = new PagesList(Driver);
             string totalPrice;
             string actualPrice;
 
