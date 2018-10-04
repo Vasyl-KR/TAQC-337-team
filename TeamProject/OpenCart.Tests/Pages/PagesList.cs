@@ -39,7 +39,6 @@ namespace OpenCartTests.Pages
 
         public RegisterPage RegisterPage => new RegisterPage(driver);
 
-
         public SearchPage SearchPage => new SearchPage(driver);
 
         public WishlistPage WishlistPage => new WishlistPage(driver);

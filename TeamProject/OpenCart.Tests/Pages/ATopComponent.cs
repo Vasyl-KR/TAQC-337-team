@@ -60,6 +60,7 @@ namespace OpenCartTests.Pages
         }
     }
     #endregion
+
     #region abstract class AtopComponent
     public abstract class ATopComponent
     {
@@ -253,6 +254,13 @@ namespace OpenCartTests.Pages
         /// Method Get MyAccount button from MyAccount DropDown menu (Logined)
         /// </summary>
         /// <returns></returns>
+        public RegisterPage GoToRegiserPage()
+        {
+            GetRegiser();
+            ClickRegiser();
+            return new RegisterPage(driver);
+        }
+
         public IWebElement GetMyAccount()
         {
             OpenMyAccountDropDownMenu();
