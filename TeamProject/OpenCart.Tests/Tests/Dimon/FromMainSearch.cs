@@ -48,7 +48,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedTextAppear = "There is no product that matches the search criteria.";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             string actualTextAppear = pages.SearchPage.GetNoProductsLabelText();
@@ -68,7 +68,7 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Set search text into field on Home page */
             pages.HomePage.SetMainSearch(searchText);
             /* Click on Search button on Home page */
@@ -96,7 +96,7 @@ namespace OpenCartTests.Tests.Dimon
             string searchText = "notExist";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Set search text into field on Home page */
             pages.HomePage.SetMainSearch(searchText);
             /* Click on Search button on Home page */

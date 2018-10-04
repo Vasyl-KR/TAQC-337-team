@@ -33,6 +33,9 @@ namespace OpenCartTests.Pages
         public IWebElement ForgottenPassButton
         { get { return driver.FindElement(By.XPath(ForgottenPass_BTN_XPATH)); } }
 
+        public IWebElement InvalidLoginLabel
+        { get { return driver.FindElement(By.CssSelector(".alert.alert-danger")); } }
+
         public LoginPage(IWebDriver driver) : base(driver) { }
 
         private void VerifyWebElements()
@@ -119,6 +122,12 @@ namespace OpenCartTests.Pages
             RegisterButton.Click();
         }
 
+
+        public string GetInvalidLoginLabelText()
+        {
+            return InvalidLoginLabel.Text;
+        }
+
         private void SetLoginData(string login, string password)
         {
             SetLoginInputClear(login);
@@ -126,10 +135,10 @@ namespace OpenCartTests.Pages
             ClickSigninButton();
         }
 
-        public RepeatLoginPage UnsuccessfulLogin(string invalidLogin, string invalidPassword)
+        public LoginPage UnsuccessfulLogin(string invalidLogin, string invalidPassword)
         {
             SetLoginData(invalidLogin, invalidPassword);
-            return new RepeatLoginPage(driver);
+            return new LoginPage(driver);
         }
 
 

@@ -19,26 +19,28 @@ namespace OpenCartTests.Tests.Ostap
         [Test, Order(1)]
         public void Test()
         {
-            string expected = "Success: Your password has been successfully updated.";
+            Pages.HomePage.GoToLoginPage();
 
-            LoginPage loginPage = new HomePage(Driver).GoToLoginPage();
+            //string expected = "Success: Your password has been successfully updated.";
 
-            AccountPage accountPage = loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
+            //LoginPage loginPage = new HomePage(Driver).GoToLoginPage();
 
-            ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
-            RepeatAccountPage repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
+            //AccountPage accountPage = loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
 
-            string actual = repeatAccountPage.GetSuccessChangePasswordLabelText();
+            //ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
+            //RepeatAccountPage repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
 
-            Assert.AreEqual(expected, actual);
+            //string actual = repeatAccountPage.GetSuccessChangePasswordLabelText();
 
-            LogoutPage logoutPage = repeatAccountPage.GoToLogoutPage();
-            loginPage = logoutPage.GoToLoginPage();
-            loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
+            //Assert.AreEqual(expected, actual);
 
-            changePasswordPage = accountPage.GoToChangePassword();
-            repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty123");
-            repeatAccountPage.GoToLogoutPage();
+            //LogoutPage logoutPage = repeatAccountPage.GoToLogoutPage();
+            //loginPage = logoutPage.GoToLoginPage();
+            //loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
+
+            //changePasswordPage = accountPage.GoToChangePassword();
+            //repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty123");
+            //repeatAccountPage.GoToLogoutPage();
         }
         /*
          * перейменувати методи і константи, кнопки 

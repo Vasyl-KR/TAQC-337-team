@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using OpenCartTests.Pages;
+
 
 namespace OpenCartTests.Tests
 {
@@ -13,16 +15,22 @@ namespace OpenCartTests.Tests
     [TestFixture]
     public abstract class BaseTest
     {
+        private PagesList pages;
         private IWebDriver driver;
+
+        public PagesList Pages
+        {
+            get
+            {
+                return pages ?? new PagesList(driver);
+            }
+        }
+
         protected IWebDriver Driver
         {
             get
             {
-                if (driver == null)
-                {
-                    driver = new ChromeDriver();
-                }
-                return driver;
+                return driver ?? new ChromeDriver();
             }
             set
             {
@@ -30,17 +38,19 @@ namespace OpenCartTests.Tests
             }
         }
 
-        [TearDown]
+        [OneTimeSetUp]
+        public void SetUp()
+        {
+            pages = new PagesList(Driver);
+            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
+        }
+
+        [OneTimeTearDown]
         public void TearDown()
         {
             Driver.Quit();
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
-        }
+
     }
 }

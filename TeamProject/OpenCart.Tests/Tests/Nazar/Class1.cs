@@ -47,7 +47,7 @@ namespace OpenCartTests.Tests.Nazar
         public void Add_newAddress()
         {
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             
             int BeforeAdding = pages.AddressPage.ListAddresses.Count();
             
@@ -64,7 +64,7 @@ namespace OpenCartTests.Tests.Nazar
         public void Edite_Address()
         {
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
 
 
             string actual = pages.AddressPage
@@ -83,7 +83,7 @@ namespace OpenCartTests.Tests.Nazar
             
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
 
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
            
             string actual = pages.AddressPage.DeleteRaw(2).GetMessageBox();
 

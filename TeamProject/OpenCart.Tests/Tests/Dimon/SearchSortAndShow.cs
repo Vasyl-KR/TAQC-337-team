@@ -53,7 +53,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedShowingText = "Showing 1 to 15 of 55 (4 Pages)";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -92,7 +92,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedShowingText = "Showing 1 to 15 of 55 (4 Pages)";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -135,7 +135,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedShowingText = "Showing 1 to 15 of 55 (4 Pages)";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -178,7 +178,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedShowingText = "Showing 1 to 15 of 55 (4 Pages)";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -221,7 +221,7 @@ namespace OpenCartTests.Tests.Dimon
             string expectedShowingText = "Showing 1 to 50 of 55 (2 Pages)";
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -269,7 +269,7 @@ namespace OpenCartTests.Tests.Dimon
             bool isList = false;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -312,7 +312,7 @@ namespace OpenCartTests.Tests.Dimon
             bool isGrid = false;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */

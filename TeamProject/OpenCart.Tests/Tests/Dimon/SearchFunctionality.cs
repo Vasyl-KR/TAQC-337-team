@@ -52,7 +52,7 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -85,7 +85,7 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -120,7 +120,7 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */
@@ -159,7 +159,7 @@ namespace OpenCartTests.Tests.Dimon
             int i = 0;
 
             // Act
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             /* Click on Search button on Home page */
             pages.HomePage.ClickMainSearch();
             /* Set search text into field on Search page */

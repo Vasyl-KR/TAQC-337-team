@@ -39,7 +39,7 @@ namespace OpenCartTests.Tests.Volodymyr
             string expectedResult = "Your Account Has Been Created!";
             string actualResult = String.Empty;
 
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
 
             // go to RegisterPage
             pages.RegisterPage.GoToRegisterPage();
