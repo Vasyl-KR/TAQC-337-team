@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace OpenCartTests.Pages
 {
     // TODO
+    #region DropDownMenu's
     class CurrencyDropDownMenu
     {
         private IWebDriver driver;
@@ -58,8 +59,8 @@ namespace OpenCartTests.Pages
             this.driver = driver;
         }
     }
-
-
+    #endregion
+    #region abstract class AtopComponent
     public abstract class ATopComponent
     {
         #region Constants
@@ -109,7 +110,8 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
         }
         #endregion
-
+        
+        #region Properties
         public IWebElement MyAccount
         {
             get { return driver.FindElement(By.XPath(MyAccount_BTN_XPATH)); }
@@ -131,11 +133,11 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(Laptops_BTN_XPATH)); } }
         public IWebElement ShowAllLaptops
         { get { return driver.FindElement(By.XPath(ShowAllLaptops_BTN_XPATH)); } }
+        #endregion
 
- 
         private CurrencyDropDownMenu currencyDropDownMenu;
         private MyAccountDropDownMenu myAccountDropDownMenu;
-
+        #region Methods
         protected ATopComponent(IWebDriver driver)
         {
             this.driver = driver;
@@ -277,11 +279,6 @@ namespace OpenCartTests.Pages
             MainSearchInput.SendKeys(searchtext);
         }
 
-        //public SearchPage ClickMainSearch()
-        //{
-        //    MainSearchButton.Click();
-        //    return new SearchPage(driver);
-        //}
         public void ClickMainSearch()
         {
             MainSearchButton.Click();
@@ -304,5 +301,7 @@ namespace OpenCartTests.Pages
             ClickShowAllLaptops();
             return new LaptopsAndNotebooksPage(driver);
         }
+        #endregion
     }
+    #endregion
 }

@@ -170,33 +170,35 @@ namespace OpenCartTests.Pages
         // Constructor
         public SearchPage(IWebDriver driver) : base(driver) 
         {
-            //VerifyWebElements_Labels();
-            //VerifyWebElements_Func();
-            //VerifyWebElements_DropDownItems();
+            VerifyWebElements_Labels();
+            VerifyWebElements_Func();
+            VerifyWebElements_DropDownItems();
         }
         
         // Verify labels
         private void VerifyWebElements_Labels()
         {
-            IWebElement element = SearchLabel;
-            element = SearchCriteriaLabel;
+            IWebElement element;
+            element = SearchLabel;
             element = ProductsMeetingLabel;
         }
 
         // Verify functionality components
         private void VerifyWebElements_Func()
         {
-            IWebElement element =  SearchCriteriaInput;
+            IWebElement element;
+            element = SearchCriteriaInput;
             element = CategoriesDropDownMenu;
             element = SearchInSubcategoriesCheckBox;
-            element =  SearchInDescriptionCheckBox;
+            element = SearchInDescriptionCheckBox;
             element = SearchButton;
         }
 
         // Verify dropdown menu items
         private void VerifyWebElements_DropDownItems()
         {
-            IWebElement element = CategoryAllCategories;
+            IWebElement element;
+            element = CategoryAllCategories;
             element = CategoryDesktops;
             element = CategoryLaptopsAndNotebooks;
             element = CategoryComponents;
