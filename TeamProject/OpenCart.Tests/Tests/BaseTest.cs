@@ -30,7 +30,11 @@ namespace OpenCartTests.Tests
         {
             get
             {
-                return driver ?? new ChromeDriver();
+                if (driver == null)
+                {
+                    driver = new ChromeDriver();
+                }
+                return driver;
             }
             set
             {
