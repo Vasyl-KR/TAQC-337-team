@@ -17,8 +17,7 @@ namespace OpenCartTests.Tests.Volodymyr
         [OneTimeSetUp]
         public void CreateNecessaryObjects()
         {
-            users = ReaderUserData.GetUsersData();
-            user = users.Users[0];
+            user = ReaderUserData.GetUserByIndex(0);
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
@@ -36,7 +35,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             string expectedResult = "Success: Your account has been successfully updated.";
             string actualResult = String.Empty;
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
             pages.LoginPage.GoToLoginPage();
 
             pages.LoginPage.SetLoginInputClear(user.email)

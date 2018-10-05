@@ -15,35 +15,14 @@ using OpenCartTests.Pages;
 namespace OpenCartTests.Tests.Vasyl
 {
     [TestFixture]
-    public class ComparisonTest
+    public class ComparisonTest : BaseTest
     {
-        private IWebDriver driver;
-
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Window.Maximize();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
-           
-        }
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
 
         [Test, Order(1)]
         public void AddToComparisionTest()
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
             string selectedProduct;
             string actualProduct;
 
@@ -54,7 +33,7 @@ namespace OpenCartTests.Tests.Vasyl
             selectedProduct = pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
             pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Wait for adding
-            pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            //pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
             actualProduct = pages.ProductComparisonPage.GetLastProductText();
@@ -66,7 +45,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void RemoveFromCompareTableTest()
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
 
             //Act
             //Go to products page
@@ -74,7 +53,7 @@ namespace OpenCartTests.Tests.Vasyl
             //Add product to comparison
             pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Wait for adding
-            pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+           // pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
             //Go to products comparison
             pages.LaptopsAndNotebooksPage.GoToComparison();
             //Remove product from comparison
@@ -89,7 +68,7 @@ namespace OpenCartTests.Tests.Vasyl
         public void Add_4_ProductsToCompareTest(int x)
         {
             //Arrange
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(Driver);
 
             //Act
             //Go to products page
@@ -98,7 +77,7 @@ namespace OpenCartTests.Tests.Vasyl
             for (int i = 0; i < x; i++)
             {
                 pages.LaptopsAndNotebooksPage.CompareProductButtons[i].Click();
-                pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
+                //pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
                 //Thread.Sleep(500);
             }
             //Go to products comparison

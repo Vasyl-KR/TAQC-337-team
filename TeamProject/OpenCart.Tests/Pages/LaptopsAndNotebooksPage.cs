@@ -110,6 +110,7 @@ namespace OpenCartTests.Pages
         public void ClickCompareThisProductButton()
         {
             CompareThisProductButton.Click();
+            Thread.Sleep(800);
         }
 
         public void ClickAddToWishListButton()
@@ -125,7 +126,7 @@ namespace OpenCartTests.Pages
 
         public WishlistPage AddToWishlist()
         {
-            //ClickAddToWishListButton();
+            ClickAddToWishListButton();
             ClickWishlistLink();
             return new WishlistPage(driver);
         }

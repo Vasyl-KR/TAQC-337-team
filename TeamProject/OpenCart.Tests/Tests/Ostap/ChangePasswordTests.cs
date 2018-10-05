@@ -8,42 +8,34 @@ using OpenCartTests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-
+using OpenCartTests.Data;
 namespace OpenCartTests.Tests.Ostap
 {
     [TestFixture]
     class ChangePasswordTests:BaseTest
     {
-
-
-        [Test, Order(1)]
-        public void Test()
+        private User user;
+        [Test]
+        public void SuccessChangePassword()
         {
+            user = ReaderUserData.GetUsers().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
+            string newPassword = "qwerty1234"; 
+            Pages.HomePage
+                .GoToLoginPage()
+                .SuccessRegistratorLogin(user.email,user.password);
+
+            Pages.AccountPage
+                .GoToChangePassword()
+                .SuccessChangePassword(newPassword);
+
             string expected = "Success: Your password has been successfully updated.";
+            string actual = Pages.AccountPage.GetSuccessChangePasswordLabelText();
 
-            LoginPage loginPage = new HomePage(Driver).GoToLoginPage();
-
-            AccountPage accountPage = loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty123");
-
-            ChangePasswordPage changePasswordPage = accountPage.GoToChangePassword();
-            RepeatAccountPage repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty1234");
-
-            string actual = repeatAccountPage.GetSuccessChangePasswordLabelText();
+            Pages.AccountPage
+                .GoToChangePassword()
+                .SuccessChangePassword(user.password);
 
             Assert.AreEqual(expected, actual);
-
-            LogoutPage logoutPage = repeatAccountPage.GoToLogoutPage();
-            loginPage = logoutPage.GoToLoginPage();
-            loginPage.SuccessRegistratorLogin("ostap@gmail.com", "qwerty1234");
-
-            changePasswordPage = accountPage.GoToChangePassword();
-            repeatAccountPage = changePasswordPage.SuccessChangePassword("qwerty123");
-            repeatAccountPage.GoToLogoutPage();
         }
-        /*
-         * перейменувати методи і константи, кнопки 
-         * змінити назви локаторів
-         * запитатись як відкривати і закривати браузер
-         */
     }
 }

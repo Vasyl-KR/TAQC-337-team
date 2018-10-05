@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace OpenCartTests.Pages
 {
     // TODO
+    #region DropDownMenu's
     class CurrencyDropDownMenu
     {
         private IWebDriver driver;
@@ -57,8 +59,9 @@ namespace OpenCartTests.Pages
             this.driver = driver;
         }
     }
+    #endregion
 
-
+    #region abstract class AtopComponent
     public abstract class ATopComponent
     {
         #region Constants
@@ -73,16 +76,38 @@ namespace OpenCartTests.Pages
         public const string VALUE_ATTRIBUTE = "value";
         #endregion
 
-
-
-
+        private WebDriverWait wait;
         protected IWebDriver driver;
+
+        protected IWebElement WaitForElementTextContains(IWebElement webElement, string expectedStr)
+        {
+            bool rez = wait.Until(driver => webElement.Text.Contains(expectedStr));
+            if (rez)
+            {
+                return webElement;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        #region Waiter
+        protected bool WaitForElementPresent(IWebElement webElement)
+        {
+            return wait.Until(driver => webElement.Displayed);
+
+        }
+
+      
 
         public IWebElement Currency
         {
             get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
         }
-
+        #endregion
+        
+        #region Properties
         public IWebElement MyAccount
         {
             get { return driver.FindElement(By.XPath(MyAccount_BTN_XPATH)); }
@@ -104,26 +129,37 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(Laptops_BTN_XPATH)); } }
         public IWebElement ShowAllLaptops
         { get { return driver.FindElement(By.XPath(ShowAllLaptops_BTN_XPATH)); } }
+        #endregion
 
- 
         private CurrencyDropDownMenu currencyDropDownMenu;
         private MyAccountDropDownMenu myAccountDropDownMenu;
-
+        #region Methods
         protected ATopComponent(IWebDriver driver)
         {
             this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
+        /// <summary>
+        /// Method gets text from Currency DropDown menu
+        /// </summary>
+        /// <returns></returns>
         public string GetCurrencyText()
         {
             return Currency.Text;
         }
 
+        /// <summary>
+        /// Method click on Currency DropDown menu
+        /// </summary>
         public void ClickCurrencyDropDownMenu()
         {
             Currency.Click();
         }
 
+        /// <summary>
+        /// Method open Currency DropDown menu if closed
+        /// </summary>
         public void OpenCurrencyDropDownMenu()
         {
             if (Currency.GetAttribute(ARIA_EXPANDED_ATTRIBUTE).Equals("false"))
@@ -133,16 +169,26 @@ namespace OpenCartTests.Pages
             currencyDropDownMenu = new CurrencyDropDownMenu(driver);
         }
 
+        /// <summary>
+        /// Method gets MyAccount text from MyAccount DropDown menu
+        /// </summary>
+        /// <returns></returns>
         public string GetMyAccountText()
         {
             return MyAccount.Text;
         }
 
+        /// <summary>
+        /// Method click on MyAccount DropDown menu
+        /// </summary>
         public void ClickMyAccountDropDownMenu()
         {
             MyAccount.Click();
         }
 
+        /// <summary>
+        /// Method open MyAccount DropDown menu if closed
+        /// </summary>
         public void OpenMyAccountDropDownMenu()
         {
             if (MyAccount.GetAttribute(ARIA_EXPANDED_ATTRIBUTE) != "true")
@@ -152,17 +198,28 @@ namespace OpenCartTests.Pages
             myAccountDropDownMenu = new MyAccountDropDownMenu(driver);
         }
 
+        /// <summary>
+        /// Method Get Login button from MyAccount DropDown menu
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetLogin()
         {
             OpenMyAccountDropDownMenu();
             return myAccountDropDownMenu.Login;
         }
 
+        /// <summary>
+        /// Method click on Login in MyAccount DropDown menu
+        /// </summary>
         public void ClickLogin()
         {
             GetLogin().Click();
         }
 
+        /// <summary>
+        /// Method goes to Login
+        /// </summary>
+        /// <returns></returns>
         public LoginPage GoToLoginPage()
         {
             GetLogin();
@@ -170,15 +227,32 @@ namespace OpenCartTests.Pages
             return new LoginPage(driver);
         }
 
-        public IWebElement GetRegiser()
+        /// <summary>
+        /// Method Get Register button from MyAccount DropDown menu
+        /// </summary>
+        /// <returns></returns>
+        public IWebElement GetRegister()
         {
             OpenMyAccountDropDownMenu();
             return myAccountDropDownMenu.Register;
         }
 
+        /// <summary>
+        /// Method click on Register in MyAccount DropDown menu
+        /// </summary>
         public void ClickRegiser()
         {
-            GetRegiser().Click();
+            GetRegister().Click();
+        }
+
+        /// <summary>
+        /// Method Get MyAccount button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
+        public RegisterPage GoToRegiserPage()
+        {
+            ClickRegiser();
+            return new RegisterPage(driver);
         }
 
         public IWebElement GetMyAccount()
@@ -192,6 +266,10 @@ namespace OpenCartTests.Pages
             GetMyAccount().Click();
         }
 
+        /// <summary>
+        /// Method Get Order History button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetOrderHistory()
         {
             OpenMyAccountDropDownMenu();
@@ -203,6 +281,10 @@ namespace OpenCartTests.Pages
             GetOrderHistory().Click();
         }
 
+        /// <summary>
+        /// Method Get Transactions button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetTransactions()
         {
             OpenMyAccountDropDownMenu();
@@ -214,6 +296,10 @@ namespace OpenCartTests.Pages
             GetTransactions().Click();
         }
 
+        /// <summary>
+        /// Method Get Downloads button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetDownloads()
         {
             OpenMyAccountDropDownMenu();
@@ -225,6 +311,10 @@ namespace OpenCartTests.Pages
             GetDownloads().Click();
         }
 
+        /// <summary>
+        /// Method Get Logout button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetLogout()
         {
             OpenMyAccountDropDownMenu();
@@ -236,6 +326,10 @@ namespace OpenCartTests.Pages
             GetLogout().Click();
         }
 
+        /// <summary>
+        /// Method Get Logout button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public LogoutPage GoToLogoutPage()
         {
             GetLogout();
@@ -243,17 +337,15 @@ namespace OpenCartTests.Pages
             return new LogoutPage(driver);
         }
 
-        // Dimon MainSearch
+        /// <summary>
+        /// Method sets search input field with
+        /// </summary>
+        /// <param name="searchtext">text to search</param>
         public void SetMainSearch(string searchtext)
         {
             MainSearchInput.SendKeys(searchtext);
         }
 
-        //public SearchPage ClickMainSearch()
-        //{
-        //    MainSearchButton.Click();
-        //    return new SearchPage(driver);
-        //}
         public void ClickMainSearch()
         {
             MainSearchButton.Click();
@@ -264,15 +356,19 @@ namespace OpenCartTests.Pages
         {
             LaptopsDropdownMenu.Click();
         }
+
         public void ClickShowAllLaptops()
         {
             ShowAllLaptops.Click();
         }
+
         public LaptopsAndNotebooksPage GoToLaptopPage()
         {
             ClickLaptopsDropdownMenu();
             ClickShowAllLaptops();
             return new LaptopsAndNotebooksPage(driver);
         }
+        #endregion
     }
+    #endregion
 }

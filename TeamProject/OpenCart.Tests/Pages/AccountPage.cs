@@ -56,8 +56,20 @@ namespace OpenCartTests.Pages
         public IWebElement SubUnsubToNewsletter
         { get { return driver.FindElement(By.XPath(SubUnsubToNewsletter_BTN_XPATH)); } }
 
+        public IWebElement SuccessChangePasswordLabel
+        { get { return driver.FindElement(By.CssSelector(".alert.alert-success")); } }
 
-        public AccountPage(IWebDriver driver) : base(driver) { }
+        public AccountPage(IWebDriver driver) : base(driver)
+        {
+            VerifyWebElements();
+        }
+
+        public void VerifyWebElements()
+        {
+            IWebElement element = EditAccountInformation;
+            element = ChangePassword;
+            element = ModifyAddressBookEntries;
+        }
 
         public IWebElement GetEditAccountInformation()
         {
@@ -175,5 +187,11 @@ namespace OpenCartTests.Pages
         {
             GetSubUnsubToNewsletter().Click();
         }
+
+        public string GetSuccessChangePasswordLabelText()
+        {
+            return SuccessChangePasswordLabel.Text;
+        }
+
     }
 }

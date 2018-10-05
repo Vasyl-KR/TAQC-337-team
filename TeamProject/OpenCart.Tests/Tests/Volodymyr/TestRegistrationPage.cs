@@ -17,8 +17,7 @@ namespace OpenCartTests.Tests.Volodymyr
         [OneTimeSetUp]
         public void CreateNecessaryObjects()
         {
-            users = ReaderUserData.GetUsersData();
-            user = users.Users[1];
+            user = ReaderUserData.GetUserByIndex(1);
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
@@ -39,10 +38,10 @@ namespace OpenCartTests.Tests.Volodymyr
             string expectedResult = "Your Account Has Been Created!";
             string actualResult = String.Empty;
 
-            Pages.Pages pages = new Pages.Pages(driver);
+            Pages.PagesList pages = new Pages.PagesList(driver);
 
             // go to RegisterPage
-            pages.RegisterPage.GoToRegisterPage();
+            pages.RegisterPage.ClickRegiser();
             
             //fill fields
             pages.RegisterPage.SetFirstName(user.firstName);

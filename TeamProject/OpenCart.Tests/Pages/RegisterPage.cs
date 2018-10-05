@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace OpenCartTests.Pages
@@ -10,26 +9,27 @@ namespace OpenCartTests.Pages
     public class RegisterPage: ATopComponent
     {
         #region Locators
-        //private const string IdFirstName = "input-firstname";
-        //private const string IdLastName = "input-lastname";
-        //private const string IdEmail = "input-email";
-        //private const string IdTelephone = "input-telephone";
-        //private const string IdFax = "input-fax";
 
-        //private const string IdCompany = "input-company";
-        //private const string IdAddress1 = "input-address-1";
-        //private const string IdAddress2 = "input-address-2";
-        //private const string IdCity = "input-city";
-        //private const string IdPostCode = "input-postcode";
-        //private const string IdCountry = "input-country";
-        //private const string IdRegion = "input-zone";
+        private const string IdFirstName = "input-firstname";
+        private const string IdLastName = "input-lastname";
+        private const string IdEmail = "input-email";
+        private const string IdTelephone = "input-telephone";
+        private const string IdFax = "input-fax";
 
-        //private const string IdPassword = "input-password";
-        //private const string IdConfirmPassword = "input-confirm";
-        //private const string NameCheckBox = "newsletter";
-        //private const string NameAgreePrivacyPolicy = "agree";
+        private const string IdCompany = "input-company";
+        private const string IdAddress1 = "input-address-1";
+        private const string IdAddress2 = "input-address-2";
+        private const string IdCity = "input-city";
+        private const string IdPostCode = "input-postcode";
+        private const string IdCountry = "input-country";
+        private const string IdRegion = "input-zone";
 
-        //private const string CssSelectorBtnContinue = "input.btn.btn-primary";
+        private const string IdPassword = "input-password";
+        private const string IdConfirmPassword = "input-confirm";
+        private const string NameCheckBox = "newsletter";
+        private const string NameAgreePrivacyPolicy = "agree";
+
+        private const string CssSelectorBtnContinue = "input.btn.btn-primary";
 
         #endregion
 
@@ -44,112 +44,110 @@ namespace OpenCartTests.Pages
         public RegisterPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
-            PageFactory.InitElements(driver, this);
         }
 
         #endregion
 
         #region Proporties
-        [FindsBy(How = How.Id, Using = "input-firstname")]
+
         public IWebElement InputFirstNameField
         {
-            get;  set;
+            get { return driver.FindElement(By.Id(IdFirstName)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-lastname")]
         public IWebElement InputLastNameField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdLastName)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-email")]
+         
         public IWebElement InputEmailField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdEmail)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-telephone")]
+         
         public IWebElement InputTelephoneField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdTelephone)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-fax")]
+        
         public IWebElement Fax
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdFax)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-company")]
+         
         public IWebElement InputCompanyField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdCompany)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-address-1")]
+         
         public IWebElement InputAddress1Field
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdAddress1)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-address-2")]
+         
         public IWebElement InputAddress2Field
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdAddress2)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-city")]
+         
         public IWebElement InputCityField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdCity)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-postcode")]
+        
         public IWebElement InputPostCodeField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdPostCode)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-country")]
+         
         public IWebElement InputCountryField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdCountry)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-zone")]
+         
         public IWebElement InputRegionField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdRegion)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-password")]
+        
         public IWebElement InputPasswordField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdPassword)); }
         }
 
-        [FindsBy(How = How.Id, Using = "input-confirm")]
+         
         public IWebElement InputConfirmPasswordField
         {
-            get; set;
+            get { return driver.FindElement(By.Id(IdConfirmPassword)); }
         }
 
-        [FindsBy(How = How.Name, Using = "newsletter")]
+        
         public IList<IWebElement> CheckBoxYesNoItems
         {
-            get; set;
+            get { return driver.FindElements(By.Name(NameCheckBox)); }
         }
 
-        [FindsBy(How = How.Name, Using = "agree")]
+         
         public IWebElement CheckAgreeTerms
         {
-            get; set;
+            get { return driver.FindElement(By.Name(NameAgreePrivacyPolicy)); }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input.btn.btn-primary")]
+         
         public IWebElement BtnContinue
         {
-            get; set;
+            get { return driver.FindElement(By.CssSelector(CssSelectorBtnContinue)); }
         }
 
         #endregion
@@ -180,16 +178,11 @@ namespace OpenCartTests.Pages
         #endregion 
 
         #region Methods
-
-        public RegisterPage GoToRegisterPage()
-        {
-            Pages pages = new Pages(driver);
-            pages.LoginPage.
-
-            ClickRegiser();
-            return new RegisterPage(driver);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+       
         public void SetFirstName(string firstName)
         {
             ClickInputField(InputFirstNameField);
@@ -311,7 +304,10 @@ namespace OpenCartTests.Pages
 
     public class ConfirmationRegisterPage: ATopComponent
     {
-        private readonly IWebDriver driver;
+
+        
+
+        #region Locators 
 
         private const string XPathBtnConfirmationContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
 
@@ -319,11 +315,24 @@ namespace OpenCartTests.Pages
 
         private const string XPathSuccessH1Text = "//div[@id ='content']/h1";
 
+        #endregion
+
+        #region Fields
+
+        private readonly IWebDriver driver;
+
+        #endregion
+
+        #region Constructors
+
         public ConfirmationRegisterPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
-            PageFactory.InitElements(driver, this);
         }
+
+        #endregion
+
+        #region Proporties
 
         public IWebElement SuccessH1Element
         {
@@ -340,11 +349,15 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.XPath(XPathBtnConfirmationContinue)); }
         }
 
+        #endregion
+
+        #region Methods
+
         public void ClickConfirmationButtonContinue()
         {
             BtnConfirmationContinue.Click();
         }
 
-
+        #endregion
     }
 }

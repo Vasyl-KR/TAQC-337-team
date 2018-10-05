@@ -10,7 +10,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.ObjectModel;
-
 namespace OpenCartTests.Pages
 {
     public class WishlistPage : ATopComponent
@@ -28,8 +27,17 @@ namespace OpenCartTests.Pages
 
         #endregion
         #region Properties
+        
         [FindsBy(How = How.XPath, Using = "//table[contains(@class,'table table-striped')]")]
         public IWebElement AddedToCartProduct
+        { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'alert alert-success')]")]
+        public IWebElement ModifyMessage
+        { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//p[contains(text(),'wish list is empty')]")]
+        public IWebElement EmptyWishlistMessage
         { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//td[contains(@class,'text-right')]//div[contains(@class,'price')]")]
@@ -38,6 +46,10 @@ namespace OpenCartTests.Pages
 
         [FindsBy(How = How.Id, Using = "cart-total")]
         public IWebElement CartTotalPrice
+        { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[contains(@class,'btn btn-danger')]")]
+        public IWebElement RemoveFromWishlistButton
         { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[contains(@class,'btn btn-inverse btn-block btn-lg dropdown-toggle')]")]
@@ -52,15 +64,17 @@ namespace OpenCartTests.Pages
         public IWebElement RemoveFromCartButton
         { get; set; }
 
+
         #endregion
 
         #region Constructor and Verify
 
         public WishlistPage(IWebDriver driver) : base(driver)
         {
+            PageFactory.InitElements(driver, this);
             VerifyWebElements();
         }
-
+        
         public void VerifyWebElements()
         {
             IWebElement element;
@@ -71,6 +85,22 @@ namespace OpenCartTests.Pages
         #endregion
         #region Methods
 
+        public string GetEmptylistMessage()
+        {
+            if (WaitForElementPresent(EmptyWishlistMessage))
+            {
+                return EmptyWishlistMessage.Text;
+            }
+            else
+            {
+                return "Some items still in your Wishlist";
+            }
+        }
+
+        public string GetModifyListMessage()
+        {
+            return ModifyMessage.Text;
+        }
 
         public string GetProductPriceText()
         {
@@ -96,32 +126,53 @@ namespace OpenCartTests.Pages
         {
             RemoveFromCartButton.Click();
         }
+        public void ClickRemoveFromWishlist()
+        {
+            RemoveFromWishlistButton.Click();
+        }
 
         public string GetTotalCartPrice()
         {
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            //wait.Until(driver => CartTotalPrice.Text.Contains(GetProductPriceText()));
-            //Pages page = new Pages(driver);
-            Pages pages = new Pages(driver);
-            pages.WaitForElementTextContains(CartTotalPrice, GetProductPriceText());
+            WaitForElementTextContains(CartTotalPrice,GetProductPriceText());
 
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
         }
 
+        public void ClearWishlist()
+        {
+
+            if (WaitForElementPresent(RemoveFromWishlistButton))
+            {
+                ClickRemoveFromWishlist();
+            }
+            else
+            {
+                Console.WriteLine("Wishlist is clear");
+            }
+        }
+
         public void ClearTotalCart()
         {
-            Pages pages = new Pages(driver);
+            
             ClickCartButton();
-            if (pages.WaitForElementPresent(RemoveFromCartButton))
+            if (WaitForElementPresent(CartTotalPrice))
             {
-                RemoveFromCartButton.Click();
+                ClickRemoveFromCart();
             }
             else
             {
                 Console.WriteLine("Cart is clear");
             }
         }
+
+
+        public void ClearTotalCartWait()
+        {
+            //pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
+            WaitForElementPresent(RemoveFromCartButton);
+        }
+
         #endregion
     }
 }
