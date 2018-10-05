@@ -15,7 +15,7 @@ namespace OpenCartTests.Tests.Nazar
 {
 
     [TestFixture]
-    public class Class1
+    public class Class1 : BaseTest
     {
         private IWebDriver driver;
         private ListUsers users;
