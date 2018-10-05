@@ -246,21 +246,29 @@ namespace OpenCartTests.Pages
         }
 
         /// <summary>
-        /// Method Get MyAccount button from MyAccount DropDown menu (Logined)
+        /// Method open my account dropdown menu, and go to register page
         /// </summary>
         /// <returns></returns>
         public RegisterPage GoToRegiserPage()
         {
+            GetRegister();
             ClickRegiser();
             return new RegisterPage(driver);
         }
-
+        
+        /// <summary>
+        /// Method Get MyAccount button from MyAccount DropDown menu (Logined)
+        /// </summary>
+        /// <returns></returns>
         public IWebElement GetMyAccount()
         {
             OpenMyAccountDropDownMenu();
             return myAccountDropDownMenu.MyAccount;
         }
 
+        /// <summary>
+        /// Method click on MyAccount in MyAccount DropDown menu (Logined)
+        /// </summary>
         public void ClickMyAccount()
         {
             GetMyAccount().Click();
@@ -276,6 +284,9 @@ namespace OpenCartTests.Pages
             return myAccountDropDownMenu.OrderHistory;
         }
 
+        /// <summary>
+        /// Method click on Order History in MyAccount DropDown menu (Logined)
+        /// </summary>
         public void ClickOrderHistory()
         {
             GetOrderHistory().Click();
@@ -291,6 +302,9 @@ namespace OpenCartTests.Pages
             return myAccountDropDownMenu.Transactions;
         }
 
+        /// <summary>
+        /// Method click on Transactions in MyAccount DropDown menu (Logined)
+        /// </summary>
         public void ClickTransactions()
         {
             GetTransactions().Click();
@@ -306,6 +320,9 @@ namespace OpenCartTests.Pages
             return myAccountDropDownMenu.Downloads;
         }
 
+        /// <summary>
+        /// Method click on Downloads in MyAccount DropDown menu (Logined)
+        /// </summary>
         public void ClickDownloads()
         {
             GetDownloads().Click();
@@ -321,6 +338,9 @@ namespace OpenCartTests.Pages
             return myAccountDropDownMenu.Logout;
         }
 
+        /// <summary>
+        /// Method click on Logout in MyAccount DropDown menu (Logined)
+        /// </summary>
         public void ClickLogout()
         {
             GetLogout().Click();
@@ -346,22 +366,34 @@ namespace OpenCartTests.Pages
             MainSearchInput.SendKeys(searchtext);
         }
 
+        /// <summary>
+        /// Method click on Search button on Home page
+        /// </summary>
         public void ClickMainSearch()
         {
             MainSearchButton.Click();
         }
 
-        // Vasyl - Navigation Bar
+        /// <summary>
+        /// Method click on Laptops & Notebooks on products bar 
+        /// </summary>
         public void ClickLaptopsDropdownMenu()
         {
             LaptopsDropdownMenu.Click();
         }
 
+        /// <summary>
+        /// Method click on Show all Laptops & Notebooks on Laptops & Notebooks products bar
+        /// </summary>
         public void ClickShowAllLaptops()
         {
             ShowAllLaptops.Click();
         }
 
+        /// <summary>
+        /// Method open Laptops & Notebooks page
+        /// </summary>
+        /// <returns></returns>
         public LaptopsAndNotebooksPage GoToLaptopPage()
         {
             ClickLaptopsDropdownMenu();
