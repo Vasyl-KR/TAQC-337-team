@@ -18,7 +18,7 @@ namespace OpenCartTests.Tests.Ostap
         [Test]
         public void SuccessChangePassword()
         {
-            user = ReaderUserData.GetUsersData().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
+            user = ReaderUserData.GetUsers().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
             string newPassword = "qwerty1234"; 
             Pages.HomePage
                 .GoToLoginPage()

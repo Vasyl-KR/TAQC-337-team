@@ -251,7 +251,6 @@ namespace OpenCartTests.Pages
         /// <returns></returns>
         public RegisterPage GoToRegiserPage()
         {
-            GetRegiser();
             ClickRegiser();
             return new RegisterPage(driver);
         }

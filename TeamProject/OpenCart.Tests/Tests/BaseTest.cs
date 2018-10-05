@@ -16,6 +16,7 @@ namespace OpenCartTests.Tests
     public abstract class BaseTest
     {
         private PagesList pages;
+
         private IWebDriver driver;
 
         public PagesList Pages
