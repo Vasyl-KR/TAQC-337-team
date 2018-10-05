@@ -7,15 +7,19 @@ namespace OpenCartTests.Data
 {
     public class ReaderUserData
     {
-        // method read users data from file 'User.json' and return list of users
-        public static ListUsers GetUsersData()
+        private static ListUsers users;
+       
+        /// <summary>
+        /// Private method for read data from file 'User.json' and return list of users
+        /// </summary>
+        /// <returns></returns>
+        private static ListUsers ReadUsersData()
         {
             string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                         .Replace("\\bin\\Debug", "\\Data");
             string path = Path.Combine(folderPath, "Users.json");
             string userData;
-            ListUsers users = new ListUsers();
-
+            
             using (StreamReader reader = new StreamReader(path))
             {
                 userData = reader.ReadToEnd();
@@ -32,6 +36,41 @@ namespace OpenCartTests.Data
 
             return users;
         }
+
+        /// <summary>
+        /// Method return list of users 
+        /// </summary>
+        /// <returns></returns>
+        public static ListUsers GetUsers()
+        {
+            if (users.Users == null)
+            {
+              users = ReadUsersData();
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// Method return user from list of users by index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static User GetUserByIndex(int index)
+        {
+            if (users.Users == null)
+            {
+                users = ReadUsersData();
+            }
+
+            if (users.Users.Length < index && index < 0)
+            {
+                throw new Exception("No user found.Check the index.");
+            }
+
+            return users.Users[index];
+        }
+
     }
 
     public struct User

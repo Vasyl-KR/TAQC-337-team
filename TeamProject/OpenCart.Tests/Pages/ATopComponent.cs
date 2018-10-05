@@ -99,12 +99,7 @@ namespace OpenCartTests.Pages
 
         }
 
-        protected bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
-        {
-            return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
-        }
-
-        
+      
 
         public IWebElement Currency
         {

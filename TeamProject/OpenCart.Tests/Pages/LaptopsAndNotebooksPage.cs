@@ -126,7 +126,7 @@ namespace OpenCartTests.Pages
 
         public WishlistPage AddToWishlist()
         {
-            //ClickAddToWishListButton();
+            ClickAddToWishListButton();
             ClickWishlistLink();
             return new WishlistPage(driver);
         }

@@ -15,7 +15,7 @@ namespace OpenCartTests.Tests.Nazar
 {
 
     [TestFixture]
-    public class Class1
+    public class AddFunctionalityTest : BaseTest
     {
         private IWebDriver driver;
         private ListUsers users;
@@ -27,7 +27,7 @@ namespace OpenCartTests.Tests.Nazar
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
-            users = ReaderUserData.GetUsersData();
+            users = ReaderUserData.GetUsers();
             
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);

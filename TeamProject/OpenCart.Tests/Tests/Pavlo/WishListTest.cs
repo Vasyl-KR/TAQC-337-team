@@ -16,59 +16,62 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace OpenCartTests.Tests.Pavlo
 {
     [TestFixture]
-    class WishListTest
+    class WishListTest : BaseTest
     {
         readonly string password = "12345";
         readonly string login = "pristayko.pavlo@gmail.com";
-        private IWebDriver driver;
-
-        [OneTimeSetUp]
-        public void BeforeAllMethods()
-        {
-            driver = new ChromeDriver();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com");
-
-        }
-
-        [OneTimeTearDown]
-        public void AfterAllMethods()
-        {
-            driver.Quit();
-        }
 
         [Test]
         public void AddToWishlistTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(driver);
             string totalPrice;
             string actualPrice;
 
             //Act
-            /*Logining*/
-            pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login,password);
+            /*Loggining*/
+            Pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login, password);
             /*Opening Laptop page*/
-            pages.HomePage.GoToLaptopPage();
+            Pages.HomePage.GoToLaptopPage();
             /*Adding laptop to wishlist*/
-            pages.LaptopsAndNotebooksPage.AddToWishlist();
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
             /*Cleaning Cart before adding*/
-        //    pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
+            Pages.WishlistPage.ClearTotalCart();
             /*Adding laptop to cart*/
-            pages.WishlistPage.ClickAddToCartButton();
-            /*Waiting for change total price*/
-        //    pages.WaitForElementTextContains(pages.WishlistPage.CartTotalPrice,pages.WishlistPage.GetProductPriceText());
+            Pages.WishlistPage.ClickAddToCartButton();
 
-            totalPrice = pages.WishlistPage.GetTotalCartPrice();
-            actualPrice = pages.WishlistPage.GetProductPriceText();
+            /*Waiting for change total price*/
+            totalPrice = Pages.WishlistPage.GetTotalCartPrice();
+            actualPrice = Pages.WishlistPage.GetProductPriceText();
 
             //Assert
-            Assert.AreEqual(totalPrice, actualPrice,"Adding failed");
-           
+            Assert.AreEqual(totalPrice, actualPrice, "Adding failed");
+
+        }
+
+        [Test]
+        public void RemoveFromWishlistTest()
+        {
+            //Arrange
+            string actualMessage;
+            string expectedMessage;
+
+            //Act
+            /*Loggining*/
+            Pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login, password);
+            /*Opening Laptop page*/
+            Pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
+            /**/
+            Pages.WishlistPage.ClearWishlist();
+
+            /*Waiting for message to show*/
+            actualMessage = Pages.WishlistPage.GetEmptylistMessage() ;
+            expectedMessage = "Your wish list is empty.";
+
+            //Assert
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
 
     }

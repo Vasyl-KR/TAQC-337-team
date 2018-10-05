@@ -17,8 +17,7 @@ namespace OpenCartTests.Tests.Volodymyr
         [OneTimeSetUp]
         public void CreateNecessaryObjects()
         {
-            users = ReaderUserData.GetUsersData();
-            user = users.Users[0];
+            user = ReaderUserData.GetUserByIndex(0);
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
