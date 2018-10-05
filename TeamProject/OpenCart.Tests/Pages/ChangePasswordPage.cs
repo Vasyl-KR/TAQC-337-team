@@ -23,6 +23,9 @@ namespace OpenCartTests.Pages
         public IWebElement ConfirmButton
         { get { return driver.FindElement(By.CssSelector("input.btn.btn-primary")); } }
 
+        public IWebElement PasswordConfirmationErrorMessage
+        { get { return driver.FindElement(By.XPath("//div[@class='form-group required has-error']//div[@class='text-danger']")); } }
+
         public ChangePasswordPage(IWebDriver driver) : base(driver) { }
 
 
@@ -61,6 +64,10 @@ namespace OpenCartTests.Pages
             return PasswordConfirmInput.GetAttribute(VALUE_ATTRIBUTE);
         }
 
+        public string GetPasswordConfirmationErrorMessageText()
+        {
+            return PasswordConfirmationErrorMessage.Text;
+        }
         public void SetPasswordConfirmInput(string text)
         {
             PasswordConfirmInput.SendKeys(text);
