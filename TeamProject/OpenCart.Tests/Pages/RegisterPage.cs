@@ -5,31 +5,30 @@ using OpenQA.Selenium.Support.UI;
 
 namespace OpenCartTests.Pages
 {
-
-    public class RegisterPage: ATopComponent
+    public class RegisterPage : ATopComponent
     {
         #region Locators
 
-        private const string IdFirstName = "input-firstname";
-        private const string IdLastName = "input-lastname";
-        private const string IdEmail = "input-email";
-        private const string IdTelephone = "input-telephone";
-        private const string IdFax = "input-fax";
+        private const string firstnameInputId = "input-firstname";
+        private const string lastnameInputId = "input-lastname";
+        private const string emailInputId = "input-email";
+        private const string telephoneInputId = "input-telephone";
+        private const string faxInputId = "input-fax";
 
-        private const string IdCompany = "input-company";
-        private const string IdAddress1 = "input-address-1";
-        private const string IdAddress2 = "input-address-2";
-        private const string IdCity = "input-city";
-        private const string IdPostCode = "input-postcode";
-        private const string IdCountry = "input-country";
-        private const string IdRegion = "input-zone";
+        private const string companyInputId = "input-company";
+        private const string address1InputId = "input-address-1";
+        private const string address2InputId = "input-address-2";
+        private const string cityInputId = "input-city";
+        private const string postcodeInputId = "input-postcode";
+        private const string countryInputId = "input-country";
+        private const string regionInputId = "input-zone";
 
-        private const string IdPassword = "input-password";
-        private const string IdConfirmPassword = "input-confirm";
-        private const string NameCheckBox = "newsletter";
-        private const string NameAgreePrivacyPolicy = "agree";
+        private const string passwordInputId = "input-password";
+        private const string confirmPasswordInputId = "input-confirm";
+        private const string checkBoxInputName = "newsletter";
+        private const string agreeTermsInputName = "agree";
 
-        private const string CssSelectorBtnContinue = "input.btn.btn-primary";
+        private const string continueBtnCssSelector = "input.btn.btn-primary";
 
         #endregion
 
@@ -50,275 +49,343 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
-        public IWebElement InputFirstNameField
+        public IWebElement InputFirstName
         {
-            get { return driver.FindElement(By.Id(IdFirstName)); }
+            get { return driver.FindElement(By.Id(firstnameInputId)); }
         }
 
-        public IWebElement InputLastNameField
+        public IWebElement InputLastName
         {
-            get { return driver.FindElement(By.Id(IdLastName)); }
+            get { return driver.FindElement(By.Id(lastnameInputId)); }
         }
 
-         
-        public IWebElement InputEmailField
+        public IWebElement InputEmail
+
         {
-            get { return driver.FindElement(By.Id(IdEmail)); }
+            get { return driver.FindElement(By.Id(emailInputId)); }
         }
 
-         
-        public IWebElement InputTelephoneField
+        public IWebElement InputTelephone
         {
-            get { return driver.FindElement(By.Id(IdTelephone)); }
+            get { return driver.FindElement(By.Id(telephoneInputId)); }
         }
 
-        
-        public IWebElement Fax
+        public IWebElement InputFax
         {
-            get { return driver.FindElement(By.Id(IdFax)); }
+            get { return driver.FindElement(By.Id(faxInputId)); }
         }
 
-         
-        public IWebElement InputCompanyField
+        public IWebElement InputCompany
         {
-            get { return driver.FindElement(By.Id(IdCompany)); }
+            get { return driver.FindElement(By.Id(companyInputId)); }
         }
 
-         
-        public IWebElement InputAddress1Field
+        public IWebElement InputAddress1
         {
-            get { return driver.FindElement(By.Id(IdAddress1)); }
+            get { return driver.FindElement(By.Id(address1InputId)); }
         }
 
-         
-        public IWebElement InputAddress2Field
+        public IWebElement InputAddress2
         {
-            get { return driver.FindElement(By.Id(IdAddress2)); }
+            get { return driver.FindElement(By.Id(address2InputId)); }
         }
 
-         
-        public IWebElement InputCityField
+        public IWebElement InputCity
         {
-            get { return driver.FindElement(By.Id(IdCity)); }
+            get { return driver.FindElement(By.Id(cityInputId)); }
         }
 
-        
-        public IWebElement InputPostCodeField
+        public IWebElement InputPostCode
         {
-            get { return driver.FindElement(By.Id(IdPostCode)); }
+            get { return driver.FindElement(By.Id(postcodeInputId)); }
         }
 
-         
-        public IWebElement InputCountryField
+        public IWebElement InputCountry
         {
-            get { return driver.FindElement(By.Id(IdCountry)); }
+            get { return driver.FindElement(By.Id(countryInputId)); }
         }
 
-         
-        public IWebElement InputRegionField
+        public IWebElement InputRegion
         {
-            get { return driver.FindElement(By.Id(IdRegion)); }
+            get { return driver.FindElement(By.Id(regionInputId)); }
         }
 
-        
-        public IWebElement InputPasswordField
+        public IWebElement InputPassword
         {
-            get { return driver.FindElement(By.Id(IdPassword)); }
+            get { return driver.FindElement(By.Id(passwordInputId)); }
         }
 
-         
-        public IWebElement InputConfirmPasswordField
+        public IWebElement InputConfirmPassword
         {
-            get { return driver.FindElement(By.Id(IdConfirmPassword)); }
+            get { return driver.FindElement(By.Id(confirmPasswordInputId)); }
         }
 
-        
         public IList<IWebElement> CheckBoxYesNoItems
         {
-            get { return driver.FindElements(By.Name(NameCheckBox)); }
+            get { return driver.FindElements(By.Name(checkBoxInputName)); }
         }
 
-         
         public IWebElement CheckAgreeTerms
         {
-            get { return driver.FindElement(By.Name(NameAgreePrivacyPolicy)); }
+            get { return driver.FindElement(By.Name(agreeTermsInputName)); }
         }
 
-         
         public IWebElement BtnContinue
         {
-            get { return driver.FindElement(By.CssSelector(CssSelectorBtnContinue)); }
+            get { return driver.FindElement(By.CssSelector(continueBtnCssSelector)); }
         }
 
         #endregion
 
         #region Private Methods
 
-        private void ClickInputField(IWebElement webElement)
+        /// <summary>
+        /// Method for click on field
+        /// </summary>
+        /// <param name="webElement"></param>
+        private void ClickOnField(IWebElement webElement)
         {
             webElement.Click();
         }
 
-        private void ClearInputField(IWebElement webElement)
+        /// <summary>
+        /// Method for cleaning field with data
+        /// </summary>
+        /// <param name="webElement"></param>
+        private void ClearDataInField(IWebElement webElement)
         {
             webElement.Clear();
         }
 
-        private void SetInputField(IWebElement webElement, string text)
+        /// <summary>
+        /// Method for input data in a field
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="text"></param>
+        private void SetDataInField(IWebElement webElement, string text)
         {
             webElement.SendKeys(text);
         }
 
+        /// <summary>
+        /// Method for select data from drop down list
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="text"></param>
         private void SelectFromDropDownList(IWebElement webElement, string text)
         {
             SelectElement selectElement = new SelectElement(webElement);
             selectElement.SelectByText(text);
         }
-       
-        #endregion 
+
+        #endregion
 
         #region Methods
+
         /// <summary>
-        /// 
+        /// Method for input data in First Name field
         /// </summary>
-        /// <returns></returns>
-       
-        public void SetFirstName(string firstName)
+        /// <returns></returns> 
+        public void SetFirstName(string textFirstName)
         {
-            ClickInputField(InputFirstNameField);
-            ClearInputField(InputFirstNameField);
-            SetInputField(InputFirstNameField, firstName);
+            ClickOnField(InputFirstName);
+            ClearDataInField(InputFirstName);
+            SetDataInField(InputFirstName, textFirstName);
         }
 
-        public void SetLastName(string lastName)
+        /// <summary>
+        /// Method for input data in Last Name field
+        /// </summary>
+        /// <param name="textLastName"></param>
+        public void SetLastName(string textLastName)
         {
-            ClickInputField(InputLastNameField);
-            ClearInputField(InputLastNameField);
-            SetInputField(InputLastNameField, lastName);
+            ClickOnField(InputLastName);
+            ClearDataInField(InputLastName);
+            SetDataInField(InputLastName, textLastName);
         }
 
-        public void SetEmail(string email)
+        /// <summary>
+        /// Method for input data in Email field
+        /// </summary>
+        /// <param name="textEmail"></param>
+        public void SetEmail(string textEmail)
         {
-            ClickInputField(InputEmailField);
-            ClearInputField(InputEmailField);
-            SetInputField(InputEmailField, email);
+            ClickOnField(InputEmail);
+            ClearDataInField(InputEmail);
+            SetDataInField(InputEmail, textEmail);
         }
 
-        public void SetTelephone(string telephone)
+        /// <summary>
+        /// Method for input data in Telephone field
+        /// </summary>
+        /// <param name="textTelephone"></param>
+        public void SetTelephone(string textTelephone)
         {
-            ClickInputField(InputTelephoneField);
-            ClearInputField(InputTelephoneField);
-            SetInputField(InputTelephoneField, telephone);
+            ClickOnField(InputTelephone);
+            ClearDataInField(InputTelephone);
+            SetDataInField(InputTelephone, textTelephone);
         }
 
-        public void SetFax(string fax)
+        /// <summary>
+        /// Method for input data in Fax field
+        /// </summary>
+        /// <param name="textFax"></param>
+        public void SetFax(string textFax)
         {
-            ClickInputField(Fax);
-            ClearInputField(Fax);
-            SetInputField(Fax, fax);
+            ClickOnField(InputFax);
+            ClearDataInField(InputFax);
+            SetDataInField(InputFax, textFax);
         }
 
-        public void SetCompany(string company)
+        /// <summary>
+        /// Method for input data in Company field
+        /// </summary>
+        /// <param name="textCompany"></param>
+        public void SetCompany(string textCompany)
         {
-            ClickInputField(InputCompanyField);
-            ClearInputField(InputCompanyField);
-            SetInputField(InputCompanyField, company);
+            ClickOnField(InputCompany);
+            ClearDataInField(InputCompany);
+            SetDataInField(InputCompany, textCompany);
         }
 
-        public void SetAddress1(string address1)
+        /// <summary>
+        /// Method for input data in Address_1 field
+        /// </summary>
+        /// <param name="textAddress1"></param>
+        public void SetAddress1(string textAddress1)
         {
-            ClickInputField(InputAddress1Field);
-            ClearInputField(InputAddress1Field);
-            SetInputField(InputAddress1Field, address1);
+            ClickOnField(InputAddress1);
+            ClearDataInField(InputAddress1);
+            SetDataInField(InputAddress1, textAddress1);
         }
 
-        public void SetAddress2(string address2)
+        /// <summary>
+        ///  Method for input data in Address_2 field
+        /// </summary>
+        /// <param name="textAddress2"></param>
+        public void SetAddress2(string textAddress2)
         {
-            ClickInputField(InputAddress2Field);
-            ClearInputField(InputAddress2Field);
-            SetInputField(InputAddress2Field, address2);
+            ClickOnField(InputAddress2);
+            ClearDataInField(InputAddress2);
+            SetDataInField(InputAddress2, textAddress2);
         }
 
-        public void SetCity(string city)
+        /// <summary>
+        ///  Method for input data in City field
+        /// </summary>
+        /// <param name="textCity"></param>
+        public void SetCity(string textCity)
         {
-            ClickInputField(InputCityField);
-            ClearInputField(InputCityField);
-            SetInputField(InputCityField, city);
+            ClickOnField(InputCity);
+            ClearDataInField(InputCity);
+            SetDataInField(InputCity, textCity);
         }
 
-        public void SetPostCode(string postCode)
+        /// <summary>
+        ///  Method for input data in PostCode field
+        /// </summary>
+        /// <param name="textPostCode"></param>
+        public void SetPostCode(string textPostCode)
         {
-            ClickInputField(InputPostCodeField);
-            ClearInputField(InputPostCodeField);
-            SetInputField(InputPostCodeField, postCode);
+            ClickOnField(InputPostCode);
+            ClearDataInField(InputPostCode);
+            SetDataInField(InputPostCode, textPostCode);
         }
 
-        public void SetCountry(string country)
+        /// <summary>
+        ///  Method for input data in Country field
+        /// </summary>
+        /// <param name="textCountry"></param>
+        public void SetCountry(string textCountry)
         {
-            ClickInputField(InputCountryField);
-            SelectFromDropDownList(InputCountryField, country);
+            ClickOnField(InputCountry);
+            SelectFromDropDownList(InputCountry, textCountry);
         }
 
-        public void SetRegion(string region)
+        /// <summary>
+        ///  Method for input data in Region/State field
+        /// </summary>
+        /// <param name="textRegion"></param>
+        public void SetRegion(string textRegion)
         {
-            ClickInputField(InputRegionField);
-            SelectFromDropDownList(InputRegionField, region);
+            ClickOnField(InputRegion);
+            SelectFromDropDownList(InputRegion, textRegion);
         }
 
-        public void SetPassword(string password)
+        /// <summary>
+        /// Method for input data in Password field
+        /// </summary>
+        /// <param name="textPassword"></param>
+        public void SetPassword(string textPassword)
         {
-            ClickInputField(InputPasswordField);
-            ClearInputField(InputPasswordField);
-            SetInputField(InputPasswordField, password);
+            ClickOnField(InputPassword);
+            ClearDataInField(InputPassword);
+            SetDataInField(InputPassword, textPassword);
         }
 
-        public void SetConfirmPassword(string confirmPassword)
+        /// <summary>
+        /// Method for input data in ConfirmPassword field
+        /// </summary>
+        /// <param name="textConfirmPassword"></param>
+        public void SetConfirmPassword(string textConfirmPassword)
         {
-            ClickInputField(InputConfirmPasswordField);
-            ClearInputField(InputConfirmPasswordField);
-            SetInputField(InputConfirmPasswordField, confirmPassword);
+            ClickOnField(InputConfirmPassword);
+            ClearDataInField(InputConfirmPassword);
+            SetDataInField(InputConfirmPassword, textConfirmPassword);
         }
 
-        public void SetNewsLetter(bool yesOrNo = true)
+        /// <summary>
+        /// Method for select Yes or No for Subscribing news letters
+        /// </summary>
+        /// <param name="yesOrNo"></param>
+        public void SelectNewsLetter(bool yesOrNo = true)
         {
             if (yesOrNo)
             {
                 CheckBoxYesNoItems[0].Click();
             }
-            else { CheckBoxYesNoItems[1].Click();}
+            else
+            {
+                CheckBoxYesNoItems[1].Click();
+            }
         }
 
+        /// <summary>
+        /// Method for set mark in a checkbox with the terms
+        /// </summary>
         public void SetCheckAgreeTerms()
         {
             CheckAgreeTerms.Click();
         }
 
-        public ConfirmationRegisterPage ClickButtonContinue()
+        /// <summary>
+        /// Method for click button Continue
+        /// </summary>
+        /// <returns></returns>
+        public void ClickButtonContinue()
         {
             BtnContinue.Click();
-            return new ConfirmationRegisterPage(driver);
         }
 
         #endregion
     }
 
-    public class ConfirmationRegisterPage: ATopComponent
+    public class ConfirmationRegisterPage : ATopComponent
     {
-
-        
-
         #region Locators 
 
-        private const string XPathBtnConfirmationContinue = "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
+        private const string confirmationContinueBtnXPath =
+                    "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
 
-        private const string XPathSuccessParagraphText = "//div[@id ='content']/p";
+        private const string successParagraphTextXPath = "//div[@id ='content']/p";
 
-        private const string XPathSuccessH1Text = "//div[@id ='content']/h1";
+        private const string successH1TextXPath = "//div[@id ='content']/h1";
 
         #endregion
 
         #region Fields
 
+        public const string ExpectedSuccessMessage = "Your Account Has Been Created!";
         private readonly IWebDriver driver;
 
         #endregion
@@ -334,25 +401,28 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
-        public IWebElement SuccessH1Element
+        public IWebElement SuccessMessageH1Element
         {
-            get { return driver.FindElement(By.XPath(XPathSuccessH1Text)); }
+            get { return driver.FindElement(By.XPath(successH1TextXPath)); }
         }
 
-        public ReadOnlyCollection<IWebElement> SuccessPElements
+        public ReadOnlyCollection<IWebElement> SuccessMessagePElements
         {
-            get { return driver.FindElements(By.XPath(XPathSuccessParagraphText)); }
+            get { return driver.FindElements(By.XPath(successParagraphTextXPath)); }
         }
 
         public IWebElement BtnConfirmationContinue
         {
-            get { return driver.FindElement(By.XPath(XPathBtnConfirmationContinue)); }
+            get { return driver.FindElement(By.XPath(confirmationContinueBtnXPath)); }
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Method for click button Continue
+        /// </summary>
         public void ClickConfirmationButtonContinue()
         {
             BtnConfirmationContinue.Click();

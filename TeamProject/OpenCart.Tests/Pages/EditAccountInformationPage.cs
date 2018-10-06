@@ -1,31 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace OpenCartTests.Pages
 {
-   public class EditAccountInformationPage: ATopComponent
+    public class EditAccountInformationPage : ATopComponent
     {
-        #region Locators
-
-        private const string IdFirstName = "input-firstname";
-        private const string IdLastName = "input-lastname";
-        private const string IdEmail = "input-email";
-        private const string IdTelephone = "input-telephone";
-        private const string IdFax = "input-fax";
-
-        private const string CssSelectorBtnBack = "input.btn.btn-default";
-        private const string CssSelectorBtnContinue = "input.btn.btn-primary";
-
-        #endregion
-
         #region Fields
 
+        public const string ExpectedSuccessMessage = "Success: Your account has been successfully updated.";
         private readonly IWebDriver driver;
 
         #endregion
@@ -35,62 +17,65 @@ namespace OpenCartTests.Pages
         public EditAccountInformationPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
+            PageFactory.InitElements(driver, this);
         }
 
         #endregion
 
         #region Proporties
 
-        public IWebElement InputFirstNameField
-        {
-            get { return driver.FindElement(By.Id(IdFirstName)); }
-        }
+        [FindsBy(How = How.CssSelector, Using = "div.alert.alert-success")]
+        public IWebElement SuccessMessage { get; set; }
 
-        public IWebElement InputLastNameField
-        {
-            get { return driver.FindElement(By.Id(IdLastName)); }
-        }
+        [FindsBy(How = How.Id, Using = "input-firstname")]
+        public IWebElement InputFirstName { get; set; }
 
-        public IWebElement InputEmailField
-        {
-            get { return driver.FindElement(By.Id(IdEmail)); }
-        }
+        [FindsBy(How = How.Id, Using = "input-lastname")]
+        public IWebElement InputLastName { get; set; }
 
-        public IWebElement InputTelephoneField
-        {
-            get { return driver.FindElement(By.Id(IdTelephone)); }
-        }
+        [FindsBy(How = How.Id, Using = "input-email")]
+        public IWebElement InputEmail { get; set; }
 
-        public IWebElement InputFaxField
-        {
-            get { return driver.FindElement(By.Id(IdFax)); }
-        }
+        [FindsBy(How = How.Id, Using = "input-telephone")]
+        public IWebElement InputTelephone { get; set; }
 
-        public IWebElement BtnBack
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorBtnBack)); }
-        }
+        [FindsBy(How = How.Id, Using = "input-fax")]
+        public IWebElement InputFax { get; set; }
 
-        public IWebElement BtnContinue
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorBtnContinue)); }
-        }
+        [FindsBy(How = How.CssSelector, Using = "input.btn.btn-default")]
+        public IWebElement BtnBack { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "input.btn.btn-primary")]
+        public IWebElement BtnContinue { get; set; }
 
         #endregion
 
         #region Private Methods
 
-        private void ClickInputField(IWebElement webElement)
+        /// <summary>
+        /// Method for click on field
+        /// </summary>
+        /// <param name="webElement"></param>
+        private void ClickOnField(IWebElement webElement)
         {
             webElement.Click();
         }
 
-        private void ClearInputField(IWebElement webElement)
+        /// <summary>
+        /// Method for cleaning field with data
+        /// </summary>
+        /// <param name="webElement"></param>
+        private void ClearDataInField(IWebElement webElement)
         {
             webElement.Clear();
         }
 
-        private void SetInputField(IWebElement webElement, string text)
+        /// <summary>
+        /// Method for input data in a field
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="text"></param>
+        private void SetDataInField(IWebElement webElement, string text)
         {
             webElement.SendKeys(text);
         }
@@ -98,47 +83,75 @@ namespace OpenCartTests.Pages
         #endregion
 
         #region Methods
-        
-        public void SetFirstName(string firstName)
+
+        /// <summary>
+        /// Method for input data in First Name field
+        /// </summary>
+        /// <returns></returns> 
+        public void SetFirstName(string textFirstName)
         {
-            ClickInputField(InputFirstNameField);
-            ClearInputField(InputFirstNameField);
-            SetInputField(InputFirstNameField, firstName);
+            ClickOnField(InputFirstName);
+            ClearDataInField(InputFirstName);
+            SetDataInField(InputFirstName, textFirstName);
         }
 
-        public void SetLastName(string lastName)
+        /// <summary>
+        /// Method for input data in Last Name field
+        /// </summary>
+        /// <param name="textLastName"></param>
+        public void SetLastName(string textLastName)
         {
-            ClickInputField(InputLastNameField);
-            ClearInputField(InputLastNameField);
-            SetInputField(InputLastNameField, lastName);
+            ClickOnField(InputLastName);
+            ClearDataInField(InputLastName);
+            SetDataInField(InputLastName, textLastName);
         }
 
-        public void SetEmail(string email)
+        /// <summary>
+        /// Method for input data in Email field
+        /// </summary>
+        /// <param name="textEmail"></param>
+        public void SetEmail(string textEmail)
         {
-            ClickInputField(InputEmailField);
-            ClearInputField(InputEmailField);
-            SetInputField(InputEmailField, email);
+            ClickOnField(InputEmail);
+            ClearDataInField(InputEmail);
+            SetDataInField(InputEmail, textEmail);
         }
 
-        public void SetTelephone(string telephone)
+        /// <summary>
+        /// Method for input data in Telephone field
+        /// </summary>
+        /// <param name="textTelephone"></param>
+        public void SetTelephone(string textTelephone)
         {
-            ClickInputField(InputTelephoneField);
-            ClearInputField(InputTelephoneField);
-            SetInputField(InputTelephoneField, telephone);
+            ClickOnField(InputTelephone);
+            ClearDataInField(InputTelephone);
+            SetDataInField(InputTelephone, textTelephone);
         }
 
-        public void SetFax(string fax)
+        /// <summary>
+        /// Method for input data in Fax field
+        /// </summary>
+        /// <param name="textFax"></param>
+        public void SetFax(string textFax)
         {
-            ClickInputField(InputFaxField);
-            ClearInputField(InputFaxField);
-            SetInputField(InputFaxField, fax);
+            ClickOnField(InputFax);
+            ClearDataInField(InputFax);
+            SetDataInField(InputFax, textFax);
         }
 
+        /// <summary>
+        /// Method for click button Back
+        /// </summary>
+        /// <returns></returns>
         public void ClickButtonBack()
         {
             BtnBack.Click();
         }
 
+        /// <summary>
+        /// Method for click button Continue
+        /// </summary>
+        /// <returns></returns>
         public void ClickButtonContinue()
         {
             BtnContinue.Click();

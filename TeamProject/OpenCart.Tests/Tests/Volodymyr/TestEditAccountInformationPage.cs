@@ -1,60 +1,38 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenCartTests.Pages;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace OpenCartTests.Tests.Volodymyr
 {
     [TestFixture]
-    public class TestEditAccountInformationPage
-    {
-        private IWebDriver driver;
-        private ListUsers users;
-        private User user;
-
-        [OneTimeSetUp]
-        public void CreateNecessaryObjects()
-        {
-            user = ReaderUserData.GetUserByIndex(0);
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
-        }
-
-        [OneTimeTearDown]
-        public void ClearResources()
-        {
-            driver.Quit();
-            driver.Dispose();
-        }
-
+    public class TestEditAccountInformationPage: BaseTest
+    {     
         [Test]
         public void Test_Edit_Account_Information_Page()
         {
-            string expectedResult = "Success: Your account has been successfully updated.";
-            string actualResult = String.Empty;
-            Pages.PagesList pages = new Pages.PagesList(driver);
-            pages.LoginPage.GoToLoginPage();
+            // create test data
+            User user = ReaderUserData.GetUserByIndex(1);
 
-            pages.LoginPage.SetLoginInputClear(user.email)
-              .SetPasswordInputClear(user.password)
-                .ClickSigninButton();
-
-            pages.AccountPage.ClickEditAccountInformation();
+            Pages.LoginPage.GoToLoginPage()
+                        .SetLoginInputClear(user.email)
+                        .SetPasswordInputClear(user.password)
+                        .ClickSigninButton();
+            
+            Pages.AccountPage.ClickEditAccountInformation();
 
             //fill fields
-            pages.EditAccountInformationPage.SetFirstName(user.firstName);
-            pages.EditAccountInformationPage.SetLastName(user.lastName);
-            pages.EditAccountInformationPage.SetEmail(user.email);
-            pages.EditAccountInformationPage.SetTelephone(user.telephone);
-            pages.EditAccountInformationPage.SetFax("+380099900");
-            pages.EditAccountInformationPage.ClickButtonContinue();
+            Pages.EditAccountInformationPage.SetFirstName(user.firstName);
+            Pages.EditAccountInformationPage.SetLastName(user.lastName);
+            Pages.EditAccountInformationPage.SetEmail(user.email);
+            Pages.EditAccountInformationPage.SetTelephone(user.telephone);
+            Pages.EditAccountInformationPage.SetFax("0000099900");
 
-            actualResult = driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
+            Pages.EditAccountInformationPage.ClickButtonContinue();
 
-            Assert.AreEqual(expectedResult, actualResult);
+            string expectedMessage = EditAccountInformationPage.ExpectedSuccessMessage;
+            string actualMessage = Pages.EditAccountInformationPage.SuccessMessage.Text;
+
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
     }
 }

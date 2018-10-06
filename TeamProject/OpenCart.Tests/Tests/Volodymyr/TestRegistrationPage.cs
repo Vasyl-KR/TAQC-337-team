@@ -1,73 +1,51 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenCartTests.Data;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.PageObjects;
+using OpenCartTests.Pages;
 
 namespace OpenCartTests.Tests.Volodymyr
 {
     [TestFixture]
-    public class TestClass
+    public class TestRegistrationPage: BaseTest
     {
-        private IWebDriver driver;
-        private ListUsers users;
-        private User user;
-
-        [OneTimeSetUp]
-        public void CreateNecessaryObjects()
-        {
-            user = ReaderUserData.GetUserByIndex(1);
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
-        }
-
-        [OneTimeTearDown]
-        public void ClearResources()
-        {
-            driver.Quit();
-            driver.Dispose();
-        }
-
-       
-
         [Test]
         public void Test_Register_User()
         {
-            string expectedResult = "Your Account Has Been Created!";
-            string actualResult = String.Empty;
+            // create test data
+            User user = ReaderUserData.GetUserByIndex(1);
 
-            Pages.PagesList pages = new Pages.PagesList(driver);
+            string expectedMessage = ConfirmationRegisterPage.ExpectedSuccessMessage;            
+            string actualMessage = String.Empty;
 
             // go to RegisterPage
-            pages.RegisterPage.ClickRegiser();
-            
+            Pages.RegisterPage.ClickRegiser();           
             //fill fields
-            pages.RegisterPage.SetFirstName(user.firstName);
-            pages.RegisterPage.SetLastName(user.lastName);
-            pages.RegisterPage.SetEmail(user.email);
-            pages.RegisterPage.SetTelephone(user.telephone);
-            pages.RegisterPage.SetFax(user.fax);
-            pages.RegisterPage.SetCompany(user.company);
-            pages.RegisterPage.SetAddress1(user.address_1);
-            pages.RegisterPage.SetAddress2(user.address_2);
-            pages.RegisterPage.SetCity(user.city);
-            pages.RegisterPage.SetPostCode(user.postCode);
-            pages.RegisterPage.SetCountry(user.country);
-           // pages.WaitForElementTextContains(pages.RegisterPage.InputCountryField, user.country);
-            pages.RegisterPage.SetRegion(user.region);
-           //  pages.WaitForElementTextContains(pages.RegisterPage.InputRegionField, user.region);
-            pages.RegisterPage.SetPassword(user.password);
-            pages.RegisterPage.SetConfirmPassword(user.password);
-            pages.RegisterPage.SetNewsLetter(false);
-            pages.RegisterPage.SetCheckAgreeTerms();
-            pages.RegisterPage.ClickButtonContinue();
+            Pages.RegisterPage.SetFirstName(user.firstName);
+            Pages.RegisterPage.SetLastName(user.lastName);
+            Pages.RegisterPage.SetEmail(user.email);
+            Pages.RegisterPage.SetTelephone(user.telephone);
+            Pages.RegisterPage.SetFax(user.fax);
+            Pages.RegisterPage.SetCompany(user.company);
+            Pages.RegisterPage.SetAddress1(user.address_1);
+            Pages.RegisterPage.SetAddress2(user.address_2);
+            Pages.RegisterPage.SetCity(user.city);
+            Pages.RegisterPage.SetPostCode(user.postCode);
+            Pages.RegisterPage.SetCountry(user.country);
+            Pages.RegisterPage.SetRegion(user.region);
+            Pages.RegisterPage.SetPassword(user.password);
+            Pages.RegisterPage.SetConfirmPassword(user.password);
+            // select subscribe
+            Pages.RegisterPage.SelectNewsLetter(false);
+            // agree with the terms
+            Pages.RegisterPage.SetCheckAgreeTerms();
+            // click button continue
+            Pages.RegisterPage.ClickButtonContinue();
 
-            actualResult = pages.ConfirmationRegisterPage.SuccessH1Element.Text;
-            pages.ConfirmationRegisterPage.ClickConfirmationButtonContinue();
+            actualMessage = Pages.ConfirmationRegisterPage.SuccessMessageH1Element.Text;
+            // click button continue on confirmation page
+            Pages.ConfirmationRegisterPage.ClickConfirmationButtonContinue();
 
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedMessage, actualMessage);
         }    
     }
 }

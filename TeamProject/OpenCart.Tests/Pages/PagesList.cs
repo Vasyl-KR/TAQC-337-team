@@ -2,11 +2,10 @@
 
 namespace OpenCartTests.Pages
 {
-   public class PagesList
+    public class PagesList
     {
         #region Fields
 
-      //  private WebDriverWait wait;
         private IWebDriver driver;
 
         #endregion
@@ -87,37 +86,11 @@ namespace OpenCartTests.Pages
 
         #region Constructors
 
-        public PagesList (IWebDriver driver)
+        public PagesList(IWebDriver driver)
         {
-           // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            this.driver = driver;          
+            this.driver = driver;
         }
+
         #endregion
-
-        //public IWebElement WaitForElementTextContains(IWebElement webElement,string expectedStr)
-        //{
-        //    bool rez=wait.Until(driver => webElement.Text.Contains(expectedStr));
-        //    if (rez)
-        //    {
-        //        return webElement;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        //public bool WaitForElementPresent(IWebElement webElement)
-        //{
-        //    return wait.Until(driver => webElement.Displayed);
-            
-        //}
-
-        //public bool WaitForElementTextContainsEC(IWebElement webElement, string expectedStr)
-        //{
-        //    return wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));
-        //}
-
-
     }
 }
