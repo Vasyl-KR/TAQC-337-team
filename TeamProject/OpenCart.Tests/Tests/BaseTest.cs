@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenCartTests.Data;
 using OpenQA.Selenium.Chrome;
 using OpenCartTests.Pages;
 
@@ -24,6 +25,11 @@ namespace OpenCartTests.Tests
             {
                 pages = (dynamic)value;
             }
+        }
+
+        public User[] UserList
+        {
+            get { return ReaderUserData.GetUsers().Users; }
         }
 
         protected IWebDriver Driver

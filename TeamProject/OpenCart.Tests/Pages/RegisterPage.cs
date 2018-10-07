@@ -32,24 +32,34 @@ namespace OpenCartTests.Pages
         // Button Continue
         private const string continueBtnCssSelector = "input.btn.btn-primary";
         //Warning Message For Requared Fields 
-        // private const string
+        private const string frstNameWarningMessageXPath = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']";
+        private const string lastNameWarningMessageXPath = "//input[@id='input-lastname']/following-sibling::div[@class='text-danger']";
+        private const string emailWarningMessageXPath = "//input[@id='input-email']/following-sibling::div[@class='text-danger']";
+        private const string telephoneWarningMessageXPath = "//input[@id='input-telephone']/following-sibling::div[@class='text-danger']";
+        private const string address1WarningMessageXPath = "//input[@id='input-address-1']/following-sibling::div[@class='text-danger']";
+        private const string cityWarningMessageXPath = "//input[@id='input-city']/following-sibling::div[@class='text-danger']";
+        private const string countryWarningMessageXPath = "//select[@id='input-country']/following-sibling::div[@class='text-danger']";
+        private const string regionWarningMessageXPath = "//select[@id='input-zone']/following-sibling::div[@class='text-danger']";
+        private const string passwordWarningMessageXPath = "//input[@id='input-password']/following-sibling::div[@class='text-danger']";
+        private const string confirmPasswordWarningMessageXPath = "//input[@id='input-confirm']/following-sibling::div[@class='text-danger']";
 
         #endregion
 
         #region Fields
         //Warning message for empty fields
-        public const string WarningFirstNameMessage = "First Name must be between 1 and 32 characters!";
-        public const string WarningLastNameMessage = "Last Name must be between 1 and 32 characters!";
-        public const string WarningEmailMessage = "E-Mail Address does not appear to be valid!";
-        public const string WarningTelephoneMessage = "Telephone must be between 3 and 32 characters!";
-        public const string WarningAddress1Message = "Address 1 must be between 3 and 128 characters!";
-        public const string WarningCityMessage = "City must be between 2 and 128 characters!";
-        public const string WarningCountryMessage = "Please select a country!";
-        public const string WarningRegionMessage = "Please select a region / state!";
-        public const string WarningPasswordMessage = "Password must be between 4 and 20 characters!";
-        public const string WarningConfirmPasswordMessage = "Password confirmation does not match password!";
-        public const string WarningAgreeTermsMessage = " Warning: You must agree to the Privacy Policy!";
-
+        public const string FirstNameWarningText = "First Name must be between 1 and 32 characters!";
+        public const string LastNameWarningText = "Last Name must be between 1 and 32 characters!";
+        public const string EmailWarningText = "E-Mail Address does not appear to be valid!";
+        public const string TelephoneWarningText = "Telephone must be between 3 and 32 characters!";
+        public const string Address1WarningText = "Address 1 must be between 3 and 128 characters!";
+        public const string CityWarningText = "City must be between 2 and 128 characters!";
+        public const string PostCodeWarningText = "Postcode must be between 2 and 10 characters!";
+        public const string CountryWarningText = "Please select a country!";
+        public const string RegionWarningText = "Please select a region / state!";
+        public const string PasswordWarningText = "Password must be between 4 and 20 characters!";
+        public const string ConfirmWarningText = "Password confirmation does not match password!";
+        public const string AgreeTermsWarningText = " Warning: You must agree to the Privacy Policy!";
+        
         private readonly IWebDriver driver;
 
         #endregion
@@ -65,6 +75,58 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
+        //Warning Messages For Requared Fields 
+       public IWebElement FirstNameWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(frstNameWarningMessageXPath)); }
+        }
+
+        public IWebElement LastNameWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(lastNameWarningMessageXPath)); }
+        }
+
+        public IWebElement EmailWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(emailWarningMessageXPath)); }
+        }
+
+        public IWebElement TelephoneWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(telephoneWarningMessageXPath)); }
+        }
+
+        public IWebElement Address1WarningMessage
+        {
+            get { return driver.FindElement(By.XPath(address1WarningMessageXPath)); }
+        }
+
+        public IWebElement CityWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(cityWarningMessageXPath)); }
+        }
+
+        public IWebElement CountryWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(countryWarningMessageXPath)); }
+        }
+
+        public IWebElement RegionWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(regionWarningMessageXPath)); }
+        }
+
+        public IWebElement PasswordWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(passwordWarningMessageXPath)); }
+        }
+
+        public IWebElement ConfirmPasswordWarningMessage
+        {
+            get { return driver.FindElement(By.XPath(confirmPasswordWarningMessageXPath)); }
+        }
+
+        //Input Fields
         public IWebElement InputFirstName
         {
             get { return driver.FindElement(By.Id(firstnameInputId)); }
