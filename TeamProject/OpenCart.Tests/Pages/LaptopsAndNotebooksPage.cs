@@ -9,6 +9,7 @@ using System.Threading;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
+#pragma warning disable
 namespace OpenCartTests.Pages
 {
     public class LaptopsAndNotebooksPage : ATopComponent
@@ -21,10 +22,12 @@ namespace OpenCartTests.Pages
         private const string COMPARABLE_PRODUCT_LINK = "//div[@class = 'alert alert-success']/child::a"; //XPath
         private const string PRODUCT_COMPARISON_LINK = "compare-total"; //XPath
         private const string FIRST_PRODUCT_LINK = ".caption h4:first-of-type"; //cssSelector
+        private const string PRODUCT_LINKS = "//h4"; //XPath
         private const string WISHLIST_ID = "wishlist-total"; 
         // Buttons locators
         private const string COMPARE_THIS_PRODUCT_BUTTON = "//button[@data-original-title = 'Compare this Product']"; //XPath
         private const string ADD_TO_WISHLIST_BUTTON = "//div[contains(@class, 'product-layout')]//a[contains(text(),'MacBook')]/../../following-sibling::div/button[contains(@data-original-title,'Wish')]";//XPath
+        private const string CLOSE_ALERT_BUTTON = "//button[@class = 'close']"; //XPath
 
         // Properties
         public IWebElement LaptopsAndNotebooksLabel
@@ -47,8 +50,15 @@ namespace OpenCartTests.Pages
 
         public IWebElement CompareThisProductButton
         { get { return driver.FindElement(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)); } }
+
         public List<IWebElement> CompareProductButtons
         { get { return driver.FindElements(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)).ToList(); } }
+
+        public List<IWebElement> CompareProductLinks
+        { get { return driver.FindElements(By.XPath(PRODUCT_LINKS)).ToList(); } }
+
+        public IWebElement CloseAlertButton
+        { get { return driver.FindElement(By.XPath(CLOSE_ALERT_BUTTON)); } }
 
         public IWebElement AddToWishlistButton
         { get { return driver.FindElement(By.XPath(ADD_TO_WISHLIST_BUTTON)); } }
@@ -107,10 +117,13 @@ namespace OpenCartTests.Pages
             WishListLink.Click();
         }
 
+
         public void ClickCompareThisProductButton()
         {
             CompareThisProductButton.Click();
-            Thread.Sleep(800);
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE)));
+            //WaitForElementTextContains(ProductComparisonLink, "1");
+            //Thread.Sleep(800);
         }
 
         public void ClickAddToWishListButton()
@@ -123,10 +136,28 @@ namespace OpenCartTests.Pages
             ClickProductComparisonLink();
             return new ProductComparisonPage(driver);
         }
+        public bool CompareProductByName(string name)
+        {
+            int count = 0;
+            foreach (IWebElement item in CompareProductLinks)
+            {
+                if(item.Text.Contains(name))
+                {
+                    CompareProductButtons[count].Click();
+                    wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE)));
+                    CloseAlertButton.Click();
+                    //Thread.Sleep(800);
+                    return true;
+                }
+                count++;
+            }
+            return false;
+        }
 
         public WishlistPage AddToWishlist()
         {
             ClickAddToWishListButton();
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE))); //work for me @Vasyl
             ClickWishlistLink();
             return new WishlistPage(driver);
         }
