@@ -40,9 +40,15 @@ namespace OpenCartTests.Pages
         public IWebElement EmptyWishlistMessage
         { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//p[contains(text(),'Your shopping cart is empty!')]")]
+        public IWebElement EmptyCartMessage
+        { get; set; }
+
+
         [FindsBy(How = How.XPath, Using = "//td[contains(@class,'text-right')]//div[contains(@class,'price')]")]
         public IWebElement ProductPriceLabel
         { get; set; }
+
 
         [FindsBy(How = How.Id, Using = "cart-total")]
         public IWebElement CartTotalPrice
@@ -94,6 +100,17 @@ namespace OpenCartTests.Pages
             else
             {
                 return "Some items still in your Wishlist";
+            }
+        }
+        public string GetEmptyCartMessage()
+        {
+            if (WaitForElementPresent(EmptyCartMessage))
+            {
+                return EmptyCartMessage.Text;
+            }
+            else
+            {
+                return "Some items still in your Cart";
             }
         }
 

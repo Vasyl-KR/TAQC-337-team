@@ -15,27 +15,47 @@ namespace OpenCartTests.Tests.Ostap
     class ChangePasswordTests:BaseTest
     {
         private User user;
-        [Test]
+        //[Test]
         public void SuccessChangePassword()
         {
-            user = ReaderUserData.GetUsersData().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
-            string newPassword = "qwerty1234"; 
+            user = ReaderUserData.GetUsers().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
+            string correctPassword = "qwerty1234"; 
             Pages.HomePage
                 .GoToLoginPage()
                 .SuccessRegistratorLogin(user.email,user.password);
 
             Pages.AccountPage
                 .GoToChangePassword()
-                .SuccessChangePassword(newPassword);
+                .SuccessChangePassword(correctPassword);
 
-            string expected = "Success: Your password has been successfully updated.";
-            string actual = Pages.AccountPage.GetSuccessChangePasswordLabelText();
+            string expectedSuccsesChangePassMes = "Success: Your password has been successfully updated.";
+            string actualSuccsesChangePassMes = Pages.AccountPage.GetSuccessChangePasswordLabelText();
 
             Pages.AccountPage
                 .GoToChangePassword()
                 .SuccessChangePassword(user.password);
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedSuccsesChangePassMes, actualSuccsesChangePassMes);
+        }
+
+        [Test]
+        public void UnSuccessChangePassword()
+        {
+            user = ReaderUserData.GetUsers().Users.FirstOrDefault(u => u.email == "ostap@gmail.com");
+            string incorrectPassword = "qwe";
+            Pages.HomePage
+                .GoToLoginPage()
+                .SuccessRegistratorLogin(user.email, user.password);
+
+            Pages.AccountPage
+                .GoToChangePassword()
+                .SetPasswordInputClear(incorrectPassword)
+                .SetPasswordConfirmInputClear(incorrectPassword)
+                .ClickConfirmButton();
+
+            Console.WriteLine(Pages.ChangePasswordPage.GetPasswordConfirmationErrorMessageText());
+
+
         }
     }
 }

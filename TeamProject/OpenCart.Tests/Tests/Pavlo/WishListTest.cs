@@ -67,11 +67,36 @@ namespace OpenCartTests.Tests.Pavlo
             Pages.WishlistPage.ClearWishlist();
 
             /*Waiting for message to show*/
-            actualMessage = Pages.WishlistPage.GetEmptylistMessage() ;
+            actualMessage = Pages.WishlistPage.GetEmptylistMessage();
             expectedMessage = "Your wish list is empty.";
 
             //Assert
-            Assert.AreEqual(expectedMessage, actualMessage);
+            Assert.AreEqual(expectedMessage, actualMessage, "No message");
+        }
+
+        [Test]
+        public void RemoveFromCartTest()
+        {
+            //Arrange
+            string actualMessage;
+            string expectedMessage;
+
+            //Act
+            /*Loggining*/
+            Pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login, password);
+            /*Opening Laptop page*/
+            Pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
+            /*Clearing cart*/
+            //Pages.WishlistPage.ClearWishlist();
+
+            /*Waiting for message to show*/
+            actualMessage = Pages.WishlistPage.GetEmptyCartMessage() ;
+            expectedMessage = "Your shopping cart is empty!";
+
+            //Assert
+            Assert.AreEqual(expectedMessage, actualMessage,"No message");
         }
 
     }
