@@ -19,7 +19,7 @@ namespace OpenCartTests.Tests.Nazar
     {
 
         [Test]
-        public void Add_NewAddress()
+        public void AddAddress_CompareListSize()
         {
 
             int ListSizeBeforeAdding = Pages.AddressPage.ListAddresses.Count();
@@ -34,36 +34,36 @@ namespace OpenCartTests.Tests.Nazar
         }
 
         [Test]
-        public void Add_NewAddress_CompareMessage()
+        public void AddNewAddress_CompareMessage()
         {
 
-            string actual = Pages.AddressPage
+            string actualMessage = Pages.AddressPage
                 .ClickNewAddressButton()
                 .SuccessfullEditionAddress(users.Users[1])
                 .GetSuccessfulMessage();
 
-            string expected = "Your address has been successfully inserted";
+            string expectedMessage = "Your address has been successfully inserted";
 
-            NUnit.Framework.Assert.AreEqual(actual, expected, "Compare the text of the comunicat about adding");
+            NUnit.Framework.Assert.AreEqual(actualMessage, expectedMessage, "Compare the text of the comunicat about adding");
         }
 
 
         [Test]
-        public void Add_NewAddress_CompareInsertedInfo()
+        public void AddNewAddress_CompareInsertedInfo()
         {
             User user = users.Users[2];
-            string actual = Pages.AddressPage
+            string actualAddressInfo = Pages.AddressPage
                 .ClickNewAddressButton()
                 .SuccessfullEditionAddress(user)
                 .GetAddressIfno(user.firstName, user.lastName);
 
-            string expected = user.firstName + " " + user.lastName + "\r\n" +
+            string expectedAddressInfo = user.firstName + " " + user.lastName + "\r\n" +
                               user.address_1 + "\r\n" +
                               user.city + " " + user.postCode + "\r\n" +
                               user.region + "\r\n" +
                               user.country;
 
-            NUnit.Framework.Assert.AreEqual(actual, expected, "Compare ------");
+            NUnit.Framework.Assert.AreEqual(actualAddressInfo, expectedAddressInfo, "Compare address info");
         }
 
 

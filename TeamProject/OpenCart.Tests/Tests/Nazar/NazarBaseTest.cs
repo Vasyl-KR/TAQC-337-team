@@ -12,11 +12,10 @@ namespace OpenCartTests.Tests.Nazar
     [TestFixture]
     public abstract class NazarBaseTest : BaseTest
     {
-
-
         private const string EMAIL = "nazar.l135@gmail.com";
         private const string PASSWORD = "lol123";
         private const string URL_LoginPage = "http://atqc-shop.epizy.com/index.php?route=account/login";
+        public const string URL_AddressPage = "http://atqc-shop.epizy.com/index.php?route=account/address";
         public ListUsers users
         {
             get
@@ -29,12 +28,7 @@ namespace OpenCartTests.Tests.Nazar
         public void BeforeAllMethods()
         {
 
-
-            //ChromeOptions chromeOptions = new ChromeOptions();
-            //chromeOptions.AddArgument("--start-maximized");
-            //Driver = new ChromeDriver(chromeOptions);
-
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
 
             Driver.Navigate().GoToUrl(URL_LoginPage);
 
@@ -42,11 +36,7 @@ namespace OpenCartTests.Tests.Nazar
                 .GoToLoginPage()
                 .SuccessRegistratorLogin(EMAIL, PASSWORD);
 
-            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
-
-            //NUnit.Framework.Assert.AreEqual(new HomePage(driver)
-            //   .GoToLoginPage()
-            //   .SuccessRegistratorLogin(email, password), new AccountPage(driver));
+            Driver.Navigate().GoToUrl(URL_AddressPage);
         }
 
         [OneTimeTearDown]

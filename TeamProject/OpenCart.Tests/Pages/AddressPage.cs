@@ -10,19 +10,13 @@ namespace OpenCartTests.Pages
 {
     public class AddressPage : ATopComponent
     {
-        private const string Back_BTN_CSSSELECTOR = ".btn.btn-default";
-        private const string NewAddress_BTN_CSSSELECTOR = ".btn.btn-primary";
-        private const string Addresses_TABLE_TAGNAME = "tr";
-        private const string Edit_BTN_XPATH = "//tr[{0}]/td/a[text() = 'Edit']";
-        private const string Delete_BTN_XPATH = "//tr[{0}]/td/a[text() = 'Delete']";
-
-        [FindsBy(How = How.CssSelector, Using = Back_BTN_CSSSELECTOR)]
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-default")]
         public IWebElement BtnBack { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = NewAddress_BTN_CSSSELECTOR)]
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary")]
         public IWebElement BtnNewAddress { get; set; }
 
-        [FindsBy(How = How.TagName, Using = Addresses_TABLE_TAGNAME)]
+        [FindsBy(How = How.TagName, Using = "tr")]
         public IList<IWebElement> ListAddresses { get; set; }
 
         public AddressPage(IWebDriver driver) : base(driver)
@@ -56,11 +50,22 @@ namespace OpenCartTests.Pages
             return this;
         }
 
-        public string GetAddressIfno(string name, string lastname)
+        /// <summary>
+        /// Get address information about Person using firstname and lastname
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="lastname"></param>
+        /// <returns></returns>
+        public string GetAddressIfno(string firstname, string lastname)
         {
-            return ListAddresses.ElementAt(0).FindElement(By.XPath("//td[contains(text(),'" + name + " " + lastname + "')]")).Text;
+            return ListAddresses.ElementAt(0).FindElement(By.XPath("//td[contains(text(),'" + firstname + " " + lastname + "')]")).Text;
         }
 
+        /// <summary>
+        /// Get address information by raw number
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public string GetAddressIfno(int index)
         {
             return ListAddresses.ElementAt(index).FindElement(By.XPath("//td[contains(@class, 'text-left')]")).Text;

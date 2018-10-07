@@ -12,22 +12,23 @@ namespace OpenCartTests.Tests.Nazar
     class DeleteAddressFunctionalityTest : NazarBaseTest
     {
         [TestCase(2)]
-        public void Delete_Address(int index)
+        public void DeleteAddress_VerifyMessage_Positive(int index)
         {
-            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
+            Driver.Navigate().GoToUrl(URL_AddressPage);
 
-            string actual = Pages.AddressPage
+            string actualMessage = Pages.AddressPage
                             .DeleteRaw(index)
                             .GetSuccessfulMessage();
 
-            string expected = "Your address has been successfully deleted";
-            NUnit.Framework.Assert.AreEqual(expected, actual, "Compare the text of the comunicat about delite");
+            string expectedMessage = "Your address has been successfully deleted";
+            NUnit.Framework.Assert.AreEqual(expectedMessage, actualMessage, "Compare the text of the message");
         }
 
 
         [TestCase(2)]
-        public void Delete_NewAddress(int index)
+        public void DeleteAddress_CompareListSize(int index)
         {
+            Driver.Navigate().GoToUrl(URL_AddressPage);
 
             int ListSizeBeforeAdding = Pages.AddressPage
                                         .ListAddresses
@@ -37,21 +38,21 @@ namespace OpenCartTests.Tests.Nazar
                             .DeleteRaw(index)
                             .ListAddresses.Count;
 
-            NUnit.Framework.Assert.AreEqual(ListSizeBeforeAdding - 1, ListSizeAfterAdding, "Compare list size after adding new address" + ListSizeBeforeAdding + " == " + ListSizeAfterAdding);
+            NUnit.Framework.Assert.AreEqual(ListSizeBeforeAdding - 1, ListSizeAfterAdding, "Compare list size after delete" + ListSizeBeforeAdding + " == " + ListSizeAfterAdding);
         }
 
         [TestCase(1)]
-        public void Delete_Address1(int index)
+        public void DeleteAddress_VerifyMessage_Negative(int index)
         {
-            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
+            Driver.Navigate().GoToUrl(URL_AddressPage);
 
-            string actual =
-            Pages.AddressPage
+            string actualMessage =
+                            Pages.AddressPage
                             .DeleteRaw(index)
                             .GetUnsuccessfulMessage();
 
-            string expected = "Warning: You can not delete your default address!";
-            NUnit.Framework.Assert.AreEqual(expected, actual, "Compare the text of the comunicat about delite");
+            string expectedMessage = "Warning: You can not delete your default address!";
+            NUnit.Framework.Assert.AreEqual(expectedMessage, actualMessage, "Compare the text of the message");
         }
     }
 }
