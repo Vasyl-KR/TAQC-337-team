@@ -85,11 +85,20 @@
     <Compile Include="Tests\Ostap\LoginTests\SuccessLoginTests.cs" />
     <Compile Include="Tests\Ostap\ChangePasswordTests\UnsuccessChangePasswordTests.cs" />
     <Compile Include="Tests\Ostap\LoginTests\UnsuccessLoginTests.cs" />
+    <Compile Include="Tests\Nazar\AddAddressFunctionalityTest.cs" />
+    <Compile Include="Tests\Nazar\AddressFormTest.cs" />
+    <Compile Include="Tests\Nazar\DeleteAddressFunctionalityTest.cs" />
+    <Compile Include="Tests\Nazar\EditAddressFunctionalityTest.cs" />
+    <Compile Include="Tests\Nazar\NazarBaseTest.cs" />
+    <Compile Include="Tests\Ostap\Passwords.cs" />
+    <Compile Include="Tests\Ostap\SuccessChangePasswordTests.cs" />
+    <Compile Include="Tests\Ostap\SuccessLoginTests.cs" />
+    <Compile Include="Tests\Ostap\UnsuccessChangePasswordTests.cs" />
     <Compile Include="Tests\Pavlo\WishListTest.cs" />
     <Compile Include="Tests\Vasyl\ComparisonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Volodymyr\TestEditAccountInformationPage.cs" />
-    <Compile Include="Tests\Volodymyr\TestRegistrationPage.cs" />
+    <Compile Include="Tests\Volodymyr\RegistrationPage_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SearchProducts.json" />

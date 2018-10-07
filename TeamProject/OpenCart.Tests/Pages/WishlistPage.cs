@@ -27,7 +27,7 @@ namespace OpenCartTests.Pages
 
         #endregion
         #region Properties
-        
+
         [FindsBy(How = How.XPath, Using = "//table[contains(@class,'table table-striped')]")]
         public IWebElement AddedToCartProduct
         { get; set; }
@@ -49,6 +49,9 @@ namespace OpenCartTests.Pages
         public IWebElement ProductPriceLabel
         { get; set; }
 
+        [FindsBy(How = How.XPath,Using ="//a[contains(text(),'MacBook')]")]
+        public IWebElement ProductNameLabel
+        { get; set; }
 
         [FindsBy(How = How.Id, Using = "cart-total")]
         public IWebElement CartTotalPrice
@@ -80,7 +83,7 @@ namespace OpenCartTests.Pages
             PageFactory.InitElements(driver, this);
             VerifyWebElements();
         }
-        
+
         public void VerifyWebElements()
         {
             IWebElement element;
@@ -104,6 +107,7 @@ namespace OpenCartTests.Pages
         }
         public string GetEmptyCartMessage()
         {
+            ClickCartButton();
             if (WaitForElementPresent(EmptyCartMessage))
             {
                 return EmptyCartMessage.Text;
@@ -122,6 +126,11 @@ namespace OpenCartTests.Pages
         public string GetProductPriceText()
         {
             return ProductPriceLabel.Text;
+        }
+
+        public string GetProductName()
+        {
+            return ProductNameLabel.Text;
         }
 
         public string GetTotalCartText()
@@ -150,7 +159,7 @@ namespace OpenCartTests.Pages
 
         public string GetTotalCartPrice()
         {
-            WaitForElementTextContains(CartTotalPrice,GetProductPriceText());
+            WaitForElementTextContains(CartTotalPrice, GetProductPriceText());
 
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
@@ -171,7 +180,7 @@ namespace OpenCartTests.Pages
 
         public void ClearTotalCart()
         {
-            
+
             ClickCartButton();
             if (WaitForElementPresent(CartTotalPrice))
             {
@@ -191,7 +200,10 @@ namespace OpenCartTests.Pages
         }
 
         #endregion
+
+
     }
+
 }
 
 
