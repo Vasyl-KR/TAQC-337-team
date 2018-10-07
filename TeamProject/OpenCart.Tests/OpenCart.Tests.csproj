@@ -85,7 +85,7 @@
     <Compile Include="Tests\Vasyl\ComparisonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Volodymyr\TestEditAccountInformationPage.cs" />
-    <Compile Include="Tests\Volodymyr\TestRegistrationPage.cs" />
+    <Compile Include="Tests\Volodymyr\RegistrationPage_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SearchProducts.json" />

@@ -6,7 +6,7 @@ namespace OpenCartTests.Pages
     public class EditAccountInformationPage : ATopComponent
     {
         #region Fields
-
+        public const string DefaultFax = "+380999777555";
         public const string ExpectedSuccessMessage = "Success: Your account has been successfully updated.";
         private readonly IWebDriver driver;
 

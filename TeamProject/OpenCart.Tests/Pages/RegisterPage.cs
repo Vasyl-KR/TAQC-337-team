@@ -8,13 +8,13 @@ namespace OpenCartTests.Pages
     public class RegisterPage : ATopComponent
     {
         #region Locators
-
+        //Personal Details Fields
         private const string firstnameInputId = "input-firstname";
         private const string lastnameInputId = "input-lastname";
         private const string emailInputId = "input-email";
         private const string telephoneInputId = "input-telephone";
         private const string faxInputId = "input-fax";
-
+        //Address Fields
         private const string companyInputId = "input-company";
         private const string address1InputId = "input-address-1";
         private const string address2InputId = "input-address-2";
@@ -22,17 +22,33 @@ namespace OpenCartTests.Pages
         private const string postcodeInputId = "input-postcode";
         private const string countryInputId = "input-country";
         private const string regionInputId = "input-zone";
-
+        //Passwords Fields
         private const string passwordInputId = "input-password";
         private const string confirmPasswordInputId = "input-confirm";
+        //CheckBox News Letters
         private const string checkBoxInputName = "newsletter";
+        //Check Privacy Policy
         private const string agreeTermsInputName = "agree";
-
+        // Button Continue
         private const string continueBtnCssSelector = "input.btn.btn-primary";
+        //Warning Message For Requared Fields 
+        // private const string
 
         #endregion
 
         #region Fields
+        //Warning message for empty fields
+        public const string WarningFirstNameMessage = "First Name must be between 1 and 32 characters!";
+        public const string WarningLastNameMessage = "Last Name must be between 1 and 32 characters!";
+        public const string WarningEmailMessage = "E-Mail Address does not appear to be valid!";
+        public const string WarningTelephoneMessage = "Telephone must be between 3 and 32 characters!";
+        public const string WarningAddress1Message = "Address 1 must be between 3 and 128 characters!";
+        public const string WarningCityMessage = "City must be between 2 and 128 characters!";
+        public const string WarningCountryMessage = "Please select a country!";
+        public const string WarningRegionMessage = "Please select a region / state!";
+        public const string WarningPasswordMessage = "Password must be between 4 and 20 characters!";
+        public const string WarningConfirmPasswordMessage = "Password confirmation does not match password!";
+        public const string WarningAgreeTermsMessage = " Warning: You must agree to the Privacy Policy!";
 
         private readonly IWebDriver driver;
 
@@ -373,12 +389,12 @@ namespace OpenCartTests.Pages
     public class ConfirmationRegisterPage : ATopComponent
     {
         #region Locators 
-
+        //Confirmation Button Continur 
         private const string confirmationContinueBtnXPath =
-                    "//div[@class='pull-right']//a[contains(@href, 'account/account')]";
-
+                    "//div[@class='pull-right']//a[contains(@href, 'account/account')]";       
+        //Paragraph text
         private const string successParagraphTextXPath = "//div[@id ='content']/p";
-
+        //Header text
         private const string successH1TextXPath = "//div[@id ='content']/h1";
 
         #endregion
