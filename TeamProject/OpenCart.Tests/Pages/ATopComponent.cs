@@ -99,8 +99,6 @@ namespace OpenCartTests.Pages
 
         }
 
-      
-
         public IWebElement Currency
         {
             get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
@@ -140,6 +138,11 @@ namespace OpenCartTests.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
+
+        public string GetTitleText()
+        {
+            return driver.Title;
+        }
         /// <summary>
         /// Method gets text from Currency DropDown menu
         /// </summary>
