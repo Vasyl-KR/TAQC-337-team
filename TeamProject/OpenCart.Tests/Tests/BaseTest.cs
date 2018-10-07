@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenQA.Selenium.Chrome;
@@ -25,6 +20,10 @@ namespace OpenCartTests.Tests
             get
             {
                 return pages ?? new PagesList(driver);
+            }
+            set
+            {
+                pages = (dynamic)value;
             }
         }
 

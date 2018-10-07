@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using NUnit.Framework;
-using OpenCartTests.Pages;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+﻿using NUnit.Framework;
 using OpenCartTests.Data;
 
 namespace OpenCartTests.Tests.Ostap
 {
     class SuccessLoginTests : BaseTest
     {
-
-
-        [TestCaseSource("PrepareTestCases")]
+        [TestCaseSource(typeof(ReaderUserData),"GetUserData")]
         public void UserDataIsCorrect(User user)
         {
             //Arrange 
@@ -38,14 +27,7 @@ namespace OpenCartTests.Tests.Ostap
             Pages.AccountPage
                 .GoToLogoutPage()
                 .SuccessLogout();
-        }
-        public static IEnumerable<User> PrepareTestCases()
-        {
-            foreach (User user in ReaderUserData.GetUsers().Users)
-            {
-                yield return user;
-            }
-        }
+        }    
     }
 
 

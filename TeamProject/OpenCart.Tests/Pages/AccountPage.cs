@@ -21,6 +21,7 @@ namespace OpenCartTests.Pages
         private const string Transactions_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/transaction')]";
         private const string RecurringPayments_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/recurring')]";
         private const string SubUnsubToNewsletter_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/newsletter')]";
+        private const string SuccessAlert_Label_CSSSELECTOR = ".alert.alert-success";
         #endregion
 
         public IWebElement EditAccountInformation
@@ -56,7 +57,7 @@ namespace OpenCartTests.Pages
         public IWebElement SubUnsubToNewsletter
         { get { return driver.FindElement(By.XPath(SubUnsubToNewsletter_BTN_XPATH)); } }
 
-        public IWebElement SuccessChangePasswordLabel
+        public IWebElement SuccessLabel
         { get { return driver.FindElement(By.CssSelector(".alert.alert-success")); } }
 
         public AccountPage(IWebDriver driver) : base(driver)
@@ -190,7 +191,7 @@ namespace OpenCartTests.Pages
 
         public string GetSuccessChangePasswordMessageText()
         {
-            return SuccessChangePasswordLabel.Text;
+            return SuccessLabel.Text;
         }
 
     }
