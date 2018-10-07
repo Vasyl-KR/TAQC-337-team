@@ -76,9 +76,10 @@ namespace OpenCartTests.Pages
         public const string VALUE_ATTRIBUTE = "value";
         #endregion
 
-        private WebDriverWait wait;
+        protected WebDriverWait wait;
         protected IWebDriver driver;
 
+        #region Waiter
         protected IWebElement WaitForElementTextContains(IWebElement webElement, string expectedStr)
         {
             bool rez = wait.Until(driver => webElement.Text.Contains(expectedStr));
@@ -92,20 +93,19 @@ namespace OpenCartTests.Pages
             }
         }
 
-        #region Waiter
+        
         protected bool WaitForElementPresent(IWebElement webElement)
         {
             return wait.Until(driver => webElement.Displayed);
 
         }
+        #endregion
 
+        #region Properties
         public IWebElement Currency
         {
             get { return driver.FindElement(By.CssSelector(Currency_BTN_CSSSELECTOR)); }
         }
-        #endregion
-        
-        #region Properties
         public IWebElement MyAccount
         {
             get { return driver.FindElement(By.XPath(MyAccount_BTN_XPATH)); }
