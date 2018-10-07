@@ -42,6 +42,7 @@ namespace OpenCartTests.Pages
         private const string regionWarningMessageXPath = "//select[@id='input-zone']/following-sibling::div[@class='text-danger']";
         private const string passwordWarningMessageXPath = "//input[@id='input-password']/following-sibling::div[@class='text-danger']";
         private const string confirmPasswordWarningMessageXPath = "//input[@id='input-confirm']/following-sibling::div[@class='text-danger']";
+        private const string agreeTermsWarningMessageCssSelector = "div.alert.alert-danger";
 
         #endregion
 
@@ -58,8 +59,10 @@ namespace OpenCartTests.Pages
         public const string RegionWarningText = "Please select a region / state!";
         public const string PasswordWarningText = "Password must be between 4 and 20 characters!";
         public const string ConfirmWarningText = "Password confirmation does not match password!";
-        public const string AgreeTermsWarningText = " Warning: You must agree to the Privacy Policy!";
-        
+        public const string AgreeTermsWarningText = "Warning: You must agree to the Privacy Policy!";
+        public const string ShotPassword = "1q!";
+        public const string PleseSelect = " --- Please Select --- ";
+
         private readonly IWebDriver driver;
 
         #endregion
@@ -124,6 +127,11 @@ namespace OpenCartTests.Pages
         public IWebElement ConfirmPasswordWarningMessage
         {
             get { return driver.FindElement(By.XPath(confirmPasswordWarningMessageXPath)); }
+        }
+
+        public IWebElement AgreeTermsWarningMessage
+        {
+            get { return driver.FindElement(By.CssSelector(agreeTermsWarningMessageCssSelector)); }
         }
 
         //Input Fields
