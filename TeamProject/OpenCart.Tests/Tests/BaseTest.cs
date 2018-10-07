@@ -25,6 +25,10 @@ namespace OpenCartTests.Tests
             {
                 return pages ?? new PagesList(driver);
             }
+            set
+            {
+                pages = (dynamic)value;
+            }
         }
 
         protected IWebDriver Driver

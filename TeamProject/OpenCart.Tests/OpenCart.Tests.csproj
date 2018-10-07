@@ -80,10 +80,11 @@
     <Compile Include="Tests\Dimon\SearchFunctionality.cs" />
     <Compile Include="Tests\Dimon\SearchSortAndShow.cs" />
     <Compile Include="Tests\Nazar\AddFunctionalityTest.cs" />
-    <Compile Include="Tests\Ostap\Passwords.cs" />
-    <Compile Include="Tests\Ostap\SuccessChangePasswordTests.cs" />
-    <Compile Include="Tests\Ostap\SuccessLoginTests.cs" />
-    <Compile Include="Tests\Ostap\UnsuccessChangePasswordTests.cs" />
+    <Compile Include="Tests\Ostap\ChangePasswordTests\Passwords.cs" />
+    <Compile Include="Tests\Ostap\ChangePasswordTests\SuccessChangePasswordTests.cs" />
+    <Compile Include="Tests\Ostap\LoginTests\SuccessLoginTests.cs" />
+    <Compile Include="Tests\Ostap\ChangePasswordTests\UnsuccessChangePasswordTests.cs" />
+    <Compile Include="Tests\Ostap\LoginTests\UnsuccessLoginTests.cs" />
     <Compile Include="Tests\Pavlo\WishListTest.cs" />
     <Compile Include="Tests\Vasyl\ComparisonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

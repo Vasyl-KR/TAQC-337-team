@@ -14,9 +14,7 @@ namespace OpenCartTests.Tests.Ostap
 {
     class SuccessLoginTests : BaseTest
     {
-
-
-        [TestCaseSource("PrepareTestCases")]
+        [TestCaseSource(typeof(ReaderUserData),"GetUserData")]
         public void UserDataIsCorrect(User user)
         {
             //Arrange 
@@ -38,14 +36,7 @@ namespace OpenCartTests.Tests.Ostap
             Pages.AccountPage
                 .GoToLogoutPage()
                 .SuccessLogout();
-        }
-        public static IEnumerable<User> PrepareTestCases()
-        {
-            foreach (User user in ReaderUserData.GetUsers().Users)
-            {
-                yield return user;
-            }
-        }
+        }    
     }
 
 

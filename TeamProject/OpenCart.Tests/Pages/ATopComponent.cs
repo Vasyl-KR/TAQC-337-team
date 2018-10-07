@@ -138,11 +138,15 @@ namespace OpenCartTests.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
-
+        /// <summary>
+        /// Method gets title text
+        /// </summary>
+        /// <returns></returns>
         public string GetTitleText()
         {
             return driver.Title;
         }
+
         /// <summary>
         /// Method gets text from Currency DropDown menu
         /// </summary>

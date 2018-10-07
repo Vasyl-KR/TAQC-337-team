@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -70,7 +71,13 @@ namespace OpenCartTests.Data
 
             return users.Users[index];
         }
-
+        public static IEnumerable<User> GetUserData()
+        {
+            foreach (User user in GetUsers().Users)
+            {
+                yield return user;
+            }
+        }
     }
 
     public struct User
