@@ -49,6 +49,9 @@ namespace OpenCartTests.Pages
         public IWebElement ProductPriceLabel
         { get; set; }
 
+        [FindsBy(How = How.XPath,Using ="//a[contains(text(),'MacBook')]")]
+        public IWebElement ProductNameLabel
+        { get; set; }
 
         [FindsBy(How = How.Id, Using = "cart-total")]
         public IWebElement CartTotalPrice
@@ -104,6 +107,7 @@ namespace OpenCartTests.Pages
         }
         public string GetEmptyCartMessage()
         {
+            ClickCartButton();
             if (WaitForElementPresent(EmptyCartMessage))
             {
                 return EmptyCartMessage.Text;
@@ -122,6 +126,11 @@ namespace OpenCartTests.Pages
         public string GetProductPriceText()
         {
             return ProductPriceLabel.Text;
+        }
+
+        public string GetProductName()
+        {
+            return ProductNameLabel.Text;
         }
 
         public string GetTotalCartText()
