@@ -13,39 +13,40 @@ namespace OpenCartTests.Tests.Nazar
     {
 
         [Test]
-        public void Edite_Address()
+        public void EditeAddress_CompareMessage()
         {
-            Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/index.php?route=account/address");
+            Driver.Navigate().GoToUrl(URL_AddressPage);
 
-            string actual = Pages.AddressPage
+            string actualMessage = Pages.AddressPage
                 .EditRaw(2)
                 .SuccessfullEditionAddress(users.Users[0])
                 .GetSuccessfulMessage();
 
-            string expected = "Your address has been successfully updated";
+            string expectedMessage = "Your address has been successfully updated";
 
-            NUnit.Framework.Assert.AreEqual(actual, expected, "Compare the text of the comunicat about edit");
+            NUnit.Framework.Assert.AreEqual(actualMessage, expectedMessage, "Compare the text of the comunicat about edit");
         }
 
         [TestCase(1)]
-        public void Edite_NewAddress_CompareInsertedInfo(int index)
+        public void EditeNewAddress_CompareInsertedInfo(int index)
         {
+            Driver.Navigate().GoToUrl(URL_AddressPage);
             User user = users.Users[2];
             Pages.AddressPage
                .EditRaw(index)
                .SuccessfullEditionAddress(user);
 
-            string actual = Pages.AddressPage
+            string actualAddressInfo = Pages.AddressPage
                              .GetAddressIfno(index);
 
 
-            string expected = user.firstName + " " + user.lastName + "\r\n" +
+            string expectedAddressInfo = user.firstName + " " + user.lastName + "\r\n" +
                               user.address_1 + "\r\n" +
                               user.city + " " + user.postCode + "\r\n" +
                               user.region + "\r\n" +
                               user.country;
 
-            NUnit.Framework.Assert.AreEqual(actual, expected, "Compare ------");
+            NUnit.Framework.Assert.AreEqual(actualAddressInfo, expectedAddressInfo, "Compare Address Info");
         }
     }
 }

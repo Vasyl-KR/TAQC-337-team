@@ -13,6 +13,7 @@ namespace OpenCartTests.Pages
 {
    public class EditAddressPage : ATopComponent
     {
+        #region 
         [FindsBy(How = How.Id, Using = "input-country")]
         public IWebElement SelectCountry { get; set; }
 
@@ -45,11 +46,9 @@ namespace OpenCartTests.Pages
 
         [FindsBy(How = How.Id, Using = "input-postcode")]
         public IWebElement InputPostCode { get; set; }
+        #endregion
 
-        //[FindsBy(How = How.CssSelector, Using = ".radio-inline")]
-        //public List<IWebElement> CheckBoxDefaultAddress { get; set; }
-
-
+        #region
         public EditAddressPage(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -75,7 +74,6 @@ namespace OpenCartTests.Pages
             element = BtnContinue;
             element = SelectCountry;
             element = SelectRegion;
-            // var e = CheckBoxDefaultAddress;
         }
 
         public void ClickInputField(IWebElement webElement)
@@ -98,6 +96,9 @@ namespace OpenCartTests.Pages
             BtnContinue.Click();
         }
 
+        #endregion
+
+        #region
         public AddressPage ClickBackButton()
         {
             BtnBack.Click();
@@ -138,5 +139,24 @@ namespace OpenCartTests.Pages
             return new AddressPage(driver);
         }
 
+        public EditAddressPage UnsuccessfullEditionAddress(User user)
+        {
+
+            SetClearInputField(user.firstName, InputFirstName);
+            SetClearInputField(user.lastName, InputLastName);
+            SetClearInputField(user.address_1, InputAddress1);
+            SetClearInputField(user.city, InputCity);
+            SetClearInputField(user.postCode, InputPostCode);
+            SetSelectField(user.country, SelectCountry);
+            SetSelectField(user.region, SelectRegion);
+            ClickButtonContinue();
+            return this;
+        }
+
+        public string GetWarningMessage()
+        {
+            return driver.FindElement(By.CssSelector(".text-danger")).Text;
+        }
+        #endregion
     }
 }
