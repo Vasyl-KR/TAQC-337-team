@@ -42,12 +42,13 @@ namespace OpenCartTests.Pages
         private const string regionWarningMessageXPath = "//select[@id='input-zone']/following-sibling::div[@class='text-danger']";
         private const string passwordWarningMessageXPath = "//input[@id='input-password']/following-sibling::div[@class='text-danger']";
         private const string confirmPasswordWarningMessageXPath = "//input[@id='input-confirm']/following-sibling::div[@class='text-danger']";
-        private const string agreeTermsWarningMessageCssSelector = "div.alert.alert-danger";
+        private const string mainWarningMessageCssSelector = "div.alert.alert-danger";
 
         #endregion
 
         #region Fields
         //Warning message for empty fields
+        public const string EmailAlreadyExist = "Warning: E-Mail Address is already registered!";
         public const string FirstNameWarningText = "First Name must be between 1 and 32 characters!";
         public const string LastNameWarningText = "Last Name must be between 1 and 32 characters!";
         public const string EmailWarningText = "E-Mail Address does not appear to be valid!";
@@ -129,9 +130,9 @@ namespace OpenCartTests.Pages
             get { return driver.FindElement(By.XPath(confirmPasswordWarningMessageXPath)); }
         }
 
-        public IWebElement AgreeTermsWarningMessage
+        public IWebElement MainWarningMessage
         {
-            get { return driver.FindElement(By.CssSelector(agreeTermsWarningMessageCssSelector)); }
+            get { return driver.FindElement(By.CssSelector(mainWarningMessageCssSelector)); }
         }
 
         //Input Fields
