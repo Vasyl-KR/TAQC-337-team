@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenCartTests.Pages;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenCartTests.Data;
 
 namespace OpenCartTests.Tests.Ostap
 {
@@ -17,7 +8,7 @@ namespace OpenCartTests.Tests.Ostap
     {
 
         [OneTimeSetUp]
-        public void SetUp()
+        public new void SetUp()
         {
             Pages = new PagesList(Driver);
             Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
@@ -30,17 +21,20 @@ namespace OpenCartTests.Tests.Ostap
         [TestCase("ostap@gmail.com", "wrongpassword")]
         public void UnsuccessUserData(string email, string password)
         {
+            //Arrange
             string expectedErrorMessage = "Warning: No match for E-Mail Address and/or Password.";
 
+            //Act
             string actualErrorMessage = Pages.LoginPage
                .UnsuccessfulLogin(email, password)
                .GetInvalidLoginLabelText();
 
+            //Assert
             Assert.AreEqual(expectedErrorMessage, actualErrorMessage, "Error messages are not equal");
         }
 
         [TestCase("vasya@gmail.com", "wrongpassword")]
-        public void ToManyLoginsWithIncorrectPass(string email, string password)
+        public void TooManyLoginsWithIncorrectPass(string email, string password)
         {
             //Arrange
             string expectedErrorMessage = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";

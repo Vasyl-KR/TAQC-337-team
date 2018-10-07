@@ -34,11 +34,11 @@ namespace OpenCartTests.Tests.Ostap
         [Test]
         public void PasswordAreCorrectAndMatch()
         {
+            //Arrange
             string password = Passwords.Correct1;
             string expectedMessage = "Success: Your password has been successfully updated.";
 
             //Act           
-
             Pages.AccountPage
                 .GoToChangePassword()
                 .SuccessChangePassword(password, password);
