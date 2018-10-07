@@ -32,7 +32,7 @@ namespace OpenCartTests.Pages
         // Button Continue
         private const string continueBtnCssSelector = "input.btn.btn-primary";
         //Warning Message For Requared Fields 
-        private const string frstNameWarningMessageXPath = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']";
+        private const string firstNameWarningMessageXPath = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']";
         private const string lastNameWarningMessageXPath = "//input[@id='input-lastname']/following-sibling::div[@class='text-danger']";
         private const string emailWarningMessageXPath = "//input[@id='input-email']/following-sibling::div[@class='text-danger']";
         private const string telephoneWarningMessageXPath = "//input[@id='input-telephone']/following-sibling::div[@class='text-danger']";
@@ -82,7 +82,7 @@ namespace OpenCartTests.Pages
         //Warning Messages For Requared Fields 
        public IWebElement FirstNameWarningMessage
         {
-            get { return driver.FindElement(By.XPath(frstNameWarningMessageXPath)); }
+            get { return driver.FindElement(By.XPath(firstNameWarningMessageXPath)); }
         }
 
         public IWebElement LastNameWarningMessage
