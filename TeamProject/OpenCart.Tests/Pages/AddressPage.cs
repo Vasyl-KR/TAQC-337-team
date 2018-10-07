@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenCartTests.Pages
 {
-   public class AddressPage : ATopComponent
+    public class AddressPage : ATopComponent
     {
         private const string Back_BTN_CSSSELECTOR = ".btn.btn-default";
         private const string NewAddress_BTN_CSSSELECTOR = ".btn.btn-primary";
@@ -27,7 +27,7 @@ namespace OpenCartTests.Pages
 
         public AddressPage(IWebDriver driver) : base(driver)
         {
-            PageFactory.InitElements(driver,this);
+            PageFactory.InitElements(driver, this);
             VerifyWebElements();
         }
 
@@ -52,13 +52,40 @@ namespace OpenCartTests.Pages
 
         public AddressPage DeleteRaw(int index)
         {
-            ListAddresses.ElementAt(index).FindElement(By.XPath("//tr[" + index +"]/td/a[text() = 'Delete']")).Click();
+            ListAddresses.ElementAt(index).FindElement(By.XPath("//tr[" + index + "]/td/a[text() = 'Delete']")).Click();
             return this;
         }
 
-        public string GetMessageBox()
+        public string GetAddressIfno(string name, string lastname)
+        {
+            return ListAddresses.ElementAt(0).FindElement(By.XPath("//td[contains(text(),'" + name + " " + lastname + "')]")).Text;
+        }
+
+        public string GetAddressIfno(int index)
+        {
+            return ListAddresses.ElementAt(index).FindElement(By.XPath("//td[contains(@class, 'text-left')]")).Text;
+        }
+
+        public IWebElement GetRaw(int index)
+        {
+            try
+            {
+                return ListAddresses.ElementAt(index);
+            }
+            catch (Exception e)
+            {
+                return ListAddresses.ElementAt(0);
+            }
+        }
+
+        public string GetSuccessfulMessage()
         {
             return driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
+        }
+
+        public string GetUnsuccessfulMessage()
+        {
+            return driver.FindElement(By.CssSelector("div.alert.alert-warning")).Text;
         }
 
     }
