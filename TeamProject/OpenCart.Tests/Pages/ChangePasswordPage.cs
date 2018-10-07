@@ -20,18 +20,25 @@ namespace OpenCartTests.Pages
         public IWebElement PasswordConfirmInput
         { get { return driver.FindElement(By.Id("input-confirm")); } }
 
-        public IWebElement ConfirmButton
+        public IWebElement ContinueButton
         { get { return driver.FindElement(By.CssSelector("input.btn.btn-primary")); } }
 
-        public IWebElement PasswordConfirmationErrorMessage
-        { get { return driver.FindElement(By.XPath("//div[@class='form-group required has-error']//div[@class='text-danger']")); } }
+        public IWebElement PasswordErrorMessage
+        { get { return driver.FindElement(By.XPath("//input[@id='input-password']/following-sibling::div[@class='text-danger']")); } }
 
+        public IWebElement PasswordConfirmErrorMessage
+        { get { return driver.FindElement(By.XPath("//input[@id='input-confirm']/following-sibling::div[@class='text-danger']")); } }
         public ChangePasswordPage(IWebDriver driver) : base(driver) { }
 
 
         public string GetPasswordInputText()
         {
             return PasswordInput.GetAttribute(VALUE_ATTRIBUTE);
+        }
+
+        public string GetPasswordErrorMessageText()
+        {
+            return PasswordErrorMessage.Text;
         }
 
         public void SetPasswordInput(string text)
@@ -64,9 +71,9 @@ namespace OpenCartTests.Pages
             return PasswordConfirmInput.GetAttribute(VALUE_ATTRIBUTE);
         }
 
-        public string GetPasswordConfirmationErrorMessageText()
+        public string GetPasswordConfirmErrorMessageText()
         {
-            return PasswordConfirmationErrorMessage.Text;
+            return PasswordConfirmErrorMessage.Text;
         }
         public void SetPasswordConfirmInput(string text)
         {
@@ -95,28 +102,28 @@ namespace OpenCartTests.Pages
 
         public void ClickConfirmButton()
         {
-            ConfirmButton.Click();
+            ContinueButton.Click();
         }
 
-        private void SetNewPasswordData(string newPassword)
+        private void SetNewPasswordData(string newPassword, string newPasswordConfirm)
         {            
             SetPasswordInputClear(newPassword);
-            SetPasswordConfirmInputClear(newPassword);
+            SetPasswordConfirmInputClear(newPasswordConfirm);
             ClickConfirmButton();
         }
 
-        public AccountPage SuccessChangePassword(string newPassword)
+        public AccountPage SuccessChangePassword(string newPassword, string newPasswordConfirm)
         {
-            SetNewPasswordData(newPassword);
+            SetNewPasswordData(newPassword, newPasswordConfirm);
             return new AccountPage(driver);
         }
 
-        // TODO
-        //public AccountPage UnsuccessChangePassword(string registratorLogin, string registratorPassword)
-        //{
-        //    SetLoginData(registratorLogin, registratorPassword);
-        //    return new AccountPage(driver);
-        //}
+        
+        public ChangePasswordPage UnsuccessChangePassword(string incorrectNewPassword, string incorrectNewPasswordConfirm)
+        {
+            SetNewPasswordData(incorrectNewPassword, incorrectNewPasswordConfirm);
+            return new ChangePasswordPage(driver);
+        }
 
     }
 }

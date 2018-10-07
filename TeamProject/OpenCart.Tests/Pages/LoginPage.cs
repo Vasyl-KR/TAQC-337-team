@@ -16,6 +16,7 @@ namespace OpenCartTests.Pages
         private const string Signin_BTN_CSSSELECTOR = "input.btn.btn-primary";
         private const string Register_BTN_CSSSELECTOR = "a.btn.btn-primary";
         private const string ForgottenPass_BTN_XPATH = "//div[@class='well']//a[contains(@href,'account/forgotten')]";
+        private const string InvalidLogin_LABEL_CSSSELECTOR = ".alert.alert-danger";
         #endregion
 
         public IWebElement LoginInput
@@ -34,7 +35,7 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(ForgottenPass_BTN_XPATH)); } }
 
         public IWebElement InvalidLoginLabel
-        { get { return driver.FindElement(By.CssSelector(".alert.alert-danger")); } }
+        { get { return driver.FindElement(By.CssSelector(InvalidLogin_LABEL_CSSSELECTOR)); } }
 
         public LoginPage(IWebDriver driver) : base(driver) { }
 

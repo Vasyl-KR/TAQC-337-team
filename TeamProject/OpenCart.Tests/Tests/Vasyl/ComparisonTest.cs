@@ -22,69 +22,83 @@ namespace OpenCartTests.Tests.Vasyl
         public void AddToComparisionTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(Driver);
             string selectedProduct;
             string actualProduct;
 
             //Act
             //Go to products page
-            pages.HomePage.GoToLaptopPage();
+            Pages.HomePage.GoToLaptopPage();
             //Add product to comparison
-            selectedProduct = pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
-            pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
-            //Wait for adding
-            //pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            selectedProduct = Pages.LaptopsAndNotebooksPage.GetFirstProductLinkText();
+            Pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Go to products comparison
-            pages.LaptopsAndNotebooksPage.GoToComparison();
-            actualProduct = pages.ProductComparisonPage.GetLastProductText();
+            Pages.LaptopsAndNotebooksPage.GoToComparison();
+            actualProduct = Pages.ProductComparisonPage.GetLastProductText();
 
             //Assert
-            Assert.AreEqual(selectedProduct, actualProduct, "Comparison failed");
+            Assert.AreEqual(selectedProduct, actualProduct, "Adding failed");
         }
         [Test, Order(2)]
         public void RemoveFromCompareTableTest()
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(Driver);
 
             //Act
             //Go to products page
-            pages.HomePage.GoToLaptopPage();
+            Pages.HomePage.GoToLaptopPage();
             //Add product to comparison
-            pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
-            //Wait for adding
-           // pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            Pages.LaptopsAndNotebooksPage.ClickCompareThisProductButton();
             //Go to products comparison
-            pages.LaptopsAndNotebooksPage.GoToComparison();
+            Pages.LaptopsAndNotebooksPage.GoToComparison();
             //Remove product from comparison
-            pages.ProductComparisonPage.ClickRemoveLastProductButton();
+            Pages.ProductComparisonPage.ClickRemoveLastProductButton();
             
             //Assert
             Assert.AreEqual("You have not chosen any products to compare.",
-                pages.ProductComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
+               Pages.ProductComparisonPage.GetNoProductsToCompareLabelText(), "Removing failed");
 
         }
-        [TestCase (4), Order(3)]
-        public void Add_4_ProductsToCompareTest(int x)
+        [TestCase("MacBook Pro"), Order(4)]
+        public void AddSelectedProductToComparisionTest(string name)
         {
             //Arrange
-            Pages.PagesList pages = new Pages.PagesList(Driver);
+            string selectedProduct = name;
+            string actualProduct;
 
             //Act
             //Go to products page
-            pages.HomePage.GoToLaptopPage();
+            Pages.HomePage.GoToLaptopPage();
+            //Add product to comparison
+            Pages.LaptopsAndNotebooksPage.CompareProductByName(name);
+            //Wait for adding
+            //pages.WaitForElementTextContainsEC(pages.LaptopsAndNotebooksPage.ProductComparisonLink, "1");
+            //Go to products comparison
+            Pages.LaptopsAndNotebooksPage.GoToComparison();
+            actualProduct = Pages.ProductComparisonPage.GetLastProductText();
+
+            //Assert
+            Assert.AreEqual(selectedProduct, actualProduct, "Adding failed");
+        }
+        [TestCase(4), Order(3)]
+        public void Add_4_ProductsToCompareTest(int x)
+        {
+            //Arrange
+
+            //Act
+            //Go to products page
+            Pages.HomePage.GoToLaptopPage();
             //Add 4 products to comparision
             for (int i = 0; i < x; i++)
             {
-                pages.LaptopsAndNotebooksPage.CompareProductButtons[i].Click();
-                //pages.WaitForElementTextContains(pages.LaptopsAndNotebooksPage.ProductComparisonLink, (i + 1).ToString());
-                //Thread.Sleep(500);
+                string name = Pages.LaptopsAndNotebooksPage.CompareProductLinks[i].Text;
+                Pages.LaptopsAndNotebooksPage.CompareProductByName(name);
             }
             //Go to products comparison
-            pages.LaptopsAndNotebooksPage.GoToComparison();
+            Pages.LaptopsAndNotebooksPage.GoToComparison();
 
             //Assert
-            Assert.AreEqual(x, pages.ProductComparisonPage.AllProducts.Count, "Adding failed");
+            Assert.AreEqual(x, Pages.ProductComparisonPage.AllProducts.Count, "Adding failed");
         }
+
     }
 }
