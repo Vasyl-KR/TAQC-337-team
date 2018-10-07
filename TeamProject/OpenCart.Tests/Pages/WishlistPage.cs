@@ -27,7 +27,7 @@ namespace OpenCartTests.Pages
 
         #endregion
         #region Properties
-        
+
         [FindsBy(How = How.XPath, Using = "//table[contains(@class,'table table-striped')]")]
         public IWebElement AddedToCartProduct
         { get; set; }
@@ -74,7 +74,7 @@ namespace OpenCartTests.Pages
             PageFactory.InitElements(driver, this);
             VerifyWebElements();
         }
-        
+
         public void VerifyWebElements()
         {
             IWebElement element;
@@ -133,7 +133,7 @@ namespace OpenCartTests.Pages
 
         public string GetTotalCartPrice()
         {
-            WaitForElementTextContains(CartTotalPrice,GetProductPriceText());
+            WaitForElementTextContains(CartTotalPrice, GetProductPriceText());
 
             string[] price = CartTotalPrice.Text.Split('-');
             return price[1].Replace(" ", String.Empty);
@@ -154,7 +154,7 @@ namespace OpenCartTests.Pages
 
         public void ClearTotalCart()
         {
-            
+
             ClickCartButton();
             if (WaitForElementPresent(CartTotalPrice))
             {
@@ -174,7 +174,10 @@ namespace OpenCartTests.Pages
         }
 
         #endregion
+
+
     }
+
 }
 
 
