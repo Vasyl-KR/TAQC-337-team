@@ -206,11 +206,6 @@ namespace OpenCartTests.Pages
             GetSubUnsubToNewsletter().Click();
         }
 
-        public string GetSuccessChangePasswordMessageText()
-        {
-            return SuccessLabel.Text;
-        }
-
         public string GetAccountLabelText()
         {
             return AccountLabel.Text;

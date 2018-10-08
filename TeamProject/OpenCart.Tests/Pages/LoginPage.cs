@@ -46,7 +46,7 @@ namespace OpenCartTests.Pages
         { get { return driver.FindElement(By.XPath(NewCustomer_LABEL_XPATH)); } }
 
         public LoginPage(IWebDriver driver) : base(driver) { }
-
+        #endregion
         private void VerifyWebElements()
         {
             IWebElement temp = LoginInput;
@@ -178,5 +178,6 @@ namespace OpenCartTests.Pages
             SetLoginData(registratorEmail, registratorPassword);
             return new AccountPage(driver);
         }
+
     }
 }

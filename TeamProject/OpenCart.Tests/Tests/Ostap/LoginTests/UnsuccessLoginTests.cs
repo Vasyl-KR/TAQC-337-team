@@ -33,7 +33,7 @@ namespace OpenCartTests.Tests.Ostap
             Assert.AreEqual(expectedErrorMessage, actualErrorMessage, "Error messages are not equal");
         }
 
-        [TestCase("vasya@gmail.com", "wrongpassword")]
+        [TestCase("vasya", "wrongpassword")]
         public void TooManyLoginsWithIncorrectPass(string email, string password)
         {
             //Arrange

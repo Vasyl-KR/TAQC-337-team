@@ -13,7 +13,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = yesNo ? UserList[0] : UserList[2];
+            User user = yesNo ? UserList[1] : UserList[3];
             string expectedMessage = ConfirmationRegisterPage.ExpectedSuccessMessage;
 
             // Act
