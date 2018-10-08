@@ -10,6 +10,5 @@ namespace OpenCartTests.Pages
     public class HomePage:ATopComponent
     {
         public HomePage(IWebDriver driver) : base(driver) { }
-
     }
 }

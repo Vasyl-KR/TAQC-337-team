@@ -24,6 +24,8 @@ namespace OpenCartTests.Pages
         private const string SuccessAlert_Label_CSSSELECTOR = ".alert.alert-success";
         #endregion
 
+        #region Properties
+
         public IWebElement EditAccountInformation
         { get { return driver.FindElement(By.XPath(AccountInformation_BTN_XPATH)); } }
 
@@ -60,6 +62,8 @@ namespace OpenCartTests.Pages
         public IWebElement SuccessLabel
         { get { return driver.FindElement(By.CssSelector(".alert.alert-success")); } }
 
+        #endregion
+
         public AccountPage(IWebDriver driver) : base(driver)
         {
             VerifyWebElements();
@@ -70,6 +74,14 @@ namespace OpenCartTests.Pages
             IWebElement element = EditAccountInformation;
             element = ChangePassword;
             element = ModifyAddressBookEntries;
+        }
+
+        #region Methods
+
+        /// <summary>Get text from alert message</summary>
+        public string GetSuccessChangePasswordMessageText()
+        {
+            return SuccessLabel.Text;
         }
 
         public IWebElement GetEditAccountInformation()
@@ -189,10 +201,6 @@ namespace OpenCartTests.Pages
             GetSubUnsubToNewsletter().Click();
         }
 
-        public string GetSuccessChangePasswordMessageText()
-        {
-            return SuccessLabel.Text;
-        }
-
+        #endregion
     }
 }
