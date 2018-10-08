@@ -19,7 +19,7 @@ namespace OpenCartTests.Tests.Ostap
         [TestCase("wrongEmail@sample.com","qwerty")]
         [TestCase("", "")]
         [TestCase("ostap@gmail.com", "wrongpassword")]
-        public void UnsuccessUserData(string email, string password)
+        public void InvalidUserData(string email, string password)
         {
             //Arrange
             string expectedErrorMessage = "Warning: No match for E-Mail Address and/or Password.";
@@ -38,9 +38,9 @@ namespace OpenCartTests.Tests.Ostap
         {
             //Arrange
             string expectedErrorMessage = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";
-
+            int countOfLogins = 6;
             //Act
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < countOfLogins; i++)
             {
                 Pages.LoginPage
                .UnsuccessfulLogin(email, password);

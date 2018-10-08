@@ -17,7 +17,12 @@ namespace OpenCartTests.Pages
         private const string Register_BTN_CSSSELECTOR = "a.btn.btn-primary";
         private const string ForgottenPass_BTN_XPATH = "//div[@class='well']//a[contains(@href,'account/forgotten')]";
         private const string InvalidLogin_LABEL_CSSSELECTOR = ".alert.alert-danger";
+        private const string NewCustomer_LABEL_XPATH = "//h2[contains(text(),'New Customer')]";
+
         #endregion
+
+        #region Properties
+
 
         public IWebElement LoginInput
         { get { return driver.FindElement(By.Id(Login_INPUT_ID)); } }
@@ -37,6 +42,9 @@ namespace OpenCartTests.Pages
         public IWebElement InvalidLoginLabel
         { get { return driver.FindElement(By.CssSelector(InvalidLogin_LABEL_CSSSELECTOR)); } }
 
+        public IWebElement NewCustomerLabel
+        { get { return driver.FindElement(By.XPath(NewCustomer_LABEL_XPATH)); } }
+
         public LoginPage(IWebDriver driver) : base(driver) { }
 
         private void VerifyWebElements()
@@ -47,6 +55,15 @@ namespace OpenCartTests.Pages
             temp = RegisterButton;
             temp = ForgottenPassButton;
         }
+
+        //Lables
+
+        public string GetInvalidLoginLabelText()
+        {
+            return InvalidLoginLabel.Text;
+        }
+
+        //Login field
 
         public string GetLoginInputText()
         {
@@ -68,8 +85,6 @@ namespace OpenCartTests.Pages
             LoginInput.Click();
         }
 
-        // Functional
-
         public LoginPage SetLoginInputClear(string text)
         {
             ClickLoginInput();
@@ -77,6 +92,8 @@ namespace OpenCartTests.Pages
             SetLoginInput(text);
             return this;
         }
+
+        //Password field
 
         public string GetPasswordInputText()
         {
@@ -98,8 +115,6 @@ namespace OpenCartTests.Pages
             PasswordInput.Click();
         }
 
-        // Functional
-
         public LoginPage SetPasswordInputClear(string text)
         {
             ClickPasswordInput();
@@ -108,6 +123,7 @@ namespace OpenCartTests.Pages
             return this;
         }
 
+        // Buttons
         public void ClickSigninButton()
         {
             SigninButton.Click();
@@ -124,9 +140,12 @@ namespace OpenCartTests.Pages
         }
 
 
-        public string GetInvalidLoginLabelText()
+
+        // Functional
+
+        public string GetNewCustomerLabel()
         {
-            return InvalidLoginLabel.Text;
+            return NewCustomerLabel.Text;
         }
 
         private void SetLoginData(string login, string password)
@@ -136,16 +155,27 @@ namespace OpenCartTests.Pages
             ClickSigninButton();
         }
 
-        public LoginPage UnsuccessfulLogin(string invalidLogin, string invalidPassword)
+        /// <summary>
+        /// Try to login with invalid credentials
+        /// </summary>
+        /// <param name="invalidEmail">Email</param>
+        /// <param name="invalidPassword">Password</param>
+        /// <returns>Login page</returns>
+        public LoginPage UnsuccessfulLogin(string invalidEmail, string invalidPassword)
         {
-            SetLoginData(invalidLogin, invalidPassword);
+            SetLoginData(invalidEmail, invalidPassword);
             return new LoginPage(driver);
         }
 
-
-        public AccountPage SuccessRegistratorLogin(string registratorLogin, string registratorPassword)
+        /// <summary>
+        /// Login in open cart with valid credentials 
+        /// </summary>
+        /// <param name="registratorEmail">Email</param>
+        /// <param name="registratorPassword">Password</param>
+        /// <returns>My Account page</returns>
+        public AccountPage SuccessRegistratorLogin(string registratorEmail, string registratorPassword)
         {
-            SetLoginData(registratorLogin, registratorPassword);
+            SetLoginData(registratorEmail, registratorPassword);
             return new AccountPage(driver);
         }
     }

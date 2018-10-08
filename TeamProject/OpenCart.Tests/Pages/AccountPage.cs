@@ -22,7 +22,11 @@ namespace OpenCartTests.Pages
         private const string RecurringPayments_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/recurring')]";
         private const string SubUnsubToNewsletter_BTN_XPATH = "//div[@id='content']//ul[@class='list-unstyled']//a[contains(@href,'account/newsletter')]";
         private const string SuccessAlert_Label_CSSSELECTOR = ".alert.alert-success";
+        private const string MyAccount_Label = "//h2[contains(text(),'My Account')]";
+
         #endregion
+
+        #region Properties
 
         public IWebElement EditAccountInformation
         { get { return driver.FindElement(By.XPath(AccountInformation_BTN_XPATH)); } }
@@ -57,8 +61,13 @@ namespace OpenCartTests.Pages
         public IWebElement SubUnsubToNewsletter
         { get { return driver.FindElement(By.XPath(SubUnsubToNewsletter_BTN_XPATH)); } }
 
+        public IWebElement AccountLabel
+        { get { return driver.FindElement(By.XPath(MyAccount_Label)); } }
+
         public IWebElement SuccessLabel
         { get { return driver.FindElement(By.CssSelector(".alert.alert-success")); } }
+
+        #endregion
 
         public AccountPage(IWebDriver driver) : base(driver)
         {
@@ -70,6 +79,14 @@ namespace OpenCartTests.Pages
             IWebElement element = EditAccountInformation;
             element = ChangePassword;
             element = ModifyAddressBookEntries;
+        }
+
+        #region Methods
+
+        /// <summary>Get text from alert message</summary>
+        public string GetSuccessChangePasswordMessageText()
+        {
+            return SuccessLabel.Text;
         }
 
         public IWebElement GetEditAccountInformation()
@@ -194,5 +211,10 @@ namespace OpenCartTests.Pages
             return SuccessLabel.Text;
         }
 
+        public string GetAccountLabelText()
+        {
+            return AccountLabel.Text;
+        }
+        #endregion
     }
 }
