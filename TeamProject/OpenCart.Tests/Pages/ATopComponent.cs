@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenCartTests.Pages
 {
-    // TODO
+
     #region DropDownMenu's
     class CurrencyDropDownMenu
     {
@@ -80,6 +80,12 @@ namespace OpenCartTests.Pages
         protected IWebDriver driver;
 
         #region Waiter
+        /// <summary>
+        /// Wait for element text will equal expected text
+        /// </summary>
+        /// <param name="webElement">Web element</param>
+        /// <param name="expectedStr">Text</param>
+        /// <returns>Web element</returns>
         protected IWebElement WaitForElementTextContains(IWebElement webElement, string expectedStr)
         {
             bool rez = wait.Until(driver => webElement.Text.Contains(expectedStr));
@@ -93,11 +99,13 @@ namespace OpenCartTests.Pages
             }
         }
 
-        
+        /// <summary>
+        /// Wait for web element present
+        /// </summary>
+        /// <param name="webElement">Web element</param>
         protected bool WaitForElementPresent(IWebElement webElement)
         {
             return wait.Until(driver => webElement.Displayed);
-
         }
         #endregion
 

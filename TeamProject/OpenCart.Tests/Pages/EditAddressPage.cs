@@ -15,37 +15,40 @@ namespace OpenCartTests.Pages
     {
         #region 
         [FindsBy(How = How.Id, Using = "input-country")]
-        public IWebElement SelectCountry { get; set; }
+        private IWebElement SelectCountry { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-zone")]
-        public IWebElement SelectRegion { get; set; }
+        private IWebElement SelectRegion { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-default")]
-        public IWebElement BtnBack { get; set; }
+        private IWebElement BtnBack { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary")]
-        public IWebElement BtnContinue { get; set; }
+        private IWebElement BtnContinue { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#input-firstname")]
-        public IWebElement InputFirstName { get; set; }
+        private IWebElement InputFirstName { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-lastname")]
-        public IWebElement InputLastName { get; set; }
+        private IWebElement InputLastName { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-company")]
-        public IWebElement InputCompany { get; set; }
+        private IWebElement InputCompany { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-address-1")]
-        public IWebElement InputAddress1 { get; set; }
+        private IWebElement InputAddress1 { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-address-2")]
-        public IWebElement InputAddress2 { get; set; }
+        private IWebElement InputAddress2 { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-city")]
-        public IWebElement InputCity { get; set; }
+        private IWebElement InputCity { get; set; }
 
         [FindsBy(How = How.Id, Using = "input-postcode")]
-        public IWebElement InputPostCode { get; set; }
+        private IWebElement InputPostCode { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".text-danger")]
+        private IWebElement ValidationMessage { get; set; }
         #endregion
 
         #region
@@ -76,22 +79,22 @@ namespace OpenCartTests.Pages
             element = SelectRegion;
         }
 
-        public void ClickInputField(IWebElement webElement)
+        private void ClickInputField(IWebElement webElement)
         {
             webElement.Click();
         }
 
-        public void ClearInputField(IWebElement webElement)
+        private void ClearInputField(IWebElement webElement)
         {
             webElement.Clear();
         }
 
-        public void SetInputField(string text, IWebElement webElement)
+        private void SetInputField(string text, IWebElement webElement)
         {
             webElement.SendKeys(text);
         }
 
-        public void ClickButtonContinue()
+        private void ClickButtonContinue()
         {
             BtnContinue.Click();
         }
@@ -111,7 +114,6 @@ namespace OpenCartTests.Pages
             ClickInputField(webElement);
 
             ClearInputField(webElement);
-
 
             SetInputField(text, webElement);
 
@@ -155,7 +157,7 @@ namespace OpenCartTests.Pages
 
         public string GetWarningMessage()
         {
-            return driver.FindElement(By.CssSelector(".text-danger")).Text;
+            return ValidationMessage.Text;
         }
         #endregion
     }

@@ -11,13 +11,19 @@ namespace OpenCartTests.Pages
     public class AddressPage : ATopComponent
     {
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-default")]
-        public IWebElement BtnBack { get; set; }
+        private IWebElement BtnBack { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "div.alert.alert-success")]
+        private IWebElement UnsuccessfulMessage { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "div.alert.alert-warning")]
+        private IWebElement SuccessfulMessage { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary")]
-        public IWebElement BtnNewAddress { get; set; }
+        private IWebElement BtnNewAddress { get; set; }
 
         [FindsBy(How = How.TagName, Using = "tr")]
-        public IList<IWebElement> ListAddresses { get; set; }
+        private IList<IWebElement> ListAddresses { get; set; }
 
         public AddressPage(IWebDriver driver) : base(driver)
         {
@@ -85,12 +91,17 @@ namespace OpenCartTests.Pages
 
         public string GetSuccessfulMessage()
         {
-            return driver.FindElement(By.CssSelector("div.alert.alert-success")).Text;
+            return UnsuccessfulMessage.Text;
         }
 
         public string GetUnsuccessfulMessage()
         {
-            return driver.FindElement(By.CssSelector("div.alert.alert-warning")).Text;
+            return SuccessfulMessage.Text;
+        }
+
+        public int ListAddressesLenght()
+        {
+            return ListAddresses.Count();
         }
 
     }

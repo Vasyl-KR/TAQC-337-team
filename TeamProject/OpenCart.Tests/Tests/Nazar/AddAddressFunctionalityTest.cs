@@ -22,12 +22,12 @@ namespace OpenCartTests.Tests.Nazar
         public void AddAddress_CompareListSize()
         {
 
-            int ListSizeBeforeAdding = Pages.AddressPage.ListAddresses.Count();
+            int ListSizeBeforeAdding = Pages.AddressPage.ListAddressesLenght();
 
             int ListSizeAfterAdding = Pages.AddressPage
                 .ClickNewAddressButton()
                 .SuccessfullEditionAddress(users.Users[0])
-                .ListAddresses.Count();
+                .ListAddressesLenght();
 
             NUnit.Framework.Assert.AreEqual(ListSizeBeforeAdding + 1, ListSizeAfterAdding, "Compare list size after adding new address" + ListSizeBeforeAdding + " == " + ListSizeAfterAdding);
 

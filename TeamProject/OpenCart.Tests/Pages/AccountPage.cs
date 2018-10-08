@@ -26,6 +26,8 @@ namespace OpenCartTests.Pages
 
         #endregion
 
+        #region Properties
+
         public IWebElement EditAccountInformation
         { get { return driver.FindElement(By.XPath(AccountInformation_BTN_XPATH)); } }
 
@@ -65,6 +67,7 @@ namespace OpenCartTests.Pages
         public IWebElement SuccessLabel
         { get { return driver.FindElement(By.CssSelector(".alert.alert-success")); } }
 
+        #endregion
 
         public AccountPage(IWebDriver driver) : base(driver)
         {
@@ -76,6 +79,14 @@ namespace OpenCartTests.Pages
             IWebElement element = EditAccountInformation;
             element = ChangePassword;
             element = ModifyAddressBookEntries;
+        }
+
+        #region Methods
+
+        /// <summary>Get text from alert message</summary>
+        public string GetSuccessChangePasswordMessageText()
+        {
+            return SuccessLabel.Text;
         }
 
         public IWebElement GetEditAccountInformation()
@@ -204,5 +215,6 @@ namespace OpenCartTests.Pages
         {
             return AccountLabel.Text;
         }
+        #endregion
     }
 }
