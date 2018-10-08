@@ -19,7 +19,7 @@ namespace OpenCartTests.Tests.Ostap
         [TestCase("wrongEmail@sample.com","qwerty")]
         [TestCase("", "")]
         [TestCase("ostap@gmail.com", "wrongpassword")]
-        public void UnsuccessUserData(string email, string password)
+        public void InvalidUserData(string email, string password)
         {
             //Arrange
             string expectedErrorMessage = "Warning: No match for E-Mail Address and/or Password.";
