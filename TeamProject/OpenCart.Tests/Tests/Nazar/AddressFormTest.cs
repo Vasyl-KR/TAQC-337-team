@@ -14,6 +14,7 @@ namespace OpenCartTests.Tests.Nazar
         [Test]
         public void AddressForm_ValidationMessage_LastName()
         {
+            //Act
             Driver.Navigate().GoToUrl(URL_AddressPage);
             User user = users.Users[2];
             user.lastName = "";
@@ -22,14 +23,17 @@ namespace OpenCartTests.Tests.Nazar
                 .UnsuccessfullEditionAddress(user)
                 .GetWarningMessage();
 
+            //Arrange 
             string expectedMessage = "Last Name must be between 1 and 32 characters!";
 
+            //Assert
             NUnit.Framework.Assert.AreEqual(actualMessage, expectedMessage, "Compare the text of the message");
         }
 
         [Test]
         public void AddressForm_ValidationMessage_Address1()
         {
+            //Act
             Driver.Navigate().GoToUrl(URL_AddressPage);
             User user = users.Users[2];
             user.address_1 = "";
@@ -38,8 +42,10 @@ namespace OpenCartTests.Tests.Nazar
                 .UnsuccessfullEditionAddress(user)
                 .GetWarningMessage();
 
+            //Arrange 
             string expectedMessage = "Address must be between 3 and 128 characters!";
 
+            //Assert
             NUnit.Framework.Assert.AreEqual(actualMessage, expectedMessage, "Compare the text of the message");
         }
     }
