@@ -28,17 +28,15 @@ namespace OpenCartTests.Tests.Nazar
         }
 
         [TestCase(1)]
-        public void EditeNewAddress_CompareInsertedInfo(int index)
+        public void EditeAddress_CompareInsertedInfo(int index)
         {
             Driver.Navigate().GoToUrl(URL_AddressPage);
             User user = users.Users[2];
-            Pages.AddressPage
+
+            string actualAddressInfo =  Pages.AddressPage
                .EditRaw(index)
-               .SuccessfullEditionAddress(user);
-
-            string actualAddressInfo = Pages.AddressPage
-                             .GetAddressIfno(index);
-
+               .SuccessfullEditionAddress(user)
+               .GetAddressIfno(index);
 
             string expectedAddressInfo = user.firstName + " " + user.lastName + "\r\n" +
                               user.address_1 + "\r\n" +
