@@ -46,7 +46,27 @@ namespace OpenCartTests.Tests.Pavlo
         }
 
         [Test]
-        public void RemoveFromWishlistTest()
+        public void AddToWishlist_WithoutLogin()
+        {
+            //Arrange
+            string actualMessage;
+            string expectedMessage;
+
+            //Act
+            /*Opening Laptop page*/
+            Pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
+
+            expectedMessage = "New Customer";
+            actualMessage = Pages.LoginPage.GetNewCustomerLabel();
+            //Assert
+
+            Assert.AreEqual(expectedMessage, actualMessage, "Message is incorrect");
+        }
+
+        [Test]
+        public void RemoveFromWishlist()
         {
             //Arrange
             string actualMessage;
@@ -98,6 +118,33 @@ namespace OpenCartTests.Tests.Pavlo
         }
 
         [Test]
+        public void AddToCart_CompareMessage()
+        {
+            //Arrange
+            string expectedName;
+            string actualName;
+
+            //Act
+            /*Loggining*/
+            Pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login, password);
+            /*Opening Laptop page*/
+            Pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
+            /*Adding laptop to cart*/
+            Pages.WishlistPage.ClickAddToCartButton();
+
+            /*Waiting for message*/
+            expectedName = Pages.WishlistPage.GetProductName();
+            actualName = Pages.WishlistPage.GetSuccessMessage();
+
+            //Assert
+            Assert.AreEqual(expectedName, actualName, "Adding to cart failed");
+            /*Cleaning Cart after adding*/
+            Pages.WishlistPage.ClearTotalCart();
+        }
+
+        //[Test]
         public void RemoveFromCart()
         {
             //Arrange
@@ -126,11 +173,11 @@ namespace OpenCartTests.Tests.Pavlo
         }
 
         [Test]
-        public void AddToCartDuplicate()
+        public void AddToWishlistDuplicate()
         {
             //Arrange
-            string expectedPrice;
-            string actualPrice;
+            int expectedAmount;
+            int actualAmount;
 
             //Act
             /*Loggining*/
@@ -139,19 +186,66 @@ namespace OpenCartTests.Tests.Pavlo
             Pages.HomePage.GoToLaptopPage();
             /*Adding laptop to wishlist*/
             Pages.LaptopsAndNotebooksPage.AddToWishlist();
-            /*Adding laptop to cart*/
-            Pages.WishlistPage.ClickAddToCartButton();
+            /*Adding the same product to wishlist*/
+            Pages.HomePage.GoToLaptopPage();
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
 
-            /*Waiting for change total price*/
-            expectedPrice = Pages.WishlistPage.GetProductPriceText();
-            actualPrice = Pages.WishlistPage.GetTotalCartPrice();
+            /*Getting amount of products in wishlist */
+            expectedAmount = 1;
+            actualAmount = Pages.WishlistPage.GetProductsRows();
 
             //Assert
-            Assert.AreEqual(expectedPrice, actualPrice, "Adding to cart failed");
-            /*Cleaning Cart after adding*/
-            Pages.WishlistPage.ClearTotalCart();
+            Assert.AreEqual(expectedAmount, actualAmount, "Duplicate was added");
+
+        }
+        [Test]
+        public void PressContinueButton()
+        {
+            //Arrange
+            string actualMessage;
+            string expectedMessage;
+
+            //Act
+            /*Loggining*/
+            Pages.HomePage.GoToLoginPage().SuccessRegistratorLogin(login, password);
+            /*Opening Laptop page*/
+            Pages.HomePage.GoToLaptopPage();
+            /*Adding laptop to wishlist*/
+            Pages.LaptopsAndNotebooksPage.AddToWishlist();
+            /*Go to my account*/
+            Pages.WishlistPage.ClickContinueButton();
+
+            expectedMessage = "My Account";
+            actualMessage = Pages.AccountPage.GetAccountLabelText();
+            //Assert
+
+            Assert.AreEqual(expectedMessage, actualMessage, "Message is incorrect");
         }
 
 
+        [TestCase(4)]
+        public void Add_4_ProductsToWishlist(int x)
+        {
+            //Arrange
+            int expectedAmount;
+            int actualAmount;
+            //Act
+            //Go to products page
+            Pages.HomePage.GoToLaptopPage();
+            //Add 4 products to comparision
+            for (int i = 0; i < x; i++)
+            {
+                string name = Pages.LaptopsAndNotebooksPage.CompareProductLinks[i].Text;
+                Pages.LaptopsAndNotebooksPage.AddToWishlistByName(name);
+            }
+            //Go to products comparison
+            Pages.LaptopsAndNotebooksPage.ClickWishlistLink();
+
+            expectedAmount = x;
+            actualAmount = Pages.WishlistPage.GetProductsRows();
+
+            //Assert
+            Assert.AreEqual(expectedAmount, actualAmount, "Adding failed");
+        }
     }
 }

@@ -54,6 +54,9 @@ namespace OpenCartTests.Pages
         public List<IWebElement> CompareProductButtons
         { get { return driver.FindElements(By.XPath(COMPARE_THIS_PRODUCT_BUTTON)).ToList(); } }
 
+        public List<IWebElement> AddToWishlistButtons
+        { get { return driver.FindElements(By.XPath(ADD_TO_WISHLIST_BUTTON)).ToList(); } }
+
         public List<IWebElement> CompareProductLinks
         { get { return driver.FindElements(By.XPath(PRODUCT_LINKS)).ToList(); } }
 
@@ -154,10 +157,27 @@ namespace OpenCartTests.Pages
             return false;
         }
 
+        public bool AddToWishlistByName(string name)
+        {
+            int count = 0;
+            foreach (IWebElement item in CompareProductLinks)
+            {
+                if (item.Text.Contains(name))
+                {
+                    AddToWishlistButtons[count].Click();
+                    wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE)));
+                    CloseAlertButton.Click();
+                    //Thread.Sleep(800);
+                    return true;
+                }
+                count++;
+            }
+            return false;
+        }
         public WishlistPage AddToWishlist()
         {
             ClickAddToWishListButton();
-            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE))); //work for me @Vasyl
+            //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(SUCCESS_ALERT_MESSAGE))); //work for me @Vasyl
             ClickWishlistLink();
             return new WishlistPage(driver);
         }

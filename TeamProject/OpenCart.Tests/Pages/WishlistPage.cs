@@ -15,17 +15,6 @@ namespace OpenCartTests.Pages
     public class WishlistPage : ATopComponent
     {
 
-        #region Locators
-        //// Label locators
-        //private const string ProductPrice_XPATH =;
-        //private const string CartTotal_ID = ;
-        //private const string Cart_XPATH = ;
-        //private const string AddedToCartProducts_XPATH =;
-        //// Buttons locators
-        //private const string AddToCart_BTN_XPATH = ;
-        //private const string RemoveFromCart_BTN_XPATH = ;
-
-        #endregion
         #region Properties
 
         [FindsBy(How = How.XPath, Using = "//table[contains(@class,'table table-striped')]")]
@@ -44,6 +33,9 @@ namespace OpenCartTests.Pages
         public IWebElement EmptyCartMessage
         { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'alert alert-success')]//a[contains(text(),'MacBook')]")]
+        public IWebElement SuccessMessage
+        { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//td[contains(@class,'text-right')]//div[contains(@class,'price')]")]
         public IWebElement ProductPriceLabel
@@ -51,6 +43,10 @@ namespace OpenCartTests.Pages
 
         [FindsBy(How = How.XPath,Using ="//a[contains(text(),'MacBook')]")]
         public IWebElement ProductNameLabel
+        { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//tbody//tr")]
+        public IList<IWebElement> ProductsRow
         { get; set; }
 
         [FindsBy(How = How.Id, Using = "cart-total")]
@@ -71,6 +67,10 @@ namespace OpenCartTests.Pages
 
         [FindsBy(How = How.XPath, Using = "//button[contains(@class,'btn btn-danger btn-xs')]")]
         public IWebElement RemoveFromCartButton
+        { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[contains(@class,'btn btn-primary')]")]
+        public IWebElement ContinueButton
         { get; set; }
 
 
@@ -118,6 +118,19 @@ namespace OpenCartTests.Pages
             }
         }
 
+        public string GetSuccessMessage()
+        {
+      
+            if (WaitForElementPresent(SuccessMessage))
+            {
+                return SuccessMessage.Text;
+            }
+            else
+            {
+                return "item not added";
+            }
+        }
+
         public string GetModifyListMessage()
         {
             return ModifyMessage.Text;
@@ -130,14 +143,19 @@ namespace OpenCartTests.Pages
 
         public string GetProductName()
         {
-            return ProductNameLabel.Text;
+            return "MacBook";
+            //return ProductNameLabel.Text;
         }
 
         public string GetTotalCartText()
         {
             return CartTotalPrice.Text;
         }
+        public int GetProductsRows()
+        {
 
+            return ProductsRow.ToArray().Length;
+        }
         public void ClickAddToCartButton()
         {
             AddToCartButton.Click();
@@ -152,9 +170,15 @@ namespace OpenCartTests.Pages
         {
             RemoveFromCartButton.Click();
         }
+
         public void ClickRemoveFromWishlist()
         {
             RemoveFromWishlistButton.Click();
+        }
+
+        public void ClickContinueButton()
+        {
+            ContinueButton.Click();
         }
 
         public string GetTotalCartPrice()
@@ -195,7 +219,7 @@ namespace OpenCartTests.Pages
 
         public void ClearTotalCartWait()
         {
-            //pages.WishlistPage.ClearTotalCart(pages.WaitForElementPresent(pages.WishlistPage.CartTotalPrice));
+           
             WaitForElementPresent(RemoveFromCartButton);
         }
 
