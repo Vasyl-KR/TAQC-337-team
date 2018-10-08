@@ -42,8 +42,6 @@ namespace OpenCartTests.Pages
         public IWebElement InvalidLoginLabel
         { get { return driver.FindElement(By.CssSelector(InvalidLogin_LABEL_CSSSELECTOR)); } }
 
-        #endregion
-
         public IWebElement NewCustomerLabel
         { get { return driver.FindElement(By.XPath(NewCustomer_LABEL_XPATH)); } }
 
