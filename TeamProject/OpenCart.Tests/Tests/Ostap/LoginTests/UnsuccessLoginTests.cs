@@ -38,9 +38,9 @@ namespace OpenCartTests.Tests.Ostap
         {
             //Arrange
             string expectedErrorMessage = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";
-
+            int countOfLogins = 6;
             //Act
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < countOfLogins; i++)
             {
                 Pages.LoginPage
                .UnsuccessfulLogin(email, password);
