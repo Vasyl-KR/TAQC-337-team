@@ -32,7 +32,7 @@ namespace OpenCartTests.Pages
         // Button Continue
         private const string continueBtnCssSelector = "input.btn.btn-primary";
         //Warning Message For Requared Fields 
-        private const string frstNameWarningMessageXPath = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']";
+        private const string firstNameWarningMessageXPath = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']";
         private const string lastNameWarningMessageXPath = "//input[@id='input-lastname']/following-sibling::div[@class='text-danger']";
         private const string emailWarningMessageXPath = "//input[@id='input-email']/following-sibling::div[@class='text-danger']";
         private const string telephoneWarningMessageXPath = "//input[@id='input-telephone']/following-sibling::div[@class='text-danger']";
@@ -42,11 +42,13 @@ namespace OpenCartTests.Pages
         private const string regionWarningMessageXPath = "//select[@id='input-zone']/following-sibling::div[@class='text-danger']";
         private const string passwordWarningMessageXPath = "//input[@id='input-password']/following-sibling::div[@class='text-danger']";
         private const string confirmPasswordWarningMessageXPath = "//input[@id='input-confirm']/following-sibling::div[@class='text-danger']";
+        private const string mainWarningMessageCssSelector = "div.alert.alert-danger";
 
         #endregion
 
         #region Fields
         //Warning message for empty fields
+        public const string EmailAlreadyExist = "Warning: E-Mail Address is already registered!";
         public const string FirstNameWarningText = "First Name must be between 1 and 32 characters!";
         public const string LastNameWarningText = "Last Name must be between 1 and 32 characters!";
         public const string EmailWarningText = "E-Mail Address does not appear to be valid!";
@@ -58,8 +60,10 @@ namespace OpenCartTests.Pages
         public const string RegionWarningText = "Please select a region / state!";
         public const string PasswordWarningText = "Password must be between 4 and 20 characters!";
         public const string ConfirmWarningText = "Password confirmation does not match password!";
-        public const string AgreeTermsWarningText = " Warning: You must agree to the Privacy Policy!";
-        
+        public const string AgreeTermsWarningText = "Warning: You must agree to the Privacy Policy!";
+        public const string ShotPassword = "1q!";
+        public const string PleseSelect = " --- Please Select --- ";
+
         private readonly IWebDriver driver;
 
         #endregion
@@ -78,7 +82,7 @@ namespace OpenCartTests.Pages
         //Warning Messages For Requared Fields 
        public IWebElement FirstNameWarningMessage
         {
-            get { return driver.FindElement(By.XPath(frstNameWarningMessageXPath)); }
+            get { return driver.FindElement(By.XPath(firstNameWarningMessageXPath)); }
         }
 
         public IWebElement LastNameWarningMessage
@@ -124,6 +128,11 @@ namespace OpenCartTests.Pages
         public IWebElement ConfirmPasswordWarningMessage
         {
             get { return driver.FindElement(By.XPath(confirmPasswordWarningMessageXPath)); }
+        }
+
+        public IWebElement MainWarningMessage
+        {
+            get { return driver.FindElement(By.CssSelector(mainWarningMessageCssSelector)); }
         }
 
         //Input Fields

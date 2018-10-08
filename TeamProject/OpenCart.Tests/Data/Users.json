@@ -1,10 +1,10 @@
 ﻿{
   "Users": [
     {
-      //acount alredy exist in database
+      //first four use Volodya
       "firstName": "Petro",
       "lastName": "Smiluk",
-      "email": "psmelnuk@gmail.com",
+      "email": "sonyPetr@gmail.com",
       "telephone": "+380971708095",
       "fax": "",
       "company": "SoftServe",
@@ -21,6 +21,36 @@
       "lastName": "Vesela",
       "email": "oksi.kosa@gmail.com",
       "telephone": "+380971569898",
+      "fax": "+380986777777",
+      "company": "SoftServe",
+      "address_1": "Stepana Banderu, 10",
+      "address_2": "",
+      "city": "Lviv",
+      "postCode": "79000",
+      "country": "Ukraine",
+      "region": "L'vivs'ka Oblast'",
+      "password": "12345qwert"
+    },
+    {
+      "firstName": "Oleh",
+      "lastName": "Vunnuk",
+      "email": "vinuk.oleh@gmail.com",
+      "telephone": "+380971569898",
+      "fax": "+380986777777",
+      "company": "SoftServe",
+      "address_1": "Stepana Banderu, 10",
+      "address_2": "",
+      "city": "Lviv",
+      "postCode": "79000",
+      "country": "Ukraine",
+      "region": "L'vivs'ka Oblast'",
+      "password": "12345qwert"
+    },
+    {
+      "firstName": "Viktor",
+      "lastName": "Poc",
+      "email": "pocVik@gmail.com",
+      "telephone": "+380971569423",
       "fax": "+380986777777",
       "company": "SoftServe",
       "address_1": "Stepana Banderu, 10",

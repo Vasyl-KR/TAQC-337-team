@@ -6,8 +6,14 @@ namespace OpenCartTests.Pages
     public class EditAccountInformationPage : ATopComponent
     {
         #region Fields
+
         public const string DefaultFax = "+380999777555";
         public const string ExpectedSuccessMessage = "Success: Your account has been successfully updated.";
+        public const string FirstNameWarningText = "First Name must be between 1 and 32 characters!";
+        public const string LastNameWarningText = "Last Name must be between 1 and 32 characters!";
+        public const string EmailWarningText = "E-Mail Address does not appear to be valid!";
+        public const string TelephoneWarningText = "Telephone must be between 3 and 32 characters!";
+
         private readonly IWebDriver driver;
 
         #endregion
@@ -24,6 +30,20 @@ namespace OpenCartTests.Pages
 
         #region Proporties
 
+        //Warning Messages For Requared Fields 
+        [FindsBy(How = How.XPath, Using = "//input[@id='input-firstname']/following-sibling::div[@class='text-danger']")]
+        public IWebElement FirstNameWarningMessage { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='input-lastname']/following-sibling::div[@class='text-danger']")]
+        public IWebElement LastNameWarningMessage { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='input-email']/following-sibling::div[@class='text-danger']")]
+        public IWebElement EmailWarningMessage { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='input-telephone']/following-sibling::div[@class='text-danger']")]
+        public IWebElement TelephoneWarningMessage { get; set; }
+
+        //input fields
         [FindsBy(How = How.CssSelector, Using = "div.alert.alert-success")]
         public IWebElement SuccessMessage { get; set; }
 
@@ -50,13 +70,13 @@ namespace OpenCartTests.Pages
 
         #endregion
 
-        #region Private Methods
+        #region Methods
 
         /// <summary>
         /// Method for click on field
         /// </summary>
         /// <param name="webElement"></param>
-        private void ClickOnField(IWebElement webElement)
+        public void ClickOnField(IWebElement webElement)
         {
             webElement.Click();
         }
@@ -65,7 +85,7 @@ namespace OpenCartTests.Pages
         /// Method for cleaning field with data
         /// </summary>
         /// <param name="webElement"></param>
-        private void ClearDataInField(IWebElement webElement)
+        public void ClearDataInField(IWebElement webElement)
         {
             webElement.Clear();
         }
@@ -75,14 +95,10 @@ namespace OpenCartTests.Pages
         /// </summary>
         /// <param name="webElement"></param>
         /// <param name="text"></param>
-        private void SetDataInField(IWebElement webElement, string text)
+        public void SetDataInField(IWebElement webElement, string text)
         {
             webElement.SendKeys(text);
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Method for input data in First Name field
