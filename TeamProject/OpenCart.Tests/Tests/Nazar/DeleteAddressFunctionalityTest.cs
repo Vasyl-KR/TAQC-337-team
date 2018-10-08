@@ -31,12 +31,11 @@ namespace OpenCartTests.Tests.Nazar
             Driver.Navigate().GoToUrl(URL_AddressPage);
 
             int ListSizeBeforeAdding = Pages.AddressPage
-                                        .ListAddresses
-                                        .Count();
+                                        .ListAddressesLenght();
 
             int ListSizeAfterAdding = Pages.AddressPage
                             .DeleteRaw(index)
-                            .ListAddresses.Count;
+                            .ListAddressesLenght();
 
             NUnit.Framework.Assert.AreEqual(ListSizeBeforeAdding - 1, ListSizeAfterAdding, "Compare list size after delete" + ListSizeBeforeAdding + " == " + ListSizeAfterAdding);
         }
