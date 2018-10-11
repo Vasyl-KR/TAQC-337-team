@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenCartTests.Pages;
 
@@ -7,6 +8,12 @@ namespace OpenCartTests.Tests.Volodymyr
     [TestFixture]
     public class RegistrationPageTests : BaseTest
     {
+        [SetUp]
+        public void GoToRegister()
+        {
+            Pages.RegisterPage.ClickRegiser();
+        }
+
         [TestCase(true)]
         [TestCase(false)]
         public void Positive_Registration_New_User(bool yesNo)
@@ -16,37 +23,12 @@ namespace OpenCartTests.Tests.Volodymyr
             User user = yesNo ? UserList[1] : UserList[3];
             string expectedMessage = ConfirmationRegisterPage.ExpectedSuccessMessage;
 
-            // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-            // fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter(yesNo);
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
-            string actualMessage = Pages.ConfirmationRegisterPage.SuccessMessageH1Element.Text;
-            // click button continue on confirmation page
+            // Act                   
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue(yesNo);
+            string actualMessage = Pages.ConfirmationRegisterPage.SuccessMessageH1Element.Text;          
             Pages.ConfirmationRegisterPage.ClickConfirmationButtonContinue();
-            //log out
-            Pages.AccountPage.ClickLogout();
-            
+            Pages.AccountPage.GoToLogoutPage().SuccessLogout();
             // Assert
             Assert.AreEqual(expectedMessage, actualMessage);
         }
@@ -60,30 +42,8 @@ namespace OpenCartTests.Tests.Volodymyr
             string expectedMessage = RegisterPage.EmailAlreadyExist;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-            // fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.MainWarningMessage.Text;
            
             // Assert
@@ -94,36 +54,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_First_Name_Empty()
         {
             // Arrange
-            // get test data
             User user = UserList[1];
-
+            user.firstName = String.Empty;
             string expectedMessage = RegisterPage.FirstNameWarningText;
 
-            // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-            
-            //fill fields
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            // Act           
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.FirstNameWarningMessage.Text;
 
             // Assert
@@ -136,34 +73,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.lastName = String.Empty;
             string expectedMessage = RegisterPage.LastNameWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.LastNameWarningMessage.Text;
 
             // Assert
@@ -176,34 +91,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.email = String.Empty;
             string expectedMessage = RegisterPage.EmailWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.EmailWarningMessage.Text;
 
             // Assert
@@ -216,34 +109,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.telephone = String.Empty;
             string expectedMessage = RegisterPage.TelephoneWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.TelephoneWarningMessage.Text;
 
             // Assert
@@ -256,34 +127,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.address_1 = String.Empty;
             string expectedMessage = RegisterPage.Address1WarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.Address1WarningMessage.Text;
 
             // Assert
@@ -296,34 +145,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.city = String.Empty;
             string expectedMessage = RegisterPage.CityWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.CityWarningMessage.Text;
 
             // Assert
@@ -336,34 +163,13 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.country = RegisterPage.PleseSelect;
+            user.region = RegisterPage.None;
             string expectedMessage = RegisterPage.CountryWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(RegisterPage.PleseSelect);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.CountryWarningMessage.Text;
 
             // Assert
@@ -376,35 +182,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.region = RegisterPage.PleseSelect;
             string expectedMessage = RegisterPage.RegionWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(RegisterPage.PleseSelect);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.RegionWarningMessage.Text;
 
             // Assert
@@ -417,33 +200,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.password = String.Empty;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.PasswordWarningMessage.Text;
 
             // Assert
@@ -456,14 +218,9 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
             string expectedMessage = RegisterPage.ConfirmWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-
-            //fill fields
             Pages.RegisterPage.SetFirstName(user.firstName);
             Pages.RegisterPage.SetLastName(user.lastName);
             Pages.RegisterPage.SetEmail(user.email);
@@ -478,12 +235,7 @@ namespace OpenCartTests.Tests.Volodymyr
             Pages.RegisterPage.SetRegion(user.region);
             Pages.RegisterPage.SetPassword(user.password);
             Pages.RegisterPage.SetConfirmPassword(user.password+"in");
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
+            SetNecessaryTickAndContinue();
 
             string actualMessage = Pages.RegisterPage.ConfirmPasswordWarningMessage.Text;
 
@@ -497,34 +249,12 @@ namespace OpenCartTests.Tests.Volodymyr
             // Arrange
             // get test data
             User user = UserList[1];
-
+            user.password = RegisterPage.ShotPassword;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-            //fill fields
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(RegisterPage.ShotPassword);
-            Pages.RegisterPage.SetConfirmPassword(RegisterPage.ShotPassword);
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
-
+            FillFieldsUserData(user);
+            SetNecessaryTickAndContinue();
             string actualMessage = Pages.RegisterPage.PasswordWarningMessage.Text;
 
             // Assert
@@ -532,18 +262,28 @@ namespace OpenCartTests.Tests.Volodymyr
         }
 
         [Test]
+
         public void UnSuccess_Register_Not_Agree_Terms()
         {
             // Arrange
             // get test data
             User user = UserList[1];
-
             string expectedMessage = RegisterPage.AgreeTermsWarningText;
 
             // Act
-            // go to RegisterPage
-            Pages.RegisterPage.ClickRegiser();
-            //fill fields
+            FillFieldsUserData(user);
+            // select subscribe
+            Pages.RegisterPage.SelectNewsLetter(true);
+            // click button continue
+            Pages.RegisterPage.ClickButtonContinue();
+            string actualMessage = Pages.RegisterPage.MainWarningMessage.Text;
+
+            // Assert
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+
+        private void FillFieldsUserData(User user)
+        {
             Pages.RegisterPage.SetFirstName(user.firstName);
             Pages.RegisterPage.SetLastName(user.lastName);
             Pages.RegisterPage.SetEmail(user.email);
@@ -558,15 +298,16 @@ namespace OpenCartTests.Tests.Volodymyr
             Pages.RegisterPage.SetRegion(user.region);
             Pages.RegisterPage.SetPassword(user.password);
             Pages.RegisterPage.SetConfirmPassword(user.password);
+        }
+
+        private void SetNecessaryTickAndContinue(bool yesNo = true)
+        {
             // select subscribe
-            Pages.RegisterPage.SelectNewsLetter();
+            Pages.RegisterPage.SelectNewsLetter(yesNo);
+            // agree with the terms
+            Pages.RegisterPage.SetCheckAgreeTerms();
             // click button continue
             Pages.RegisterPage.ClickButtonContinue();
-
-            string actualMessage = Pages.RegisterPage.MainWarningMessage.Text;
-
-            // Assert
-            Assert.AreEqual(expectedMessage, actualMessage);
         }
     }
 }

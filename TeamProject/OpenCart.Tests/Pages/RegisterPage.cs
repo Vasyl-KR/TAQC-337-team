@@ -63,7 +63,7 @@ namespace OpenCartTests.Pages
         public const string AgreeTermsWarningText = "Warning: You must agree to the Privacy Policy!";
         public const string ShotPassword = "1q!";
         public const string PleseSelect = " --- Please Select --- ";
-
+        public const string None = " --- None --- ";
         private readonly IWebDriver driver;
 
         #endregion
@@ -425,7 +425,7 @@ namespace OpenCartTests.Pages
         /// Method for select Yes or No for Subscribing news letters
         /// </summary>
         /// <param name="yesOrNo"></param>
-        public void SelectNewsLetter(bool yesOrNo = true)
+        public void SelectNewsLetter(bool yesOrNo)
         {
             if (yesOrNo)
             {
