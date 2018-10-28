@@ -19,16 +19,16 @@ namespace OpenCartTests.Tests.Volodymyr
         public void Positive_Registration_New_User(bool yesNo)
         {
             // Arrange
-            // get test data
             User user = yesNo ? UnregisterUserList[1] : UnregisterUserList[2];
             string expectedMessage = ConfirmationRegisterPage.ExpectedSuccessMessage;
 
             // Act                   
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue(yesNo);
+            SetNecessaryCheckBoxAndContinue(yesNo);
             string actualMessage = Pages.ConfirmationRegisterPage.SuccessMessageH1Element.Text;          
             Pages.ConfirmationRegisterPage.ClickConfirmationButtonContinue();
             Pages.AccountPage.GoToLogoutPage().SuccessLogout();
+            
             // Assert
             Assert.AreEqual(expectedMessage, actualMessage);
         }
@@ -43,7 +43,7 @@ namespace OpenCartTests.Tests.Volodymyr
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.MainWarningMessage.Text;
            
             // Assert
@@ -60,7 +60,7 @@ namespace OpenCartTests.Tests.Volodymyr
 
             // Act           
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.FirstNameWarningMessage.Text;
 
             // Assert
@@ -71,14 +71,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Last_Name_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.lastName = String.Empty;
             string expectedMessage = RegisterPage.LastNameWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.LastNameWarningMessage.Text;
 
             // Assert
@@ -89,14 +88,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Email_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.email = String.Empty;
             string expectedMessage = RegisterPage.EmailWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.EmailWarningMessage.Text;
 
             // Assert
@@ -107,14 +105,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Telephone_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.telephone = String.Empty;
             string expectedMessage = RegisterPage.TelephoneWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.TelephoneWarningMessage.Text;
 
             // Assert
@@ -125,14 +122,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Address1_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.address_1 = String.Empty;
             string expectedMessage = RegisterPage.Address1WarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.Address1WarningMessage.Text;
 
             // Assert
@@ -143,14 +139,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_City_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.city = String.Empty;
             string expectedMessage = RegisterPage.CityWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.CityWarningMessage.Text;
 
             // Assert
@@ -161,7 +156,6 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Country_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.country = RegisterPage.PleseSelect;
             user.region = RegisterPage.None;
@@ -169,7 +163,7 @@ namespace OpenCartTests.Tests.Volodymyr
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.CountryWarningMessage.Text;
 
             // Assert
@@ -180,14 +174,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Region_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.region = RegisterPage.PleseSelect;
             string expectedMessage = RegisterPage.RegionWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.RegionWarningMessage.Text;
 
             // Assert
@@ -198,14 +191,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Password_Empty()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.password = String.Empty;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.PasswordWarningMessage.Text;
 
             // Assert
@@ -216,7 +208,6 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_ConfirmPassword_NoMatch()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             string expectedMessage = RegisterPage.ConfirmWarningText;
 
@@ -235,7 +226,7 @@ namespace OpenCartTests.Tests.Volodymyr
             Pages.RegisterPage.SetRegion(user.region);
             Pages.RegisterPage.SetPassword(user.password);
             Pages.RegisterPage.SetConfirmPassword(user.password+"in");
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
 
             string actualMessage = Pages.RegisterPage.ConfirmPasswordWarningMessage.Text;
 
@@ -247,14 +238,13 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_PasswordIsToShort()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             user.password = RegisterPage.ShotPassword;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
             // Act
             FillFieldsUserData(user);
-            SetNecessaryTickAndContinue();
+            SetNecessaryCheckBoxAndContinue();
             string actualMessage = Pages.RegisterPage.PasswordWarningMessage.Text;
 
             // Assert
@@ -266,15 +256,12 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_Not_Agree_Terms()
         {
             // Arrange
-            // get test data
             User user = UnregisterUserList[1];
             string expectedMessage = RegisterPage.AgreeTermsWarningText;
 
             // Act
             FillFieldsUserData(user);
-            // select subscribe
             Pages.RegisterPage.SelectNewsLetter(true);
-            // click button continue
             Pages.RegisterPage.ClickButtonContinue();
             string actualMessage = Pages.RegisterPage.MainWarningMessage.Text;
 
@@ -300,7 +287,7 @@ namespace OpenCartTests.Tests.Volodymyr
             Pages.RegisterPage.SetConfirmPassword(user.password);
         }
 
-        private void SetNecessaryTickAndContinue(bool yesNo = true)
+        private void SetNecessaryCheckBoxAndContinue(bool yesNo = true)
         {
             // select subscribe
             Pages.RegisterPage.SelectNewsLetter(yesNo);
