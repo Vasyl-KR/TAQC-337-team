@@ -9,18 +9,21 @@ namespace OpenCartTests.Data
     public class ReaderUserData
     {
         private static ListUsers users;
-       
+        private static ListUsers unregisteredUsers;
+        private static string userFile = "Users.json";
+        private static string unregisterUserFile = "UnregisteredUser.json";
+
         /// <summary>
         /// Private method for read data from file 'User.json' and return list of users
         /// </summary>
         /// <returns></returns>
-        private static ListUsers ReadUsersData()
+        private static ListUsers ReadUsersData(string fileName)
         {
             string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                         .Replace("\\bin\\Debug", "\\Data");
-            string path = Path.Combine(folderPath, "Users.json");
+            string path = Path.Combine(folderPath, fileName);
             string userData;
-            
+
             using (StreamReader reader = new StreamReader(path))
             {
                 userData = reader.ReadToEnd();
@@ -46,31 +49,26 @@ namespace OpenCartTests.Data
         {
             if (users.Users == null)
             {
-              users = ReadUsersData();
+                users = ReadUsersData(userFile);
             }
 
             return users;
         }
 
         /// <summary>
-        /// Method return user from list of users by index
+        /// Method return list of unregistered users 
         /// </summary>
-        /// <param name="index"></param>
         /// <returns></returns>
-        public static User GetUserByIndex(int index)
+        public static ListUsers GetUnregisteUsers()
         {
-            if (users.Users == null)
+            if (unregisteredUsers.Users == null)
             {
-                users = ReadUsersData();
+                unregisteredUsers = ReadUsersData(unregisterUserFile);
             }
 
-            if (users.Users.Length < index && index < 0)
-            {
-                throw new Exception("No user found.Check the index.");
-            }
-
-            return users.Users[index];
+            return users;
         }
+
         public static IEnumerable<User> GetUserData()
         {
             foreach (User user in GetUsers().Users)

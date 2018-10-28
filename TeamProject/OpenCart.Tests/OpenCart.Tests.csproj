@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\LoggingLog.cs" />
     <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Data\ReaderUserData.cs" />
     <Compile Include="Pages\AccountPage.cs" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Data\SearchProducts.json" />
+    <None Include="Data\UnregisteredUser.json" />
     <None Include="Data\Users.json" />
     <None Include="Lv-337AtqcOffering.docx" />
     <None Include="packages.config" />

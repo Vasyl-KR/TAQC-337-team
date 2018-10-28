@@ -20,7 +20,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = yesNo ? UserList[1] : UserList[3];
+            User user = yesNo ? UnregisterUserList[1] : UnregisterUserList[2];
             string expectedMessage = ConfirmationRegisterPage.ExpectedSuccessMessage;
 
             // Act                   
@@ -38,7 +38,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[0];
+            User user = UnregisterUserList[0];
             string expectedMessage = RegisterPage.EmailAlreadyExist;
 
             // Act
@@ -54,7 +54,7 @@ namespace OpenCartTests.Tests.Volodymyr
         public void UnSuccess_Register_First_Name_Empty()
         {
             // Arrange
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.firstName = String.Empty;
             string expectedMessage = RegisterPage.FirstNameWarningText;
 
@@ -72,7 +72,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.lastName = String.Empty;
             string expectedMessage = RegisterPage.LastNameWarningText;
 
@@ -90,7 +90,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.email = String.Empty;
             string expectedMessage = RegisterPage.EmailWarningText;
 
@@ -108,7 +108,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.telephone = String.Empty;
             string expectedMessage = RegisterPage.TelephoneWarningText;
 
@@ -126,7 +126,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.address_1 = String.Empty;
             string expectedMessage = RegisterPage.Address1WarningText;
 
@@ -144,7 +144,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.city = String.Empty;
             string expectedMessage = RegisterPage.CityWarningText;
 
@@ -162,7 +162,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.country = RegisterPage.PleseSelect;
             user.region = RegisterPage.None;
             string expectedMessage = RegisterPage.CountryWarningText;
@@ -181,7 +181,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.region = RegisterPage.PleseSelect;
             string expectedMessage = RegisterPage.RegionWarningText;
 
@@ -199,7 +199,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.password = String.Empty;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
@@ -217,7 +217,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             string expectedMessage = RegisterPage.ConfirmWarningText;
 
             // Act
@@ -248,7 +248,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             user.password = RegisterPage.ShotPassword;
             string expectedMessage = RegisterPage.PasswordWarningText;
 
@@ -267,7 +267,7 @@ namespace OpenCartTests.Tests.Volodymyr
         {
             // Arrange
             // get test data
-            User user = UserList[1];
+            User user = UnregisterUserList[1];
             string expectedMessage = RegisterPage.AgreeTermsWarningText;
 
             // Act

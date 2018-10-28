@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenQA.Selenium.Chrome;
 using OpenCartTests.Pages;
+using WebServiceTest;
 
 
 namespace OpenCartTests.Tests
@@ -32,6 +33,11 @@ namespace OpenCartTests.Tests
             get { return ReaderUserData.GetUsers().Users; }
         }
 
+        public User[] UnregisterUserList
+        {
+            get { return ReaderUserData.GetUnregisteUsers().Users; }
+        }
+
         protected IWebDriver Driver
         {
             get
@@ -51,6 +57,7 @@ namespace OpenCartTests.Tests
         [OneTimeSetUp]
         public void SetUp()
         {
+            LoggingLog.InitializationLogging();
             pages = new PagesList(Driver);
             Driver.Navigate().GoToUrl("http://atqc-shop.epizy.com/");
         }
@@ -59,6 +66,7 @@ namespace OpenCartTests.Tests
         public void TearDown()
         {
             Driver.Quit();
+            LoggingLog.Dispose();
         }
 
 

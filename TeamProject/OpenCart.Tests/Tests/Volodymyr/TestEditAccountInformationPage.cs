@@ -31,7 +31,7 @@ namespace OpenCartTests.Tests.Volodymyr
         public void Positive_Edit_Account_Information_Page()
         {
             // Arrange
-            User secondUser = UserList[3];
+            User secondUser = UserList[0];
             string expectedMessage = EditAccountInformationPage.ExpectedSuccessMessage;
 
             // Act
