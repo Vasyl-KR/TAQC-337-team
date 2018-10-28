@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenCartTests.Data;
 using OpenCartTests.Pages;
+using WebServiceTest;
 
 namespace OpenCartTests.Tests.Volodymyr
 {
@@ -271,30 +272,44 @@ namespace OpenCartTests.Tests.Volodymyr
 
         private void FillFieldsUserData(User user)
         {
-            Pages.RegisterPage.SetFirstName(user.firstName);
-            Pages.RegisterPage.SetLastName(user.lastName);
-            Pages.RegisterPage.SetEmail(user.email);
-            Pages.RegisterPage.SetTelephone(user.telephone);
-            Pages.RegisterPage.SetFax(user.fax);
-            Pages.RegisterPage.SetCompany(user.company);
-            Pages.RegisterPage.SetAddress1(user.address_1);
-            Pages.RegisterPage.SetAddress2(user.address_2);
-            Pages.RegisterPage.SetCity(user.city);
-            Pages.RegisterPage.SetPostCode(user.postCode);
-            Pages.RegisterPage.SetCountry(user.country);
-            Pages.RegisterPage.SetRegion(user.region);
-            Pages.RegisterPage.SetPassword(user.password);
-            Pages.RegisterPage.SetConfirmPassword(user.password);
+            try
+            {
+                Pages.RegisterPage.SetFirstName(user.firstName);
+                Pages.RegisterPage.SetLastName(user.lastName);
+                Pages.RegisterPage.SetEmail(user.email);
+                Pages.RegisterPage.SetTelephone(user.telephone);
+                Pages.RegisterPage.SetFax(user.fax);
+                Pages.RegisterPage.SetCompany(user.company);
+                Pages.RegisterPage.SetAddress1(user.address_1);
+                Pages.RegisterPage.SetAddress2(user.address_2);
+                Pages.RegisterPage.SetCity(user.city);
+                Pages.RegisterPage.SetPostCode(user.postCode);
+                Pages.RegisterPage.SetCountry(user.country);
+                Pages.RegisterPage.SetRegion(user.region);
+                Pages.RegisterPage.SetPassword(user.password);
+                Pages.RegisterPage.SetConfirmPassword(user.password);
+            }
+            catch (Exception exception)
+            {
+                LoggingLog.WritingLogging(null, exception);
+            }
         }
 
         private void SetNecessaryCheckBoxAndContinue(bool yesNo = true)
         {
-            // select subscribe
-            Pages.RegisterPage.SelectNewsLetter(yesNo);
-            // agree with the terms
-            Pages.RegisterPage.SetCheckAgreeTerms();
-            // click button continue
-            Pages.RegisterPage.ClickButtonContinue();
+            try
+            {  // select subscribe
+                Pages.RegisterPage.SelectNewsLetter(yesNo);
+                // agree with the terms
+                Pages.RegisterPage.SetCheckAgreeTerms();
+                // click button continue
+                Pages.RegisterPage.ClickButtonContinue();
+            }
+            catch (Exception exception)
+            {
+                LoggingLog.WritingLogging(null, exception);
+            }
+          
         }
     }
 }

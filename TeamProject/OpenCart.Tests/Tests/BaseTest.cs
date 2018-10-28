@@ -38,6 +38,11 @@ namespace OpenCartTests.Tests
             get { return ReaderUserData.GetUnregisteUsers().Users; }
         }
 
+        public void Log(string message)
+        {
+            LoggingLog.WritingLogging(message, null);
+        }
+
         protected IWebDriver Driver
         {
             get
